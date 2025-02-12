@@ -9,4 +9,14 @@ public class Bullet : MonoBehaviour
         // Distrugge il proiettile dopo un tot di secondi
         Destroy(gameObject, lifeTime);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Se il proiettile colpisce un nemico, si distrugge
+        if (other.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }
