@@ -4,11 +4,13 @@ public class Enemy : MonoBehaviour
 {
     public EnemyHealthBar healthBar;
     public float maxHP = 100f;
-    private float currentHP;
+    
+    protected float currentHP;
+    protected float lastDamageTime;
+
     public float regenRate = 5f;         // HP rigenerati per secondo
     public float regenDelay = 3f;        // Tempo di attesa prima di iniziare la rigenerazione
-
-    private float lastDamageTime;        // Tempo dell'ultimo danno subito
+    
 
     void Start()
     {
@@ -29,20 +31,25 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage, string laserType)
     {
-        currentHP -= damage;
-        lastDamageTime = Time.time;  // Registra l'ultimo danno subito
-
-        // Comunica all'HPBar di aggiornarsi
-        healthBar.TakeDamage();
-
-        // Se gli HP scendono a zero, distruggi il nemico
-        if (currentHP <= 0)
+        // Accetta danno solo dal laser rosso
+        if (laserType == "Red")
         {
-            Destroy(gameObject);
+            currentHP -= damage;
+            lastDamageTime = Time.time;  // Registra l'ultimo danno subito
+
+            // Comunica all'HPBar di aggiornarsi
+            healthBar.TakeDamage();
+
+            // Se gli HP scendono a zero, distruggi il nemico
+            if (currentHP <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
+
 
     public float GetCurrentHP()
     {

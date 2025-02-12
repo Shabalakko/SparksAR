@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class LaserGun : MonoBehaviour
+public class LaserGunBlue : MonoBehaviour
 {
-    public GameObject laserPrefab;          // Prefab del Particle System per il laser
+    public GameObject laserPrefab;          // Prefab del Particle System per il secondo laser
     public Transform laserEmitter;          // Punto di partenza del laser decentrato
     public float laserDamage = 10f;          // Danno per secondo
     public float maxLaserDistance = 50f;     // Distanza massima del laser
@@ -12,11 +12,11 @@ public class LaserGun : MonoBehaviour
     void Update()
     {
         // Mantiene l'emettitore decentrato rispetto alla telecamera
-        laserEmitter.position = transform.position + transform.right * 0.5f + transform.up * -0.2f;
+        laserEmitter.position = transform.position + transform.right * -0.5f + transform.up * -0.2f;
         laserEmitter.rotation = transform.rotation;
 
-        // Se il tasto sinistro del mouse è premuto, spara il laser
-        if (Input.GetMouseButtonDown(0))
+        // Se il tasto destro del mouse è premuto, spara il secondo laser
+        if (Input.GetMouseButtonDown(1))
         {
             // Istanzia un nuovo Particle System dal prefab
             currentLaser = Instantiate(laserPrefab, laserEmitter.position, laserEmitter.rotation);
@@ -25,7 +25,7 @@ public class LaserGun : MonoBehaviour
         }
 
         // Se il tasto viene rilasciato, ferma l'emissione e autodistrugge il Particle System
-        if (Input.GetMouseButtonUp(0) && currentLaser != null)
+        if (Input.GetMouseButtonUp(1) && currentLaser != null)
         {
             // Ferma l'emissione delle particelle
             currentLaser.GetComponent<ParticleSystem>().Stop();
@@ -35,7 +35,7 @@ public class LaserGun : MonoBehaviour
         }
 
         // Esegue sempre i Raycast mentre il tasto è premuto
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(1))
         {
             FireLaser();
         }
@@ -69,21 +69,13 @@ public class LaserGun : MonoBehaviour
             // Se il secondo Raycast colpisce qualcosa, orienta il Particle System lì
             laserEmitter.rotation = Quaternion.LookRotation(direction);
 
-            // Controlla se ha colpito un nemico
-            // Controlla se ha colpito un nemico di tipo A
-            Enemy enemy = laserHit.collider.GetComponentInParent<Enemy>();
+            // Controlla se ha colpito un nemico di tipo B
+            EnemyTypeB enemy = laserHit.collider.GetComponentInParent<EnemyTypeB>();
             if (enemy != null)
             {
                 // Infligge danno continuo in base al tempo
-                enemy.TakeDamage(laserDamage * Time.deltaTime, "Red");
+                enemy.TakeDamage(laserDamage * Time.deltaTime, "Blue");
             }
-
-        }
-        else
-        {
-            // Se non colpisce nulla, il laser va alla massima distanza
-            Vector3 endPoint = laserRay.origin + laserRay.direction * maxLaserDistance;
-            laserEmitter.rotation = Quaternion.LookRotation(direction);
         }
     }
 }

@@ -12,8 +12,10 @@ GameObject:
   - component: {fileID: 1591053916864542737}
   - component: {fileID: 3408723590798783840}
   - component: {fileID: 2112218795531177094}
+  - component: {fileID: 9104065869321369025}
+  - component: {fileID: 7046686439941990481}
   m_Layer: 5
-  m_Name: EnemyCanvas
+  m_Name: EnemyBlueCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,6 +105,34 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &9104065869321369025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5952089374933610006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c665c561ea2044b9f3ffc7797c7d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7046686439941990481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5952089374933610006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e34040c7f9bff814fbd7431ea09269e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageBackground: {fileID: 8481622802176290199}
+  imageFill: {fileID: 806510721552834178}
+  canvas: {fileID: 0}
+  enemyScript: {fileID: 0}
 --- !u!1 &7562836597864114306
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.023529412, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
