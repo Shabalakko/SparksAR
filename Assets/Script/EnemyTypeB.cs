@@ -1,27 +1,70 @@
 using UnityEngine;
 
-public class EnemyTypeB : Enemy
+public class EnemyTypeB : MonoBehaviour, IEnemy
 {
-    public override void TakeDamage(float damage, string laserType)
+    [Header("Statistiche del Nemico (Tipo B)")]
+    [SerializeField] private float _maxHP = 100f;
+    public float maxHP { get { return _maxHP; } }
+
+    private float currentHP;
+    public float regenRate = 5f;
+    public float regenDelay = 3f;
+    private float lastDamageTime;
+
+    private ScoreManager scoreManager;
+    private LaserEnergyManager energyManager;
+
+    void Start()
     {
-        if (laserType == "Blue")
+        currentHP = maxHP;
+
+        // Trova ScoreManager e LaserEnergyManager nella scena
+        scoreManager = FindObjectOfType<ScoreManager>();
+        energyManager = FindObjectOfType<LaserEnergyManager>();
+    }
+
+    void Update()
+    {
+        if (currentHP < maxHP && Time.time > lastDamageTime + regenDelay)
+        {
+            currentHP += regenRate * Time.deltaTime;
+            currentHP = Mathf.Clamp(currentHP, 0, maxHP);
+        }
+    }
+
+    public void TakeDamage(float damage, string color)
+    {
+        if (color == "Blue")
         {
             currentHP -= damage;
             lastDamageTime = Time.time;
 
-            healthBar.TakeDamage();
-
             if (currentHP <= 0)
             {
-                // Ricarica il Laser Rosso alla distruzione
-                FindObjectOfType<LaserEnergyManager>().RechargeRed();
-
-                // Aggiunge il punteggio per il nemico blu
-                FindObjectOfType<ScoreManager>().AddScore("Blue");
-
-                Destroy(gameObject);
+                Die();
             }
         }
     }
 
+    private void Die()
+    {
+        // Aggiunge punteggio e ricarica il laser rosso
+        if (scoreManager != null)
+        {
+            scoreManager.AddScore("Blue");
+        }
+
+        if (energyManager != null)
+        {
+            energyManager.RechargeRed();
+        }
+
+        // Distrugge il GameObject dopo aver notificato
+        Destroy(gameObject);
+    }
+
+    public float GetCurrentHP()
+    {
+        return currentHP;
+    }
 }

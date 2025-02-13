@@ -227,9 +227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc38ed30d607d844b80ea14a2efb2dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 6430835127690145302}
-  maxHP: 10
-  regenRate: 5
+  _maxHP: 10
+  regenRate: 10
   regenDelay: 3
 --- !u!1001 &4103959592497497671
 PrefabInstance:
@@ -366,14 +365,3 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 1591053916864542737, guid: 2f905a41be971564b97f303fc6318774, type: 3}
   m_PrefabInstance: {fileID: 4103959592497497671}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6430835127690145302 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7046686439941990481, guid: 2f905a41be971564b97f303fc6318774, type: 3}
-  m_PrefabInstance: {fileID: 4103959592497497671}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e34040c7f9bff814fbd7431ea09269e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
