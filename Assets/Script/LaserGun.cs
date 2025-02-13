@@ -2,12 +2,19 @@ using UnityEngine;
 
 public class LaserGun : MonoBehaviour
 {
-    public GameObject laserPrefab;          // Prefab del Particle System per il laser
-    public Transform laserEmitter;          // Punto di partenza del laser decentrato
+    public GameObject laserPrefab;          // Prefab del Particle System per il laser rosso
+    public Transform laserEmitter;           // Punto di partenza del laser decentrato
     public float laserDamage = 10f;          // Danno per secondo
     public float maxLaserDistance = 50f;     // Distanza massima del laser
 
     private GameObject currentLaser;         // Istanza corrente del laser
+    private LaserEnergyManager energyManager;
+
+    void Start()
+    {
+        // Trova l'istanza del LaserEnergyManager
+        energyManager = FindObjectOfType<LaserEnergyManager>();
+    }
 
     void Update()
     {
@@ -15,29 +22,39 @@ public class LaserGun : MonoBehaviour
         laserEmitter.position = transform.position + transform.right * 0.5f + transform.up * -0.2f;
         laserEmitter.rotation = transform.rotation;
 
-        // Se il tasto sinistro del mouse è premuto, spara il laser
+        // Se il tasto sinistro del mouse è premuto, spara il laser rosso
         if (Input.GetMouseButtonDown(0))
         {
-            // Istanzia un nuovo Particle System dal prefab
-            currentLaser = Instantiate(laserPrefab, laserEmitter.position, laserEmitter.rotation);
-            currentLaser.transform.SetParent(laserEmitter); // Lo attacca al LaserEmitter
-            currentLaser.GetComponent<ParticleSystem>().Play();
+            // Verifica l'energia prima di sparare
+            if (energyManager.UseRedLaser())
+            {
+                // Istanzia un nuovo Particle System dal prefab
+                currentLaser = Instantiate(laserPrefab, laserEmitter.position, laserEmitter.rotation);
+                currentLaser.transform.SetParent(laserEmitter); // Lo attacca al LaserEmitter
+                currentLaser.GetComponent<ParticleSystem>().Play();
+            }
         }
 
         // Se il tasto viene rilasciato, ferma l'emissione e autodistrugge il Particle System
         if (Input.GetMouseButtonUp(0) && currentLaser != null)
         {
-            // Ferma l'emissione delle particelle
-            currentLaser.GetComponent<ParticleSystem>().Stop();
+            StopLaser();
+        }
 
-            // Distrugge l'istanza quando ha finito di emettere particelle
-            Destroy(currentLaser, currentLaser.GetComponent<ParticleSystem>().main.duration);
+        // Se l'energia è a zero, ferma l'emissione
+        if (energyManager.GetRedEnergy() <= 0 && currentLaser != null)
+        {
+            StopLaser();
         }
 
         // Esegue sempre i Raycast mentre il tasto è premuto
         if (Input.GetMouseButton(0))
         {
-            FireLaser();
+            // Verifica l'energia prima di sparare
+            if (energyManager.UseRedLaser())
+            {
+                FireLaser();
+            }
         }
     }
 
@@ -50,12 +67,10 @@ public class LaserGun : MonoBehaviour
 
         if (Physics.Raycast(centerRay, out centerHit, maxLaserDistance))
         {
-            // Se colpisce qualcosa, il punto di destinazione è il punto di impatto
             targetPoint = centerHit.point;
         }
         else
         {
-            // Se non colpisce nulla, il punto di destinazione è il massimo raggio d'azione
             targetPoint = centerRay.origin + centerRay.direction * maxLaserDistance;
         }
 
@@ -69,7 +84,6 @@ public class LaserGun : MonoBehaviour
             // Se il secondo Raycast colpisce qualcosa, orienta il Particle System lì
             laserEmitter.rotation = Quaternion.LookRotation(direction);
 
-            // Controlla se ha colpito un nemico
             // Controlla se ha colpito un nemico di tipo A
             Enemy enemy = laserHit.collider.GetComponentInParent<Enemy>();
             if (enemy != null)
@@ -77,13 +91,17 @@ public class LaserGun : MonoBehaviour
                 // Infligge danno continuo in base al tempo
                 enemy.TakeDamage(laserDamage * Time.deltaTime, "Red");
             }
+        }
+    }
 
-        }
-        else
-        {
-            // Se non colpisce nulla, il laser va alla massima distanza
-            Vector3 endPoint = laserRay.origin + laserRay.direction * maxLaserDistance;
-            laserEmitter.rotation = Quaternion.LookRotation(direction);
-        }
+    // Funzione per fermare e distruggere il laser
+    void StopLaser()
+    {
+        // Ferma l'emissione delle particelle
+        currentLaser.GetComponent<ParticleSystem>().Stop();
+
+        // Distrugge l'istanza quando ha finito di emettere particelle
+        Destroy(currentLaser, currentLaser.GetComponent<ParticleSystem>().main.duration);
+        currentLaser = null;
     }
 }
