@@ -1,18 +1,37 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LaserGunBlue : MonoBehaviour
 {
-    public GameObject laserPrefab;          // Prefab del Particle System per il laser blu
-    public Transform laserEmitter;           // Punto di partenza del laser decentrato
-    public float laserDamage = 10f;          // Danno per secondo
-    public float maxLaserDistance = 50f;     // Distanza massima del laser
+    public GameObject laserPrefab;
+    public Transform laserEmitter;
+    public float laserDamage = 10f;
+    public float maxLaserDistance = 50f;
 
     private GameObject currentLaser;
     private LaserEnergyManager energyManager;
+    private PlayerInputActions inputActions;
+    private bool isShooting = false;
+
+    void Awake()
+    {
+        inputActions = new PlayerInputActions();
+    }
+
+    void OnEnable()
+    {
+        inputActions.Shooting.ShootBlue.performed += ctx => StartShooting();
+        inputActions.Shooting.ShootBlue.canceled += ctx => StopShooting(); // <-- Fermiamo l'emissione al rilascio del tasto
+        inputActions.Enable();
+    }
+
+    void OnDisable()
+    {
+        inputActions.Disable();
+    }
 
     void Start()
     {
-        // Trova l'istanza del LaserEnergyManager
         energyManager = FindObjectOfType<LaserEnergyManager>();
     }
 
@@ -21,44 +40,36 @@ public class LaserGunBlue : MonoBehaviour
         laserEmitter.position = transform.position + transform.right * -0.5f + transform.up * -0.2f;
         laserEmitter.rotation = transform.rotation;
 
-        if (Input.GetMouseButtonDown(1))
+        if (isShooting)
         {
             if (energyManager.UseBlueLaser())
             {
-                currentLaser = Instantiate(laserPrefab, laserEmitter.position, laserEmitter.rotation);
-                currentLaser.transform.SetParent(laserEmitter);
-                currentLaser.GetComponent<ParticleSystem>().Play();
-            }
-        }
+                if (currentLaser == null)
+                {
+                    currentLaser = Instantiate(laserPrefab, laserEmitter.position, laserEmitter.rotation);
+                    currentLaser.transform.SetParent(laserEmitter);
+                    currentLaser.GetComponent<ParticleSystem>().Play();
+                }
 
-        if (Input.GetMouseButtonUp(1) && currentLaser != null)
-        {
-            StopLaser();
-        }
-
-        // Se l'energia è a zero, ferma l'emissione
-        if (energyManager.GetBlueEnergy() <= 0 && currentLaser != null)
-        {
-            StopLaser();
-        }
-
-        if (Input.GetMouseButton(1))
-        {
-            if (energyManager.UseBlueLaser())
-            {
                 FireLaser();
             }
+            else
+            {
+                StopLaser(); // <-- Se l'energia finisce, ferma l'emissione
+            }
         }
     }
 
-    // Funzione per fermare e distruggere il laser
-    void StopLaser()
+    void StartShooting()
     {
-        currentLaser.GetComponent<ParticleSystem>().Stop();
-        Destroy(currentLaser, currentLaser.GetComponent<ParticleSystem>().main.duration);
-        currentLaser = null;
+        isShooting = true;
     }
 
+    void StopShooting()
+    {
+        isShooting = false;
+        StopLaser(); // <-- Ferma l'emissione quando si rilascia il tasto
+    }
 
     void FireLaser()
     {
@@ -83,11 +94,26 @@ public class LaserGunBlue : MonoBehaviour
         {
             laserEmitter.rotation = Quaternion.LookRotation(direction);
 
+            // Colpisce solo nemici di tipo B
             EnemyTypeB enemy = laserHit.collider.GetComponentInParent<EnemyTypeB>();
             if (enemy != null)
             {
+                // Infligge danno continuo in base al tempo
                 enemy.TakeDamage(laserDamage * Time.deltaTime, "Blue");
             }
+        }
+    }
+
+    void StopLaser()
+    {
+        if (currentLaser != null)
+        {
+            // Ferma l'emissione delle particelle
+            currentLaser.GetComponent<ParticleSystem>().Stop();
+
+            // Distrugge l'istanza quando ha finito di emettere particelle
+            Destroy(currentLaser, currentLaser.GetComponent<ParticleSystem>().main.duration);
+            currentLaser = null;
         }
     }
 }
