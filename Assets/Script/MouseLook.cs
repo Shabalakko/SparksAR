@@ -86,8 +86,8 @@ public class MouseLook : MonoBehaviour
         if (Application.platform == RuntimePlatform.Android && UnityEngine.InputSystem.Gyroscope.current != null)
         {
             // Applica la rotazione angolare del giroscopio
-            float gyroX = -gyroInput.x * gyroSensitivity * Time.deltaTime;
-            float gyroY = gyroInput.y * gyroSensitivity * Time.deltaTime;
+            float gyroX = gyroInput.x * gyroSensitivity * Time.deltaTime;
+            float gyroY = -gyroInput.y * gyroSensitivity * Time.deltaTime;
 
             xRotation -= gyroX;
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);

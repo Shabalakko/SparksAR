@@ -3,15 +3,17 @@ using UnityEngine.InputSystem;
 
 public class LaserGun : MonoBehaviour
 {
-    public GameObject laserPrefab;          // Prefab del Particle System per il laser rosso
-    public Transform laserEmitter;           // Punto di partenza del laser decentrato
-    public float laserDamage = 10f;          // Danno per secondo
-    public float maxLaserDistance = 50f;     // Distanza massima del laser
+    public GameObject laserPrefab;
+    public Transform laserEmitter;
+    public float laserDamage = 10f;
+    public float maxLaserDistance = 50f;
 
     private GameObject currentLaser;
     private LaserEnergyManager energyManager;
     private PlayerInputActions inputActions;
     private bool isShooting = false;
+    private Vector2 touchPosition;
+    private bool isTouching = false;
 
     void Awake()
     {
@@ -20,8 +22,15 @@ public class LaserGun : MonoBehaviour
 
     void OnEnable()
     {
+        // --- PC: Tasto Sinistro Mouse ---
         inputActions.Shooting.ShootRed.performed += ctx => StartShooting();
         inputActions.Shooting.ShootRed.canceled += ctx => StopShooting();
+
+        // --- Android: Touch continuo ---
+        inputActions.TouchControls.TouchPosition.performed += ctx => touchPosition = ctx.ReadValue<Vector2>();
+        inputActions.TouchControls.TouchPress.performed += ctx => isTouching = true;
+        inputActions.TouchControls.TouchPress.canceled += ctx => isTouching = false;
+
         inputActions.Enable();
     }
 
@@ -40,22 +49,48 @@ public class LaserGun : MonoBehaviour
         laserEmitter.position = transform.position + transform.right * 0.5f + transform.up * -0.2f;
         laserEmitter.rotation = transform.rotation;
 
-        if (isShooting)
+        // --- Controllo su PC (Mouse) ---
+        if (Application.platform != RuntimePlatform.Android)
         {
-            if (energyManager.UseRedLaser())
+            if (isShooting)
             {
-                if (currentLaser == null)
+                if (energyManager.UseRedLaser())
                 {
-                    currentLaser = Instantiate(laserPrefab, laserEmitter.position, laserEmitter.rotation);
-                    currentLaser.transform.SetParent(laserEmitter);
-                    currentLaser.GetComponent<ParticleSystem>().Play();
-                }
+                    if (currentLaser == null)
+                    {
+                        currentLaser = Instantiate(laserPrefab, laserEmitter.position, laserEmitter.rotation);
+                        currentLaser.transform.SetParent(laserEmitter);
+                        currentLaser.GetComponent<ParticleSystem>().Play();
+                    }
 
-                FireLaser();
+                    FireLaser();
+                }
+                else
+                {
+                    StopLaser();
+                }
+            }
+        }
+        // --- Controllo su Android (Touch) ---
+        else
+        {
+            if (isTouching && touchPosition.x > Screen.width / 2) // Lato destro dello schermo
+            {
+                if (energyManager.UseRedLaser())
+                {
+                    if (currentLaser == null)
+                    {
+                        currentLaser = Instantiate(laserPrefab, laserEmitter.position, laserEmitter.rotation);
+                        currentLaser.transform.SetParent(laserEmitter);
+                        currentLaser.GetComponent<ParticleSystem>().Play();
+                    }
+
+                    FireLaser();
+                }
             }
             else
             {
-                StopLaser();
+                StopLaser(); // Ferma il laser quando si rilascia il touch
             }
         }
     }

@@ -12,6 +12,8 @@ public class LaserGunBlue : MonoBehaviour
     private LaserEnergyManager energyManager;
     private PlayerInputActions inputActions;
     private bool isShooting = false;
+    private Vector2 touchPosition;
+    private bool isTouching = false;
 
     void Awake()
     {
@@ -20,8 +22,15 @@ public class LaserGunBlue : MonoBehaviour
 
     void OnEnable()
     {
+        // --- PC: Tasto Destro Mouse ---
         inputActions.Shooting.ShootBlue.performed += ctx => StartShooting();
-        inputActions.Shooting.ShootBlue.canceled += ctx => StopShooting(); // <-- Ferma l'emissione al rilascio del tasto
+        inputActions.Shooting.ShootBlue.canceled += ctx => StopShooting();
+
+        // --- Android: Touch continuo ---
+        inputActions.TouchControls.TouchPosition.performed += ctx => touchPosition = ctx.ReadValue<Vector2>();
+        inputActions.TouchControls.TouchPress.performed += ctx => isTouching = true;
+        inputActions.TouchControls.TouchPress.canceled += ctx => isTouching = false;
+
         inputActions.Enable();
     }
 
@@ -40,22 +49,48 @@ public class LaserGunBlue : MonoBehaviour
         laserEmitter.position = transform.position + transform.right * -0.5f + transform.up * -0.2f;
         laserEmitter.rotation = transform.rotation;
 
-        if (isShooting)
+        // --- Controllo su PC (Mouse) ---
+        if (Application.platform != RuntimePlatform.Android)
         {
-            if (energyManager.UseBlueLaser())
+            if (isShooting)
             {
-                if (currentLaser == null)
+                if (energyManager.UseBlueLaser())
                 {
-                    currentLaser = Instantiate(laserPrefab, laserEmitter.position, laserEmitter.rotation);
-                    currentLaser.transform.SetParent(laserEmitter);
-                    currentLaser.GetComponent<ParticleSystem>().Play();
-                }
+                    if (currentLaser == null)
+                    {
+                        currentLaser = Instantiate(laserPrefab, laserEmitter.position, laserEmitter.rotation);
+                        currentLaser.transform.SetParent(laserEmitter);
+                        currentLaser.GetComponent<ParticleSystem>().Play();
+                    }
 
-                FireLaser();
+                    FireLaser();
+                }
+                else
+                {
+                    StopLaser();
+                }
+            }
+        }
+        // --- Controllo su Android (Touch) ---
+        else
+        {
+            if (isTouching && touchPosition.x < Screen.width / 2) // Lato sinistro dello schermo
+            {
+                if (energyManager.UseBlueLaser())
+                {
+                    if (currentLaser == null)
+                    {
+                        currentLaser = Instantiate(laserPrefab, laserEmitter.position, laserEmitter.rotation);
+                        currentLaser.transform.SetParent(laserEmitter);
+                        currentLaser.GetComponent<ParticleSystem>().Play();
+                    }
+
+                    FireLaser();
+                }
             }
             else
             {
-                StopLaser(); // <-- Se l'energia finisce, ferma l'emissione
+                StopLaser(); // Ferma il laser quando si rilascia il touch
             }
         }
     }
@@ -68,7 +103,7 @@ public class LaserGunBlue : MonoBehaviour
     void StopShooting()
     {
         isShooting = false;
-        StopLaser(); // <-- Ferma l'emissione quando si rilascia il tasto
+        StopLaser();
     }
 
     void FireLaser()
@@ -102,10 +137,7 @@ public class LaserGunBlue : MonoBehaviour
     {
         if (currentLaser != null)
         {
-            // Ferma l'emissione delle particelle
             currentLaser.GetComponent<ParticleSystem>().Stop();
-
-            // Distrugge l'istanza quando ha finito di emettere particelle
             Destroy(currentLaser, currentLaser.GetComponent<ParticleSystem>().main.duration);
             currentLaser = null;
         }
