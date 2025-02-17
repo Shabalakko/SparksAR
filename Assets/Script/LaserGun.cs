@@ -37,14 +37,11 @@ public class LaserGun : MonoBehaviour
 
     void Update()
     {
-        // Mantiene l'emettitore decentrato rispetto alla telecamera
         laserEmitter.position = transform.position + transform.right * 0.5f + transform.up * -0.2f;
         laserEmitter.rotation = transform.rotation;
 
-        // Se si sta sparando, gestisci l'emissione e il danno
         if (isShooting)
         {
-            // Verifica l'energia prima di sparare
             if (energyManager.UseRedLaser())
             {
                 if (currentLaser == null)
@@ -83,6 +80,14 @@ public class LaserGun : MonoBehaviour
         if (Physics.Raycast(centerRay, out centerHit, maxLaserDistance))
         {
             targetPoint = centerHit.point;
+
+            // Se colpisce un nemico, punta al suo pivot
+            Enemy enemy = centerHit.collider.GetComponentInParent<Enemy>();
+            if (enemy != null)
+            {
+                targetPoint = enemy.transform.position; // Usa il pivot del nemico come target
+                enemy.TakeDamage(laserDamage * Time.deltaTime, "Red");
+            }
         }
         else
         {
@@ -90,19 +95,7 @@ public class LaserGun : MonoBehaviour
         }
 
         Vector3 direction = (targetPoint - laserEmitter.position).normalized;
-        Ray laserRay = new Ray(laserEmitter.position, direction);
-        RaycastHit laserHit;
-
-        if (Physics.Raycast(laserRay, out laserHit, maxLaserDistance))
-        {
-            laserEmitter.rotation = Quaternion.LookRotation(direction);
-
-            Enemy enemy = laserHit.collider.GetComponentInParent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(laserDamage * Time.deltaTime, "Red");
-            }
-        }
+        laserEmitter.rotation = Quaternion.LookRotation(direction);
     }
 
     void StopLaser()

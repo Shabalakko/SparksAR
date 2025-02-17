@@ -21,7 +21,7 @@ public class LaserGunBlue : MonoBehaviour
     void OnEnable()
     {
         inputActions.Shooting.ShootBlue.performed += ctx => StartShooting();
-        inputActions.Shooting.ShootBlue.canceled += ctx => StopShooting(); // <-- Fermiamo l'emissione al rilascio del tasto
+        inputActions.Shooting.ShootBlue.canceled += ctx => StopShooting(); // <-- Ferma l'emissione al rilascio del tasto
         inputActions.Enable();
     }
 
@@ -80,6 +80,14 @@ public class LaserGunBlue : MonoBehaviour
         if (Physics.Raycast(centerRay, out centerHit, maxLaserDistance))
         {
             targetPoint = centerHit.point;
+
+            // Se colpisce un nemico, punta al suo pivot
+            EnemyTypeB enemy = centerHit.collider.GetComponentInParent<EnemyTypeB>();
+            if (enemy != null)
+            {
+                targetPoint = enemy.transform.position; // Usa il pivot del nemico come target
+                enemy.TakeDamage(laserDamage * Time.deltaTime, "Blue");
+            }
         }
         else
         {
@@ -87,21 +95,7 @@ public class LaserGunBlue : MonoBehaviour
         }
 
         Vector3 direction = (targetPoint - laserEmitter.position).normalized;
-        Ray laserRay = new Ray(laserEmitter.position, direction);
-        RaycastHit laserHit;
-
-        if (Physics.Raycast(laserRay, out laserHit, maxLaserDistance))
-        {
-            laserEmitter.rotation = Quaternion.LookRotation(direction);
-
-            // Colpisce solo nemici di tipo B
-            EnemyTypeB enemy = laserHit.collider.GetComponentInParent<EnemyTypeB>();
-            if (enemy != null)
-            {
-                // Infligge danno continuo in base al tempo
-                enemy.TakeDamage(laserDamage * Time.deltaTime, "Blue");
-            }
-        }
+        laserEmitter.rotation = Quaternion.LookRotation(direction);
     }
 
     void StopLaser()
