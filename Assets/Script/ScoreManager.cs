@@ -7,20 +7,19 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI multiplierText;
     public TextMeshProUGUI nextMultiplierText;
-    public Image comboTimerRadial; // Immagine radiale per il timer della combo
+    public Image comboTimerRadial;
 
     private int totalScore = 0;
     private int currentMultiplier = 1;
-    private int colorComboStreak = 0; // Combo consecutiva dello stesso colore
+    private int colorComboStreak = 0;
     private string lastColor = "";
     private float comboTimer = 0f;
-    private float baseComboTime = 10f; // Tempo base per mantenere la combo
+    private float baseComboTime = 10f;
 
-    // --- Parametri modificabili in Inspector ---
     [Header("Impostazioni del Timer della Combo")]
-    public float timerSpeed = 1f;          // Velocità con cui il timer scende a zero
-    public float exponentialFactor = 1f;   // Coefficiente per la curva di accelerazione
-    public float slowDownFactor = 0.5f;    // Rallentamento quando si colpisce un nemico
+    public float timerSpeed = 1f;
+    public float exponentialFactor = 1f;
+    public float slowDownFactor = 0.5f;
 
     // Modificatore per rallentare temporaneamente il timer
     private float timerSpeedModifier = 1f;
@@ -32,22 +31,21 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        // --- Incrementa exponentialFactor con la combo ---
+        // Incrementa exponentialFactor con la combo
         exponentialFactor = 0.8f + (currentMultiplier * 0.1f);
         exponentialFactor = Mathf.Clamp(exponentialFactor, 0.8f, 2f);
 
         // Aggiorna il timer della combo
         if (comboTimer > 0)
         {
-            // --- MODIFICA: Isoliamo il calcolo del decremento del timer ---
             float timerDecrement = Time.deltaTime * timerSpeed * currentMultiplier * timerSpeedModifier;
             timerDecrement = Mathf.Pow(timerDecrement, exponentialFactor);
 
-            // Applica il decremento al timer senza toccare Time.deltaTime
+            // Applica il decremento al timer
             comboTimer -= timerDecrement;
 
             // Aggiorna l'indicatore radiale in base al tempo rimanente
-            comboTimerRadial.fillAmount = comboTimer / (baseComboTime);
+            comboTimerRadial.fillAmount = comboTimer / baseComboTime;
 
             // Se il timer scade, resetta la combo
             if (comboTimer <= 0)
@@ -56,11 +54,11 @@ public class ScoreManager : MonoBehaviour
             }
         }
 
-        // --- Ripristina gradualmente la velocità normale quando non si colpisce più ---
+        // Gradualmente ritorna alla velocità normale
         if (timerSpeedModifier < 1f)
         {
             timerSpeedModifier += Time.deltaTime;
-            timerSpeedModifier = Mathf.Clamp(timerSpeedModifier, 0.5f, 1f);
+            timerSpeedModifier = Mathf.Clamp(timerSpeedModifier, slowDownFactor, 1f);
         }
     }
 
@@ -88,9 +86,10 @@ public class ScoreManager : MonoBehaviour
         UpdateScoreUI();
     }
 
+    // Rallenta temporaneamente il timer quando si colpisce un nemico
     public void OnHit()
     {
-        timerSpeedModifier = 0.5f;
+        timerSpeedModifier = slowDownFactor;
     }
 
     private void ResetCombo()

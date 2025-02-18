@@ -12,8 +12,6 @@ public class LaserGun : MonoBehaviour
     private LaserEnergyManager energyManager;
     private PlayerInputActions inputActions;
     private bool isShooting = false;
-    private Vector2 touchPosition;
-    private bool isTouching = false;
 
     void Awake()
     {
@@ -22,14 +20,8 @@ public class LaserGun : MonoBehaviour
 
     void OnEnable()
     {
-        // --- PC: Tasto Sinistro Mouse ---
         inputActions.Shooting.ShootRed.performed += ctx => StartShooting();
         inputActions.Shooting.ShootRed.canceled += ctx => StopShooting();
-
-        // --- Android: Touch continuo ---
-        inputActions.TouchControls.TouchPosition.performed += ctx => touchPosition = ctx.ReadValue<Vector2>();
-        inputActions.TouchControls.TouchPress.performed += ctx => isTouching = true;
-        inputActions.TouchControls.TouchPress.canceled += ctx => isTouching = false;
 
         inputActions.Enable();
     }
@@ -71,10 +63,29 @@ public class LaserGun : MonoBehaviour
                 }
             }
         }
-        // --- Controllo su Android (Touch) ---
+        // --- Controllo su Android (Multi-Touch) ---
         else
         {
-            if (isTouching && touchPosition.x > Screen.width / 2) // Lato destro dello schermo
+            bool isTouchingRight = false;
+
+            // Verifica tutti i tocchi attivi
+            foreach (var touch in Touchscreen.current.touches)
+            {
+                if (touch.press.isPressed)
+                {
+                    Vector2 touchPosition = touch.position.ReadValue();
+
+                    // Se almeno un tocco è sul lato destro
+                    if (touchPosition.x > Screen.width / 2)
+                    {
+                        isTouchingRight = true;
+                        break;
+                    }
+                }
+            }
+
+            // Spara se almeno un dito è sul lato destro
+            if (isTouchingRight)
             {
                 if (energyManager.UseRedLaser())
                 {
@@ -87,10 +98,14 @@ public class LaserGun : MonoBehaviour
 
                     FireLaser();
                 }
+                else
+                {
+                    StopLaser();
+                }
             }
             else
             {
-                StopLaser(); // Ferma il laser quando si rilascia il touch
+                StopLaser(); // Ferma il laser se nessun dito è sul lato destro
             }
         }
     }
@@ -116,12 +131,12 @@ public class LaserGun : MonoBehaviour
         {
             targetPoint = centerHit.point;
 
-            // Se colpisce un nemico, punta al suo pivot
             Enemy enemy = centerHit.collider.GetComponentInParent<Enemy>();
             if (enemy != null)
             {
-                targetPoint = enemy.transform.position; // Usa il pivot del nemico come target
+                targetPoint = enemy.transform.position;
                 enemy.TakeDamage(laserDamage * Time.deltaTime, "Red");
+                FindObjectOfType<ScoreManager>().OnHit(); // Rallenta il timer della combo
             }
         }
         else

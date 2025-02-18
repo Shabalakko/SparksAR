@@ -12,8 +12,6 @@ public class LaserGunBlue : MonoBehaviour
     private LaserEnergyManager energyManager;
     private PlayerInputActions inputActions;
     private bool isShooting = false;
-    private Vector2 touchPosition;
-    private bool isTouching = false;
 
     void Awake()
     {
@@ -22,14 +20,8 @@ public class LaserGunBlue : MonoBehaviour
 
     void OnEnable()
     {
-        // --- PC: Tasto Destro Mouse ---
         inputActions.Shooting.ShootBlue.performed += ctx => StartShooting();
         inputActions.Shooting.ShootBlue.canceled += ctx => StopShooting();
-
-        // --- Android: Touch continuo ---
-        inputActions.TouchControls.TouchPosition.performed += ctx => touchPosition = ctx.ReadValue<Vector2>();
-        inputActions.TouchControls.TouchPress.performed += ctx => isTouching = true;
-        inputActions.TouchControls.TouchPress.canceled += ctx => isTouching = false;
 
         inputActions.Enable();
     }
@@ -71,10 +63,29 @@ public class LaserGunBlue : MonoBehaviour
                 }
             }
         }
-        // --- Controllo su Android (Touch) ---
+        // --- Controllo su Android (Multi-Touch) ---
         else
         {
-            if (isTouching && touchPosition.x < Screen.width / 2) // Lato sinistro dello schermo
+            bool isTouchingLeft = false;
+
+            // Verifica tutti i tocchi attivi
+            foreach (var touch in Touchscreen.current.touches)
+            {
+                if (touch.press.isPressed)
+                {
+                    Vector2 touchPosition = touch.position.ReadValue();
+
+                    // Se almeno un tocco è sul lato sinistro
+                    if (touchPosition.x < Screen.width / 2)
+                    {
+                        isTouchingLeft = true;
+                        break;
+                    }
+                }
+            }
+
+            // Spara se almeno un dito è sul lato sinistro
+            if (isTouchingLeft)
             {
                 if (energyManager.UseBlueLaser())
                 {
@@ -87,10 +98,14 @@ public class LaserGunBlue : MonoBehaviour
 
                     FireLaser();
                 }
+                else
+                {
+                    StopLaser();
+                }
             }
             else
             {
-                StopLaser(); // Ferma il laser quando si rilascia il touch
+                StopLaser(); // Ferma il laser se nessun dito è sul lato sinistro
             }
         }
     }
@@ -120,8 +135,9 @@ public class LaserGunBlue : MonoBehaviour
             EnemyTypeB enemy = centerHit.collider.GetComponentInParent<EnemyTypeB>();
             if (enemy != null)
             {
-                targetPoint = enemy.transform.position; // Usa il pivot del nemico come target
+                targetPoint = enemy.transform.position;
                 enemy.TakeDamage(laserDamage * Time.deltaTime, "Blue");
+                FindObjectOfType<ScoreManager>().OnHit(); // Rallenta il timer della combo
             }
         }
         else
