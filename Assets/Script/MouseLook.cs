@@ -3,16 +3,18 @@ using UnityEngine.InputSystem;
 
 public class MouseLook : MonoBehaviour
 {
-    public float gyroSensitivity = 50f;   // Sensibilità del giroscopio
-    public Transform playerBody;          // Riferimento al corpo del giocatore (per ruotare l'intero oggetto)
+    public float gyroSensitivity = 50f;
+    public Transform playerBody;
 
     private PlayerInputActions inputActions;
     private Vector3 gyroInput;
     private float xRotation = 0f;
+    private Quaternion initialRotation;
 
     void Awake()
     {
         inputActions = new PlayerInputActions();
+        initialRotation = transform.localRotation; // Salva la rotazione iniziale della telecamera
     }
 
     void OnEnable()
@@ -35,7 +37,6 @@ public class MouseLook : MonoBehaviour
 
         inputActions.Enable();
 
-        // Abilita il giroscopio su Android
         if (SystemInfo.supportsGyroscope && UnityEngine.InputSystem.Gyroscope.current != null)
         {
             InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
@@ -51,14 +52,20 @@ public class MouseLook : MonoBehaviour
     {
         if (Application.platform == RuntimePlatform.Android && UnityEngine.InputSystem.Gyroscope.current != null)
         {
-            // Applica la rotazione angolare del giroscopio
-            float gyroX = gyroInput.x * gyroSensitivity * Time.deltaTime;
-            float gyroY = -gyroInput.y * gyroSensitivity * Time.deltaTime;
+            float gyroX = gyroInput.x * gyroSensitivity * Time.unscaledDeltaTime; // Usa Time.unscaledDeltaTime per funzionare in pausa
+            float gyroY = -gyroInput.y * gyroSensitivity * Time.unscaledDeltaTime;
 
             xRotation -= gyroX;
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
             transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
             playerBody.Rotate(Vector3.up * gyroY);
         }
+    }
+
+    public void ResetCameraRotation()
+    {
+        transform.localRotation = initialRotation; // Resetta la telecamera
+        playerBody.rotation = Quaternion.Euler(0f, playerBody.rotation.eulerAngles.y, 0f); // Reset Y del player
+        xRotation = 0f;
     }
 }

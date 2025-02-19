@@ -212,7 +212,7 @@ MonoBehaviour:
   orbitSpeed: 1
   ellipseWidth: 5
   ellipseHeight: 3
-  verticalAmplitude: 2
+  verticalAmplitude: 10
   rotationSpeed: 2
   transitionSpeed: 0.5
 --- !u!114 &6501671739173448601

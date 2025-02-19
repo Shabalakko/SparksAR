@@ -13,14 +13,17 @@ public class Enemy : MonoBehaviour, IEnemy
 
     private ScoreManager scoreManager;
     private LaserEnergyManager energyManager;
+    private SettingsManager settingsManager;
 
     void Start()
     {
         currentHP = maxHP;
-
-        // Trova ScoreManager e LaserEnergyManager nella scena
         scoreManager = FindObjectOfType<ScoreManager>();
         energyManager = FindObjectOfType<LaserEnergyManager>();
+        settingsManager = FindObjectOfType<SettingsManager>();
+
+        // Applica la dimensione dell'hitbox basata sulle impostazioni
+        AdjustHitbox();
     }
 
     void Update()
@@ -48,7 +51,6 @@ public class Enemy : MonoBehaviour, IEnemy
 
     private void Die()
     {
-        // Aggiunge punteggio e ricarica il laser blu
         if (scoreManager != null)
         {
             scoreManager.AddScore("Red");
@@ -59,9 +61,22 @@ public class Enemy : MonoBehaviour, IEnemy
             energyManager.RechargeBlue();
         }
 
-        // Distrugge il GameObject dopo aver notificato
         Destroy(gameObject);
     }
+
+    private void AdjustHitbox()
+    {
+        if (settingsManager != null)
+        {
+            BoxCollider boxCollider = GetComponent<BoxCollider>(); // Casting esplicito
+            if (boxCollider != null)
+            {
+                boxCollider.size = Vector3.one * settingsManager.enemyHitboxSize;
+            }
+        }
+    }
+
+
 
     public float GetCurrentHP()
     {

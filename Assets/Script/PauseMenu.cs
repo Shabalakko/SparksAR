@@ -3,8 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenuUI; // Riferimento al Canvas del menu di pausa
+    public GameObject pauseMenuUI;
     private bool isPaused = false;
+    private MouseLook mouseLook;
+
+    void Start()
+    {
+        mouseLook = FindObjectOfType<MouseLook>(); // Trova lo script MouseLook
+    }
 
     public void TogglePause()
     {
@@ -21,20 +27,28 @@ public class PauseMenu : MonoBehaviour
     public void PauseGame()
     {
         isPaused = true;
-        Time.timeScale = 0f; // Ferma il tempo di gioco
-        pauseMenuUI.SetActive(true); // Mostra il menu di pausa
+        Time.timeScale = 0f;
+        pauseMenuUI.SetActive(true);
     }
 
     public void ResumeGame()
     {
         isPaused = false;
-        Time.timeScale = 1f; // Riporta il tempo alla normalità
-        pauseMenuUI.SetActive(false); // Nasconde il menu di pausa
+        Time.timeScale = 1f;
+        pauseMenuUI.SetActive(false);
+    }
+
+    public void ResetCamera()
+    {
+        if (mouseLook != null)
+        {
+            mouseLook.ResetCameraRotation();
+        }
     }
 
     public void ExitToMainMenu()
     {
-        Time.timeScale = 1f; // Assicurati che il tempo sia normale prima di cambiare scena
-        SceneManager.LoadScene("MainMenu"); // Cambia scena (usa il nome corretto della tua scena)
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 }
