@@ -22,7 +22,6 @@ public class LaserGun : MonoBehaviour
     {
         inputActions.Shooting.ShootRed.performed += ctx => StartShooting();
         inputActions.Shooting.ShootRed.canceled += ctx => StopShooting();
-
         inputActions.Enable();
     }
 
@@ -41,41 +40,16 @@ public class LaserGun : MonoBehaviour
         laserEmitter.position = transform.position + transform.right * 0.5f + transform.up * -0.2f;
         laserEmitter.rotation = transform.rotation;
 
-        // --- Controllo su PC (Mouse) ---
-        /*if (Application.platform != RuntimePlatform.Android)
-        {
-            if (isShooting)
-            {
-                if (energyManager.UseRedLaser())
-                {
-                    if (currentLaser == null)
-                    {
-                        currentLaser = Instantiate(laserPrefab, laserEmitter.position, laserEmitter.rotation);
-                        currentLaser.transform.SetParent(laserEmitter);
-                        currentLaser.GetComponent<ParticleSystem>().Play();
-                    }
+        bool isTouchingRight = false;
 
-                    FireLaser();
-                }
-                else
-                {
-                    StopLaser();
-                }
-            }
-        }
-        // --- Controllo su Android (Multi-Touch) ---
-        else*/
+        if (Touchscreen.current != null)
         {
-            bool isTouchingRight = false;
-
-            // Verifica tutti i tocchi attivi
             foreach (var touch in Touchscreen.current.touches)
             {
                 if (touch.press.isPressed)
                 {
                     Vector2 touchPosition = touch.position.ReadValue();
 
-                    // Se almeno un tocco è sul lato destro
                     if (touchPosition.x > Screen.width / 2)
                     {
                         isTouchingRight = true;
@@ -83,30 +57,29 @@ public class LaserGun : MonoBehaviour
                     }
                 }
             }
+        }
 
-            // Spara se almeno un dito è sul lato destro
-            if (isTouchingRight)
+        if (isTouchingRight)
+        {
+            if (energyManager.UseRedLaser())
             {
-                if (energyManager.UseRedLaser())
+                if (currentLaser == null)
                 {
-                    if (currentLaser == null)
-                    {
-                        currentLaser = Instantiate(laserPrefab, laserEmitter.position, laserEmitter.rotation);
-                        currentLaser.transform.SetParent(laserEmitter);
-                        currentLaser.GetComponent<ParticleSystem>().Play();
-                    }
+                    currentLaser = Instantiate(laserPrefab, laserEmitter.position, laserEmitter.rotation);
+                    currentLaser.transform.SetParent(laserEmitter);
+                    currentLaser.GetComponent<ParticleSystem>().Play();
+                }
 
-                    FireLaser();
-                }
-                else
-                {
-                    StopLaser();
-                }
+                FireLaser();
             }
             else
             {
-                StopLaser(); // Ferma il laser se nessun dito è sul lato destro
+                StopLaser();
             }
+        }
+        else
+        {
+            StopLaser();
         }
     }
 
@@ -136,7 +109,7 @@ public class LaserGun : MonoBehaviour
             {
                 targetPoint = enemy.transform.position;
                 enemy.TakeDamage(laserDamage * Time.deltaTime, "Red");
-                FindObjectOfType<ScoreManager>().OnHit(); // Rallenta il timer della combo
+                FindObjectOfType<ScoreManager>().OnHit();
             }
         }
         else
