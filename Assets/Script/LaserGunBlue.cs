@@ -42,7 +42,7 @@ public class LaserGunBlue : MonoBehaviour
         laserEmitter.rotation = transform.rotation;
 
         // --- Controllo su PC (Mouse) ---
-        if (Application.platform != RuntimePlatform.Android)
+        /*if (Application.platform != RuntimePlatform.Android)
         {
             if (isShooting)
             {
@@ -64,7 +64,7 @@ public class LaserGunBlue : MonoBehaviour
             }
         }
         // --- Controllo su Android (Multi-Touch) ---
-        else
+        else*/
         {
             bool isTouchingLeft = false;
 
