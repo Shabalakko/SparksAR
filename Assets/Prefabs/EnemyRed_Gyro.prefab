@@ -229,7 +229,7 @@ MonoBehaviour:
   ellipseHeight: 3
   verticalAmplitude: 2
   rotationSpeed: 2
-  transitionSpeed: 0.5
+  transitionSpeed: 1
 --- !u!1001 &1365965437109392172
 PrefabInstance:
   m_ObjectHideFlags: 0

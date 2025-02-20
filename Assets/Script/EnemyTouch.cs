@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using System.Collections.Generic;
 
@@ -16,8 +16,9 @@ public class EnemyTouch : MonoBehaviour, IEnemy
     private ScoreManager scoreManager;
     private LaserEnergyManager energyManager;
 
-    private HashSet<int> activeTouches = new HashSet<int>(); // Tocchi attivi su questo nemico
-    public float touchDamagePerSecond = 10f; // Danno per secondo
+    private HashSet<int> activeTouches = new HashSet<int>();
+    public float touchDamagePerSecond = 10f;
+    public float energyCostPerSecond = 5f;
 
     void Start()
     {
@@ -35,7 +36,6 @@ public class EnemyTouch : MonoBehaviour, IEnemy
             currentHP = Mathf.Clamp(currentHP, 0, maxHP);
         }
 
-        //  Controlla costantemente se il tocco è ancora sopra il nemico
         CheckActiveTouches();
 
         if (activeTouches.Count > 0)
@@ -46,7 +46,11 @@ public class EnemyTouch : MonoBehaviour, IEnemy
 
     private void ApplyTouchDamage()
     {
-        TakeDamage(touchDamagePerSecond * Time.deltaTime, "Touch");
+        if (energyManager.UseRedLaser())
+        {
+            TakeDamage(touchDamagePerSecond * Time.deltaTime, "Red");
+            scoreManager.OnHit(); // ðŸ”¥ Rallenta il timer della combo
+        }
     }
 
     private void OnEnable()
@@ -71,7 +75,6 @@ public class EnemyTouch : MonoBehaviour, IEnemy
         activeTouches.Remove(finger.index);
     }
 
-    //  Nuova funzione: Controlla costantemente se un dito è sopra il nemico
     private void CheckActiveTouches()
     {
         foreach (Finger finger in UnityEngine.InputSystem.EnhancedTouch.Touch.activeFingers)
@@ -95,7 +98,7 @@ public class EnemyTouch : MonoBehaviour, IEnemy
     private bool IsTouchStillOnEnemy(Finger finger)
     {
         Ray ray = Camera.main.ScreenPointToRay(finger.screenPosition);
-        int layerMask = ~LayerMask.GetMask("IgnoreTouch"); // Ignora il layer dello Spawner
+        int layerMask = ~LayerMask.GetMask("IgnoreTouch");
 
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
         {
@@ -120,7 +123,7 @@ public class EnemyTouch : MonoBehaviour, IEnemy
     {
         if (scoreManager != null)
         {
-            scoreManager.AddScore("Touch");
+            scoreManager.AddScore("Red"); // ðŸ”¥ Aggiunge combo per colore rosso
         }
 
         Destroy(gameObject);

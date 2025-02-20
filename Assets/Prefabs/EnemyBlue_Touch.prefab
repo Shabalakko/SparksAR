@@ -212,9 +212,9 @@ MonoBehaviour:
   orbitSpeed: 1
   ellipseWidth: 5
   ellipseHeight: 3
-  verticalAmplitude: 10
+  verticalAmplitude: 2
   rotationSpeed: 2
-  transitionSpeed: 0.5
+  transitionSpeed: 1
 --- !u!114 &8138421046277189326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +230,8 @@ MonoBehaviour:
   _maxHP: 10
   regenRate: 10
   regenDelay: 3
+  touchDamagePerSecond: 10
+  laserPrefab: {fileID: 256739400669774389, guid: 1ff29e96831155747815936e56138e8f, type: 3}
 --- !u!1001 &4103959592497497671
 PrefabInstance:
   m_ObjectHideFlags: 0

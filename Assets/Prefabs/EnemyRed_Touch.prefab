@@ -210,8 +210,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orbitSpeed: 1
-  ellipseWidth: 10
-  ellipseHeight: 10
+  ellipseWidth: 5
+  ellipseHeight: 3
   verticalAmplitude: 2
   rotationSpeed: 2
   transitionSpeed: 1

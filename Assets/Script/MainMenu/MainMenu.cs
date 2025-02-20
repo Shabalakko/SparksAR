@@ -7,10 +7,15 @@ public class MainMenu : MonoBehaviour
     public GameObject optionsCanvas;   // Canvas delle opzioni di gioco
 
     // --- 1. Play Button ---
-    public void PlayGame()
+    public void PlayGameGyro()
     {
         // Carica la scena di gioco
         SceneManager.LoadScene("GyroLevel");
+    }
+
+    public void PlayGameTouch()
+    {
+        SceneManager.LoadScene("TouchLevel");
     }
 
     // --- 2. Options Button ---
