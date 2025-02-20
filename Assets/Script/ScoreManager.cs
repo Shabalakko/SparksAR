@@ -27,6 +27,7 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         UpdateScoreUI();
+        comboTimerRadial.fillAmount = 0f;
     }
 
     void Update()

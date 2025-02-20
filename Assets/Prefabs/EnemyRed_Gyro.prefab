@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 5394025260890724774}
   - component: {fileID: -2547438490021685638}
   m_Layer: 0
-  m_Name: EnemyRed
+  m_Name: EnemyRed_Gyro
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
