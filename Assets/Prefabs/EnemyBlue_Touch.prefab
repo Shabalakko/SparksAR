@@ -231,7 +231,9 @@ MonoBehaviour:
   regenRate: 10
   regenDelay: 3
   touchDamagePerSecond: 10
-  laserPrefab: {fileID: 256739400669774389, guid: 1ff29e96831155747815936e56138e8f, type: 3}
+  energyCostPerSecond: 5
+  blueLaserPrefab: {fileID: 256739400669774389, guid: 1ff29e96831155747815936e56138e8f, type: 3}
+  blueLaserOrigin: {fileID: 0}
 --- !u!1001 &4103959592497497671
 PrefabInstance:
   m_ObjectHideFlags: 0
