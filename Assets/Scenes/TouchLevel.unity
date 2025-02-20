@@ -607,6 +607,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1435866769952643408, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: drainRate
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435866769952643408, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: rechargeRate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435866769952643408, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: bonusRecharge
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3034079650520803364, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3892221626673909189, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
       propertyPath: m_Name
       value: 'UI '

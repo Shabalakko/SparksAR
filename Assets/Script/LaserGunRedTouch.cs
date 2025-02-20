@@ -10,6 +10,7 @@ public class LaserGunRedTouch : MonoBehaviour
     private GameObject currentLaser;
     private PlayerInputActions inputActions;
     private bool isShooting = false;
+    private LaserEnergyManager energyManager; // Ora usato per controllare e consumare l'energia
 
     void Awake()
     {
@@ -26,6 +27,11 @@ public class LaserGunRedTouch : MonoBehaviour
     void OnDisable()
     {
         inputActions.Disable();
+    }
+
+    void Start()
+    {
+        energyManager = FindObjectOfType<LaserEnergyManager>();
     }
 
     void Update()
@@ -53,6 +59,12 @@ public class LaserGunRedTouch : MonoBehaviour
                         if (enemy != null)
                         {
                             foundRedEnemy = true;
+                            // Consuma energia per il laser rosso
+                            if (!energyManager.UseRedLaser())
+                            {
+                                StopLaser();
+                                break;
+                            }
                             if (currentLaser == null)
                             {
                                 currentLaser = Instantiate(laserPrefab, laserEmitter.position, laserEmitter.rotation);
@@ -64,14 +76,15 @@ public class LaserGunRedTouch : MonoBehaviour
                                 }
                             }
                             FireLaser(hit);
-                            break; // elaboriamo il primo tocco valido
+                            break; // Elaboriamo il primo tocco valido
                         }
                     }
                 }
             }
         }
 
-        if (!foundRedEnemy)
+        // Se non viene rilevato un nemico rosso oppure l'energia è esaurita, ferma il laser
+        if (!foundRedEnemy || (energyManager != null && energyManager.GetRedEnergy() <= 0))
         {
             StopLaser();
         }
@@ -88,7 +101,7 @@ public class LaserGunRedTouch : MonoBehaviour
         StopLaser();
     }
 
-    // Ruota l'emitter in modo che il laser "snappi" al centro del nemico colpito
+    // Ruota l'emitter affinché il laser "snappi" al centro del nemico colpito
     void FireLaser(RaycastHit hit)
     {
         Vector3 targetPoint = hit.point;

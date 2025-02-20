@@ -56,7 +56,6 @@ public class LaserEnergyManager : MonoBehaviour
         return blueEnergy;
     }
 
-
     public bool UseRedLaser()
     {
         // Se è surriscaldato, non può sparare
@@ -114,5 +113,21 @@ public class LaserEnergyManager : MonoBehaviour
     {
         blueEnergy += bonusRecharge;
         blueEnergy = Mathf.Clamp(blueEnergy, 0, maxEnergy);
+    }
+
+    // Aggiunge una quantità specifica di energia al laser blu
+    public void AddBlueEnergy(float amount)
+    {
+        blueEnergy += amount;
+        blueEnergy = Mathf.Clamp(blueEnergy, 0, maxEnergy);
+        Debug.Log("Blue energy increased by: " + amount);
+    }
+
+    // Aggiunge una quantità specifica di energia al laser rosso
+    public void AddRedEnergy(float amount)
+    {
+        redEnergy += amount;
+        redEnergy = Mathf.Clamp(redEnergy, 0, maxEnergy);
+        Debug.Log("Red energy increased by: " + amount);
     }
 }

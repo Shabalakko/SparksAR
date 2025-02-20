@@ -16,6 +16,9 @@ public class EnemyTypeBTouch : MonoBehaviour, IEnemy
     private ScoreManager scoreManager;
     private LaserEnergyManager energyManager;
 
+    // Energia da dare al laser rosso quando il nemico blu viene sconfitto
+    public float energyReward = 10f;
+
     private HashSet<int> activeTouches = new HashSet<int>();
     public float touchDamagePerSecond = 10f;
     public float energyCostPerSecond = 5f;
@@ -123,9 +126,13 @@ public class EnemyTypeBTouch : MonoBehaviour, IEnemy
     {
         if (scoreManager != null)
         {
-            scoreManager.AddScore("Blue"); //  Aggiunge combo per colore blu
+            scoreManager.AddScore("Blue"); // Aggiunge combo per colore blu
         }
-
+        // Aggiungi energia al laser rosso
+        if (energyManager != null)
+        {
+            energyManager.AddRedEnergy(energyReward);
+        }
         Destroy(gameObject);
     }
 

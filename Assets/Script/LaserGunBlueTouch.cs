@@ -5,11 +5,10 @@ public class LaserGunBlueTouch : MonoBehaviour
 {
     public GameObject laserPrefab;
     public Transform laserEmitter;
-    
     public float maxLaserDistance = 50f;
 
     private GameObject currentLaser;
-    private LaserEnergyManager energyManager;
+    private LaserEnergyManager energyManager; // Ora usato per controllare e consumare l'energia
     private PlayerInputActions inputActions;
     private bool isShooting = false;
 
@@ -55,40 +54,37 @@ public class LaserGunBlueTouch : MonoBehaviour
                     Ray ray = Camera.main.ScreenPointToRay(touchPos);
                     if (Physics.Raycast(ray, out RaycastHit hit, maxLaserDistance, layerMask))
                     {
-                        // Se il tocco ha colpito un nemico blu...
+                        // Se il tocco ha colpito un nemico blu (con componente EnemyTypeBTouch)
                         EnemyTypeBTouch enemy = hit.collider.GetComponentInParent<EnemyTypeBTouch>();
                         if (enemy != null)
                         {
                             foundBlueEnemy = true;
-                            if (energyManager.UseBlueLaser())
-                            {
-                                if (currentLaser == null)
-                                {
-                                    currentLaser = Instantiate(laserPrefab, laserEmitter.position, laserEmitter.rotation);
-                                    currentLaser.transform.SetParent(laserEmitter);
-                                    ParticleSystem ps = currentLaser.GetComponent<ParticleSystem>();
-                                    if (ps != null)
-                                    {
-                                        ps.Play();
-                                    }
-                                }
-                                FireLaser(hit);
-                                // Applica il danno al nemico blu
-                               
-                                
-                            }
-                            else
+                            // Consuma energia per il laser blu
+                            if (!energyManager.UseBlueLaser())
                             {
                                 StopLaser();
+                                break;
                             }
-                            break; // elaboriamo solo il primo tocco valido
+                            if (currentLaser == null)
+                            {
+                                currentLaser = Instantiate(laserPrefab, laserEmitter.position, laserEmitter.rotation);
+                                currentLaser.transform.SetParent(laserEmitter);
+                                ParticleSystem ps = currentLaser.GetComponent<ParticleSystem>();
+                                if (ps != null)
+                                {
+                                    ps.Play();
+                                }
+                            }
+                            FireLaser(hit);
+                            break; // Elaboriamo solo il primo tocco valido
                         }
                     }
                 }
             }
         }
 
-        if (!foundBlueEnemy)
+        // Se non viene rilevato un nemico blu oppure l'energia è esaurita, ferma il laser
+        if (!foundBlueEnemy || (energyManager != null && energyManager.GetBlueEnergy() <= 0))
         {
             StopLaser();
         }
