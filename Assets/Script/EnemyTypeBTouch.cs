@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 using System.Collections.Generic;
 
@@ -52,7 +53,7 @@ public class EnemyTypeBTouch : MonoBehaviour, IEnemy
         if (energyManager.UseBlueLaser())
         {
             TakeDamage(touchDamagePerSecond * Time.deltaTime, "Blue");
-            scoreManager.OnHit(); // 🔵 Rallenta il timer della combo
+            scoreManager.OnHit(); //  Rallenta il timer della combo
         }
     }
 
@@ -88,9 +89,18 @@ public class EnemyTypeBTouch : MonoBehaviour, IEnemy
 
     private void TryAddTouch(Finger finger)
     {
-        if (IsTouchStillOnEnemy(finger))
+        // Accediamo alla fase del tocco tramite currentTouch
+        if (finger.currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Stationary ||
+            finger.currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Moved)
         {
-            activeTouches.Add(finger.index);
+            if (IsTouchStillOnEnemy(finger))
+            {
+                activeTouches.Add(finger.index);
+            }
+            else
+            {
+                activeTouches.Remove(finger.index);
+            }
         }
         else
         {
