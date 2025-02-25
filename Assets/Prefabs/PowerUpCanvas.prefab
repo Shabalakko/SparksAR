@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageBackground: {fileID: 8481622802176290199}
   imageFill: {fileID: 806510721552834178}
-  canvas: {fileID: 0}
+  canvas: {fileID: 1591053916864542737}
 --- !u!1 &7562836597864114306
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IEnemy
+public class PowerUp : MonoBehaviour, IEnemy
 {
-    [Header("Statistiche del Nemico Rosso")]
+    [Header("Statistiche del PowerUp")]
     [SerializeField] private float _maxHP = 100f;
     public float maxHP { get { return _maxHP; } }
 
@@ -37,6 +37,16 @@ public class Enemy : MonoBehaviour, IEnemy
 
     public void TakeDamage(float damage, string color)
     {
+        if (color == "Blue")
+        {
+            currentHP -= damage;
+            lastDamageTime = Time.time;
+
+            if (currentHP <= 0)
+            {
+                Die();
+            }
+        }
         if (color == "Red")
         {
             currentHP -= damage;
@@ -51,15 +61,7 @@ public class Enemy : MonoBehaviour, IEnemy
 
     private void Die()
     {
-        if (scoreManager != null)
-        {
-            scoreManager.AddScore("Red");
-        }
-
-        if (energyManager != null)
-        {
-            energyManager.RechargeBlue();
-        }
+        
 
         Destroy(gameObject);
     }

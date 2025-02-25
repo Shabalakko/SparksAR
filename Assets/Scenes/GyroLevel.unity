@@ -681,6 +681,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 8326784908700247730, guid: 8d3427fa9bddb4c42b39350be77d946c, type: 3}
   - {fileID: 8326784908700247730, guid: 807da27d9f2932a48a56a58b26073850, type: 3}
+  - {fileID: 8326784908700247730, guid: 55fd97371c506574f8437fa0f092b368, type: 3}
   spawnArea: {fileID: 1821489902}
   minSpawnTime: 0.1
   maxSpawnTime: 0.3

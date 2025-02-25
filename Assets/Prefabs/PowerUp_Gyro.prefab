@@ -149,10 +149,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6383021487754201494}
   - component: {fileID: 8446529247710014842}
-  - component: {fileID: 6501671739173448601}
+  - component: {fileID: 7748303807177955480}
   m_Layer: 0
   m_Name: PowerUp_Gyro
-  m_TagString: Enemy
+  m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,7 +196,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6501671739173448601
+--- !u!114 &7748303807177955480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -205,11 +205,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8326784908700247730}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc38ed30d607d844b80ea14a2efb2dac, type: 3}
+  m_Script: {fileID: 11500000, guid: 89873b9ec73a97e4b8b7b6c0165ec33c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHP: 10
-  regenRate: 10
+  regenRate: 5
   regenDelay: 3
 --- !u!1001 &3589628368074208279
 PrefabInstance:

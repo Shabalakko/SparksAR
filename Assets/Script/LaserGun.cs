@@ -37,11 +37,11 @@ public class LaserGun : MonoBehaviour
 
     void Update()
     {
+        // Aggiornamento della posizione e rotazione dell'emettitore laser
         laserEmitter.position = transform.position + transform.right * 0.5f + transform.up * -0.2f;
         laserEmitter.rotation = transform.rotation;
 
         bool isTouchingRight = false;
-
         if (Touchscreen.current != null)
         {
             foreach (var touch in Touchscreen.current.touches)
@@ -49,7 +49,6 @@ public class LaserGun : MonoBehaviour
                 if (touch.press.isPressed)
                 {
                     Vector2 touchPosition = touch.position.ReadValue();
-
                     if (touchPosition.x > Screen.width / 2)
                     {
                         isTouchingRight = true;
@@ -69,7 +68,6 @@ public class LaserGun : MonoBehaviour
                     currentLaser.transform.SetParent(laserEmitter);
                     currentLaser.GetComponent<ParticleSystem>().Play();
                 }
-
                 FireLaser();
             }
             else
@@ -102,8 +100,7 @@ public class LaserGun : MonoBehaviour
 
         if (Physics.Raycast(centerRay, out centerHit, maxLaserDistance))
         {
-            targetPoint = centerHit.point;
-
+            // Controlla se il raycast ha colpito un nemico
             Enemy enemy = centerHit.collider.GetComponentInParent<Enemy>();
             if (enemy != null)
             {
@@ -111,12 +108,32 @@ public class LaserGun : MonoBehaviour
                 enemy.TakeDamage(laserDamage * Time.deltaTime, "Red");
                 FindObjectOfType<ScoreManager>().OnHit();
             }
+            // Altrimenti, controlla se il collider ha il tag "PowerUP"
+            else if (centerHit.collider.CompareTag("PowerUp"))
+            {
+                PowerUp powerUp = centerHit.collider.GetComponentInParent<PowerUp>();
+                if (powerUp != null)
+                {
+                    targetPoint = powerUp.transform.position;
+                    powerUp.TakeDamage(laserDamage * Time.deltaTime, "Red");
+                    FindObjectOfType<ScoreManager>().OnHit();
+                }
+                else
+                {
+                    targetPoint = centerHit.point;
+                }
+            }
+            else
+            {
+                targetPoint = centerHit.point;
+            }
         }
         else
         {
             targetPoint = centerRay.origin + centerRay.direction * maxLaserDistance;
         }
 
+        // Aggiorna la direzione dell'emettitore in base al punto target
         Vector3 direction = (targetPoint - laserEmitter.position).normalized;
         laserEmitter.rotation = Quaternion.LookRotation(direction);
     }
