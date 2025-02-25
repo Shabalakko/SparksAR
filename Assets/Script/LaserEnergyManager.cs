@@ -147,7 +147,7 @@ public class LaserEnergyManager : MonoBehaviour
                 StartCoroutine(RevertBlueMaxEnergyAfterDelay(300f, duration));
                 break;
             case "10 /s LR Energy Consumption":
-                drainRate -= 10f;
+                drainRate = 10f;
                 StartCoroutine(RevertDrainRateAfterDelay(10f, duration));
                 break;
             case "20 /s LR Damage Output":
@@ -163,7 +163,7 @@ public class LaserEnergyManager : MonoBehaviour
                 StartCoroutine(RevertBonusRechargeAfterDelay(40f, duration));
                 break;
             case "10 /s LB Energy Consumption":
-                drainRate -= 10f;
+                drainRate = 10f;
                 StartCoroutine(RevertDrainRateAfterDelay(10f, duration));
                 break;
             case "20 /s LB Damage Output":

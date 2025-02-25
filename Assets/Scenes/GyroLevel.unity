@@ -975,6 +975,58 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1435866769952643408, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: drainRate
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435866769952643408, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: redMaxEnergy
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435866769952643408, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: blueMaxEnergy
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435866769952643408, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: bonusRecharge
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435866769952643408, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: powerUpDuration
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3034079650520803364, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d23797eda411b414fb6a1bdfa851bf11, type: 3}
+    - target: {fileID: 3034079650520803364, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3034079650520803364, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: m_FillMethod
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3034079650520803364, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: m_FillOrigin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3125723358676898346, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f199d820df993fe43bc853b2b47e0c0a, type: 3}
+    - target: {fileID: 3125723358676898346, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3125723358676898346, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: m_FillOrigin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3125723358676898346, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: m_FillClockwise
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3892221626673909189, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
       propertyPath: m_Name
       value: UI
@@ -1023,6 +1075,10 @@ PrefabInstance:
       propertyPath: pauseMenuUI
       value: 
       objectReference: {fileID: 278344500}
+    - target: {fileID: 9064878517076747787, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -104,7 +104,7 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateScoreUI()
     {
-        scoreText.text = "Score: " + totalScore;
+        scoreText.text = "" + totalScore;
         multiplierText.text = "x" + (currentMultiplier);
         nextMultiplierText.text = "x" + (colorComboStreak);
     }
