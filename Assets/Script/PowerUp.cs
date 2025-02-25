@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PowerUp : MonoBehaviour, IEnemy
 {
     [Header("Statistiche del PowerUp")]
     [SerializeField] private float _maxHP = 100f;
+
+    // Implementazione della proprietà richiesta dall'interfaccia IEnemy
     public float maxHP { get { return _maxHP; } }
 
     private float currentHP;
@@ -15,53 +18,81 @@ public class PowerUp : MonoBehaviour, IEnemy
     private LaserEnergyManager energyManager;
     private SettingsManager settingsManager;
 
+    // Liste dei power-up
+    public static List<string> PURList = new List<string>
+    {
+        "300 LR Energy Gauge",
+        "10 /s LR Energy Consumption",
+        "20 /s LR Damage Output",
+        "40 Recharge LB Energy Gauge per D destroyed / C collected"
+    };
+
+    public static List<string> PUBList = new List<string>
+    {
+        "300 LB Energy Gauge",
+        "10 /s LB Energy Consumption",
+        "20 /s LB Damage Output",
+        "40 Recharge LR Energy Gauge per D destroyed / C collected"
+    };
+
+    // Variabile per memorizzare il colore dell'ultimo laser che ha inflitto danno
+    private string lastHitByColor;
+
     void Start()
     {
-        currentHP = maxHP;
+        // Inizializza currentHP con il valore di maxHP definito in Inspector
+        currentHP = _maxHP;
         scoreManager = FindObjectOfType<ScoreManager>();
         energyManager = FindObjectOfType<LaserEnergyManager>();
         settingsManager = FindObjectOfType<SettingsManager>();
-
-        // Applica la dimensione dell'hitbox basata sulle impostazioni
         AdjustHitbox();
     }
 
     void Update()
     {
-        if (currentHP < maxHP && Time.time > lastDamageTime + regenDelay)
+        if (currentHP < _maxHP && Time.time > lastDamageTime + regenDelay)
         {
             currentHP += regenRate * Time.deltaTime;
-            currentHP = Mathf.Clamp(currentHP, 0, maxHP);
+            currentHP = Mathf.Clamp(currentHP, 0, _maxHP);
         }
     }
 
     public void TakeDamage(float damage, string color)
     {
-        if (color == "Blue")
+        lastHitByColor = color;
+        currentHP -= damage;
+        lastDamageTime = Time.time;
+        if (currentHP <= 0)
         {
-            currentHP -= damage;
-            lastDamageTime = Time.time;
-
-            if (currentHP <= 0)
-            {
-                Die();
-            }
-        }
-        if (color == "Red")
-        {
-            currentHP -= damage;
-            lastDamageTime = Time.time;
-
-            if (currentHP <= 0)
-            {
-                Die();
-            }
+            Die();
         }
     }
 
     private void Die()
     {
-        
+        string droppedPowerUp = "";
+        if (lastHitByColor == "Red")
+        {
+            droppedPowerUp = PUBList[Random.Range(0, PUBList.Count)];
+        }
+        else if (lastHitByColor == "Blue")
+        {
+            droppedPowerUp = PURList[Random.Range(0, PURList.Count)];
+        }
+        else
+        {
+            List<string> combinedList = new List<string>(PURList);
+            combinedList.AddRange(PUBList);
+            droppedPowerUp = combinedList[Random.Range(0, combinedList.Count)];
+        }
+
+        Debug.Log("Dropped Power-Up: " + droppedPowerUp);
+
+        // Applica il power-up usando il manager dell'energia
+        if (energyManager != null)
+        {
+            energyManager.ApplyPowerUp(droppedPowerUp);
+        }
 
         Destroy(gameObject);
     }
@@ -70,15 +101,13 @@ public class PowerUp : MonoBehaviour, IEnemy
     {
         if (settingsManager != null)
         {
-            BoxCollider boxCollider = GetComponent<BoxCollider>(); // Casting esplicito
+            BoxCollider boxCollider = GetComponent<BoxCollider>();
             if (boxCollider != null)
             {
                 boxCollider.size = Vector3.one * settingsManager.enemyHitboxSize;
             }
         }
     }
-
-
 
     public float GetCurrentHP()
     {
