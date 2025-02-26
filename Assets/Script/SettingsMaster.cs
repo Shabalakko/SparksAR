@@ -5,6 +5,7 @@ public class SettingsManager : MonoBehaviour
     private static SettingsManager instance;
     public float enemyHitboxSize = 1f; // Valore di default
 
+
     void Awake()
     {
         if (instance == null)

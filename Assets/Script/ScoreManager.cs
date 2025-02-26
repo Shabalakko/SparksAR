@@ -81,6 +81,27 @@ public class ScoreManager : MonoBehaviour
 
         UpdateScoreUI();
     }
+    public void AddScoreCustom(string color, int basePoints)
+    {
+        currentMultiplier++;
+
+        if (color == lastColor)
+        {
+            colorComboStreak++;
+        }
+        else
+        {
+            colorComboStreak = 1;
+        }
+
+        int comboBonus = currentMultiplier * colorComboStreak;
+        totalScore += basePoints * comboBonus;
+
+        comboTimer = baseComboTime;
+        comboTimerRadial.fillAmount = 1;
+        lastColor = color;
+        UpdateScoreUI();
+    }
 
     public void OnHit()
     {
@@ -129,4 +150,9 @@ public class ScoreManager : MonoBehaviour
             nextMultiplierText.color = Color.white;
         }
     }
+    public int GetTotalScore()
+    {
+        return totalScore;
+    }
+
 }

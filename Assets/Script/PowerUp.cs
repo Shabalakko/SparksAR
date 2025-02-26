@@ -117,8 +117,16 @@ public class PowerUp : MonoBehaviour, IEnemy
         {
             energyManager.ApplyPowerUp(pendingPowerUp);
         }
+
+        if (scoreManager != null)
+        {
+            scoreManager.AddScoreCustom(lastHitByColor, 5); // Aggiunge 5 punti base moltiplicati dai moltiplicatori
+        }
+
         Destroy(gameObject);
     }
+
+
 
     public float GetCurrentHP()
     {
