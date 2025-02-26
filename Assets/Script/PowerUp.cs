@@ -17,6 +17,8 @@ public class PowerUp : MonoBehaviour, IEnemy
     private ScoreManager scoreManager;
     private LaserEnergyManager energyManager;
     private SettingsManager settingsManager;
+    private PowerUpQuestionUI questionUI;
+    private string pendingPowerUp;
 
     // Liste dei power-up
     public static List<string> PURList = new List<string>
@@ -46,6 +48,8 @@ public class PowerUp : MonoBehaviour, IEnemy
         energyManager = FindObjectOfType<LaserEnergyManager>();
         settingsManager = FindObjectOfType<SettingsManager>();
         AdjustHitbox();
+        questionUI = FindObjectOfType<PowerUpQuestionUI>();
+
     }
 
     void Update()
@@ -70,32 +74,31 @@ public class PowerUp : MonoBehaviour, IEnemy
 
     private void Die()
     {
-        string droppedPowerUp = "";
+        if (questionUI == null)
+        {
+            Debug.LogError("PowerUpQuestionUI non trovato!");
+            Destroy(gameObject);
+            return;
+        }
+
         if (lastHitByColor == "Red")
         {
-            droppedPowerUp = PUBList[Random.Range(0, PUBList.Count)];
+            pendingPowerUp = PUBList[Random.Range(0, PUBList.Count)];
         }
         else if (lastHitByColor == "Blue")
         {
-            droppedPowerUp = PURList[Random.Range(0, PURList.Count)];
+            pendingPowerUp = PURList[Random.Range(0, PURList.Count)];
         }
         else
         {
             List<string> combinedList = new List<string>(PURList);
             combinedList.AddRange(PUBList);
-            droppedPowerUp = combinedList[Random.Range(0, combinedList.Count)];
+            pendingPowerUp = combinedList[Random.Range(0, combinedList.Count)];
         }
 
-        Debug.Log("Dropped Power-Up: " + droppedPowerUp);
-
-        // Applica il power-up usando il manager dell'energia
-        if (energyManager != null)
-        {
-            energyManager.ApplyPowerUp(droppedPowerUp);
-        }
-
-        Destroy(gameObject);
+        questionUI.ShowQuestion(this);  // Mostra la domanda
     }
+
 
     private void AdjustHitbox()
     {
@@ -107,6 +110,14 @@ public class PowerUp : MonoBehaviour, IEnemy
                 boxCollider.size = Vector3.one * settingsManager.enemyHitboxSize;
             }
         }
+    }
+    public void GrantPowerUp()
+    {
+        if (energyManager != null && pendingPowerUp != "")
+        {
+            energyManager.ApplyPowerUp(pendingPowerUp);
+        }
+        Destroy(gameObject);
     }
 
     public float GetCurrentHP()
