@@ -73,4 +73,12 @@ public class EnemyEllipticalMovement : MonoBehaviour
             Random.Range(ellipseHeight * 0.8f, ellipseHeight * 1.2f)   // Asse Z
         );
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ZoneDestroy"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

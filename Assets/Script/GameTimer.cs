@@ -53,6 +53,7 @@ public class GameTimer : MonoBehaviour
 
     void EndGame()
     {
+        timerText.text = "0:00";
         // Imposta il tempo di gioco a 0 per fermare gli aggiornamenti
         Time.timeScale = 0f;
 
