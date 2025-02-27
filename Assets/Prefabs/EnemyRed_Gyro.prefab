@@ -47,7 +47,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -224,12 +224,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8f101a10d07c643a8b49f8646a6c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbitSpeed: 1
-  ellipseWidth: 5
-  ellipseHeight: 3
-  verticalAmplitude: 2
-  rotationSpeed: 2
-  transitionSpeed: 1
+  orbitSpeed: 0.5
+  ellipseWidth: 20
+  ellipseHeight: 12
+  verticalAmplitude: 8
+  rotationSpeed: 8
+  transitionSpeed: 0.5
 --- !u!1001 &1365965437109392172
 PrefabInstance:
   m_ObjectHideFlags: 0
