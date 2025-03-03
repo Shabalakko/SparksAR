@@ -1,0 +1,1 @@
+C:\Users\FABLAB_4\Documents\GitHub\SparksAR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\Debug\3m33303x\obj\armeabi-v7a

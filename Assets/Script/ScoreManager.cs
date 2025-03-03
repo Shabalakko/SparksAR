@@ -10,7 +10,7 @@ public class ScoreManager : MonoBehaviour
     public Image comboTimerRadial;
 
     private int totalScore = 0;
-    private int currentMultiplier = 1;
+    private int currentMultiplier = 0;
     private int colorComboStreak = 0;
     // Utilizziamo lastColor per tenere traccia dell'ultimo colore passato (ad es. "Red" o "Blue")
     private string lastColor = "";
