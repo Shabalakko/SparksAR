@@ -32,36 +32,37 @@ public class PowerUpQuestionUI : MonoBehaviour
 
     private List<Question> questionList = new List<Question>
     {
-        new Question("Qual è il pianeta più grande del Sistema Solare?", new string[] { "Terra", "Saturno", "Giove" }, 2),
-        new Question("Qual è il pianeta più vicino al Sole?", new string[] { "Mercurio", "Venere", "Terra" }, 0),
-        new Question("Quale pianeta è noto per i suoi spettacolari anelli?", new string[] { "Saturno", "Nettuno", "Marte" }, 0),
-        new Question("Come viene definita una stella che esplode al termine della sua vita?", new string[] { "Supernova", "Cometa", "Nebulosa" }, 0),
-        new Question("In quale galassia si trova il nostro Sistema Solare?", new string[] { "Andromeda", "Via Lattea", "Triangulum" }, 1),
-        new Question("Quale pianeta è conosciuto come il 'pianeta rosso'?", new string[] { "Marte", "Giove", "Urano" }, 0),
-        new Question("Cos'è una cometa?", new string[] { "Una stella", "Un pianeta", "Un corpo celeste composto da ghiaccio e polvere" }, 2),
-        new Question("Qual è il satellite naturale della Terra?", new string[] { "Io", "Luna", "Europa" }, 1),
-        new Question("Cos'è una nebulosa?", new string[] { "Un pianeta", "Un buco nero", "Una nube di gas e polvere nello spazio" }, 2),
-        new Question("Quale pianeta possiede la velocità orbitale più alta?", new string[] { "Mercurio", "Venere", "Terra" }, 0),
-        new Question("Quale di questi non è un pianeta del Sistema Solare?", new string[] { "Venere", "La Luna", "Saturno" }, 1),
-        new Question("Cos'è un buco nero?", new string[] { "Un corpo celeste con una gravità così intensa che neanche la luce può sfuggire", "Un tipo di stella", "Una galassia" }, 0),
-        new Question("Quale missione spaziale ha portato il primo uomo sulla Luna?", new string[] { "Apollo 11", "Gemini 4", "Vostok 1" }, 0),
-        new Question("Cosa studia l'astronomia?", new string[] { "Il comportamento umano", "I corpi celesti e l'universo", "La vita marina" }, 1),
-        new Question("Qual è il pianeta più caldo del Sistema Solare?", new string[] { "Venere", "Mercurio", "Marte" }, 0),
-        new Question("Quale corpo celeste è famoso per la sua grande macchia rossa?", new string[] { "Giove", "Saturno", "Urano" }, 0),
-        new Question("Cos'è la Via Lattea?", new string[] { "Una nebulosa", "La nostra galassia", "Un buco nero" }, 1),
-        new Question("Cos'è un asteroide?", new string[] { "Un satellite", "Un piccolo corpo roccioso che orbita intorno al Sole", "Una cometa" }, 1),
-        new Question("Quale pianeta del Sistema Solare ha il maggior numero di satelliti naturali confermati?", new string[] { "Saturno", "Giove", "Urano" }, 1),
-        new Question("Quale di questi oggetti celesti si trova nel nostro Sistema Solare?", new string[]{ "La Nebulosa dell'Orsa Maggiore", "La Luna", "La Galassia di Andromeda"}, 1),
-        new Question("Cosa rappresenta il termine \"esopianeta\"?", new string[]{ "Un pianeta all'interno del nostro Sistema Solare", "Un pianeta che orbita attorno a una stella diversa dal Sole", "Un satellite naturale"}, 1),
-        new Question("Quale di questi corpi celesti è composto principalmente di ghiaccio?", new string[]{ "Un asteroide", "Una cometa", "Un pianeta"}, 1),
-        new Question("Cosa si intende per \"orbita\"?", new string[]{ "La traiettoria che un corpo celeste segue intorno a un altro", "Una stella in esplosione", "Un tipo di nebulosa"}, 0),
-        new Question("Qual è la principale differenza tra una stella e un pianeta?", new string[]{ "Le stelle emettono luce propria, i pianeti no", "I pianeti sono più grandi delle stelle", "Le stelle si trovano solo nelle galassie, i pianeti no"}, 0),
-        new Question("Che cos'è una costellazione?", new string[]{ "Un gruppo di stelle che formano una figura nel cielo", "Una galassia", "Un tipo di pianeta"}, 1),
-        new Question("Quale missione spaziale ha esplorato per la prima volta il pianeta Marte?", new string[]{ "Voyager 1", "Mars Pathfinder", "Apollo 11"}, 1),
-        new Question("Cosa studia la cosmologia?", new string[]{ "Le caratteristiche dei pianeti", "I fenomeni atmosferici", "Le origini e l'evoluzione dell'universo"}, 2),
-        new Question("Cos'è l'Equatore Celeste?", new string[]{ "La linea che separa il giorno dalla notte", "Un'orbita dei pianeti", "La linea immaginaria che divide il cielo in due emisferi"}, 2),
-        new Question("Quale fenomeno è causato dall'interazione tra il Sole e il campo magnetico terrestre?", new string[]{ "Le eclissi", "I crateri lunari", "Le aurore boreali"}, 2),
-        new Question("Qual è il principale componente del Sole?", new string[]{ "Elio", "Ossigeno", "Idrogeno"}, 2)
+        new Question("What is the largest planet in the Solar System?", new string[] { "Earth", "Saturn", "Jupiter" }, 2),
+new Question("Which planet is closest to the Sun?", new string[] { "Mercury", "Venus", "Earth" }, 0),
+new Question("Which planet is known for its spectacular rings?", new string[] { "Saturn", "Neptune", "Mars" }, 0),
+new Question("What is the term for a star that explodes at the end of its life?", new string[] { "Supernova", "Comet", "Nebula" }, 0),
+new Question("In which galaxy is our Solar System located?", new string[] { "Andromeda", "Milky Way", "Triangulum" }, 1),
+new Question("Which planet is known as the 'red planet'?", new string[] { "Mars", "Jupiter", "Uranus" }, 0),
+new Question("What is a comet?", new string[] { "A star", "A planet", "A celestial body made of ice and dust" }, 2),
+new Question("What is Earth's natural satellite?", new string[] { "Io", "Moon", "Europa" }, 1),
+new Question("What is a nebula?", new string[] { "A planet", "A black hole", "A cloud of gas and dust in space" }, 2),
+new Question("Which planet has the highest orbital speed?", new string[] { "Mercury", "Venus", "Earth" }, 0),
+new Question("Which of these is not a planet in the Solar System?", new string[] { "Venus", "The Moon", "Saturn" }, 1),
+new Question("What is a black hole?", new string[] { "A celestial body with gravity so intense that not even light can escape", "A type of star", "A galaxy" }, 0),
+new Question("Which space mission brought the first man to the Moon?", new string[] { "Apollo 11", "Gemini 4", "Vostok 1" }, 0),
+new Question("What does astronomy study?", new string[] { "Human behavior", "Celestial bodies and the universe", "Marine life" }, 1),
+new Question("Which is the hottest planet in the Solar System?", new string[] { "Venus", "Mercury", "Mars" }, 0),
+new Question("Which celestial body is famous for its Great Red Spot?", new string[] { "Jupiter", "Saturn", "Uranus" }, 0),
+new Question("What is the Milky Way?", new string[] { "A nebula", "Our galaxy", "A black hole" }, 1),
+new Question("What is an asteroid?", new string[] { "A satellite", "A small rocky body that orbits the Sun", "A comet" }, 1),
+new Question("Which planet in the Solar System has the greatest number of confirmed natural satellites?", new string[] { "Saturn", "Jupiter", "Uranus" }, 1),
+new Question("Which of these celestial objects is found in our Solar System?", new string[]{ "The Great Bear Nebula", "The Moon", "The Andromeda Galaxy"}, 1),
+new Question("What does the term \"exoplanet\" mean?", new string[]{ "A planet within our Solar System", "A planet that orbits a star other than the Sun", "A natural satellite"}, 1),
+new Question("Which of these celestial bodies is primarily composed of ice?", new string[]{ "An asteroid", "A comet", "A planet"}, 1),
+new Question("What is meant by \"orbit\"?", new string[]{ "The path that a celestial body follows around another", "An exploding star", "A type of nebula"}, 0),
+new Question("What is the main difference between a star and a planet?", new string[]{ "Stars emit their own light, planets do not", "Planets are larger than stars", "Stars are found only in galaxies, planets are not"}, 0),
+new Question("What is a constellation?", new string[]{ "A group of stars that form a pattern in the sky", "A galaxy", "A type of planet"}, 1),
+new Question("Which space mission first explored the planet Mars?", new string[]{ "Voyager 1", "Mars Pathfinder", "Apollo 11"}, 1),
+new Question("What does cosmology study?", new string[]{ "The characteristics of planets", "Atmospheric phenomena", "The origins and evolution of the universe"}, 2),
+new Question("What is the Celestial Equator?", new string[]{ "The line that separates day from night", "An orbit of the planets", "The imaginary line that divides the sky into two hemispheres"}, 2),
+new Question("Which phenomenon is caused by the interaction between the Sun and Earth's magnetic field?", new string[]{ "Eclipses", "Lunar craters", "Auroras"}, 2),
+new Question("What is the main component of the Sun?", new string[]{ "Helium", "Oxygen", "Hydrogen"}, 2)
+
     };
 
     private void Start()
@@ -127,7 +128,7 @@ public class PowerUpQuestionUI : MonoBehaviour
         // Distruggi il powerup indipendentemente dalla risposta
         Destroy(currentPowerUp.gameObject);
 
-        yield return new WaitForSecondsRealtime(3);
+        yield return new WaitForSecondsRealtime(2);
 
         ResetUI();
     }
