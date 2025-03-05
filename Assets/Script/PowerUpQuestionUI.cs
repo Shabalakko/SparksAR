@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class PowerUpQuestionUI : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class PowerUpQuestionUI : MonoBehaviour
     private Color defaultColor = Color.white;
     private Color correctColor = Color.green;
     private Color wrongColor = Color.red;
-
+    public GameObject Lasers, PLaserR, PLaserB;
+    
     private class Question
     {
         public string text;
@@ -72,11 +74,14 @@ new Question("What is the main component of the Sun?", new string[]{ "Helium", "
 
     public void ShowQuestion(PowerUp powerUp)
     {
+        LaserGun compR = Lasers.GetComponent<LaserGun>();
+        LaserGunBlue compB = Lasers.GetComponent<LaserGunBlue>();
         if (questionPanel.activeSelf)
             return;
 
         answered = false;
         Time.timeScale = 0f;
+        
         currentPowerUp = powerUp;
 
         Question selectedQuestion = questionList[Random.Range(0, questionList.Count)];
@@ -106,6 +111,17 @@ new Question("What is the main component of the Sun?", new string[]{ "Helium", "
         }
 
         questionPanel.SetActive(true);
+        if (compB != null)
+        {
+            compB.enabled = false;
+        }
+        if (compR != null)
+        {
+            compR.enabled = false;
+        }
+        PLaserB.SetActive(false);
+        PLaserR.SetActive(false);
+        
     }
 
     private IEnumerator CheckAnswer(int index)
@@ -135,11 +151,26 @@ new Question("What is the main component of the Sun?", new string[]{ "Helium", "
 
     private void ResetUI()
     {
+        LaserGun compR = Lasers.GetComponent<LaserGun>();
+        LaserGunBlue compB = Lasers.GetComponent<LaserGunBlue>();
         foreach (Button btn in answerButtons)
         {
             btn.image.color = defaultColor;
         }
+
+        if (compB != null)
+        {
+            compB.enabled = true;
+        }
+        if (compR != null)
+        {
+            compR.enabled = true;
+        }
+        PLaserB.SetActive(true);
+        PLaserR.SetActive(true);
         questionPanel.SetActive(false);
+        
+        
         Time.timeScale = 1f;
     }
 }
