@@ -34,8 +34,13 @@ MonoBehaviour:
     m_SettingsList:
       m_List:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       - rid: 8718768865685536866
       - rid: 8718768865685536867
+=======
+      - rid: 8718768913509515338
+      - rid: 8718768913509515339
+>>>>>>> Stashed changes
 =======
       - rid: 8718768913509515338
       - rid: 8718768913509515339
@@ -44,6 +49,7 @@ MonoBehaviour:
       - rid: 6852985685364965379
       - rid: 6852985685364965380
       - rid: 6852985685364965381
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       - rid: 8718768865685536868
       - rid: 8718768865685536869
@@ -61,6 +67,24 @@ MonoBehaviour:
       - rid: 8712630790384254976
       - rid: 4506790672518086656
       - rid: 8718768865685536877
+=======
+      - rid: 8718768913509515340
+      - rid: 8718768913509515341
+      - rid: 6852985685364965384
+      - rid: 6852985685364965385
+      - rid: 8718768913509515342
+      - rid: 8718768913509515343
+      - rid: 8718768913509515344
+      - rid: 8718768913509515345
+      - rid: 8718768913509515346
+      - rid: 8718768913509515347
+      - rid: 6852985685364965392
+      - rid: 8718768913509515348
+      - rid: 6852985685364965394
+      - rid: 8712630790384254976
+      - rid: 4506790672518086656
+      - rid: 8718768913509515349
+>>>>>>> Stashed changes
 =======
       - rid: 8718768913509515340
       - rid: 8718768913509515341
@@ -186,7 +210,11 @@ MonoBehaviour:
         m_Version: 0
         m_CoreCopyPS: {fileID: 4800000, guid: 12dc59547ea167a4ab435097dd0f9add, type: 3}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - rid: 8718768865685536866
+=======
+    - rid: 8718768913509515338
+>>>>>>> Stashed changes
 =======
     - rid: 8718768913509515338
 >>>>>>> Stashed changes
@@ -197,7 +225,11 @@ MonoBehaviour:
         m_StripUnusedVariants: 1
         m_StripScreenCoordOverrideVariants: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - rid: 8718768865685536867
+=======
+    - rid: 8718768913509515339
+>>>>>>> Stashed changes
 =======
     - rid: 8718768913509515339
 >>>>>>> Stashed changes
@@ -213,7 +245,11 @@ MonoBehaviour:
         m_DefaultSpeedTree8Shader: {fileID: -6465566751694194690, guid: 9920c1f1781549a46ba081a2a15a16ec, type: 3}
         m_DefaultSpeedTree9Shader: {fileID: -6465566751694194690, guid: cbd3e1cc4ae141c42a30e33b4d666a61, type: 3}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - rid: 8718768865685536868
+=======
+    - rid: 8718768913509515340
+>>>>>>> Stashed changes
 =======
     - rid: 8718768913509515340
 >>>>>>> Stashed changes
@@ -232,7 +268,11 @@ MonoBehaviour:
         m_DefaultUnlitMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
         m_DefaultMaskMaterial: {fileID: 2100000, guid: 15d0c3709176029428a0da2f8cecf0b5, type: 2}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - rid: 8718768865685536869
+=======
+    - rid: 8718768913509515341
+>>>>>>> Stashed changes
 =======
     - rid: 8718768913509515341
 >>>>>>> Stashed changes
@@ -245,7 +285,11 @@ MonoBehaviour:
         m_DefaultDecalMaterial: {fileID: 2100000, guid: 31d0dcc6f2dd4e4408d18036a2c93862, type: 2}
         m_DefaultSpriteMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - rid: 8718768865685536870
+=======
+    - rid: 8718768913509515342
+>>>>>>> Stashed changes
 =======
     - rid: 8718768913509515342
 >>>>>>> Stashed changes
@@ -262,7 +306,11 @@ MonoBehaviour:
         m_DebugOcclusionTestPS: {fileID: 4800000, guid: d3f0849180c2d0944bc71060693df100, type: 3}
         m_DebugOccluderPS: {fileID: 4800000, guid: b3c92426a88625841ab15ca6a7917248, type: 3}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - rid: 8718768865685536871
+=======
+    - rid: 8718768913509515343
+>>>>>>> Stashed changes
 =======
     - rid: 8718768913509515343
 >>>>>>> Stashed changes
@@ -272,7 +320,11 @@ MonoBehaviour:
         m_preTaaCS: {fileID: 7200000, guid: a679dba8ec4d9ce45884a270b0e22dda, type: 3}
         m_taaCS: {fileID: 7200000, guid: 3923900e2b41b5e47bc25bfdcbcdc9e6, type: 3}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - rid: 8718768865685536872
+=======
+    - rid: 8718768913509515344
+>>>>>>> Stashed changes
 =======
     - rid: 8718768913509515344
 >>>>>>> Stashed changes
@@ -289,7 +341,11 @@ MonoBehaviour:
         renderingLayerCS: {fileID: -6772857160820960102, guid: 94a070d33e408384bafc1dea4a565df9, type: 3}
         renderingLayerRT: {fileID: -5126288278712620388, guid: 94a070d33e408384bafc1dea4a565df9, type: 3}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - rid: 8718768865685536873
+=======
+    - rid: 8718768913509515345
+>>>>>>> Stashed changes
 =======
     - rid: 8718768913509515345
 >>>>>>> Stashed changes
@@ -298,7 +354,11 @@ MonoBehaviour:
         m_Version: 1
         m_ProbeVolumeDisableStreamingAssets: 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - rid: 8718768865685536874
+=======
+    - rid: 8718768913509515346
+>>>>>>> Stashed changes
 =======
     - rid: 8718768913509515346
 >>>>>>> Stashed changes
@@ -312,7 +372,11 @@ MonoBehaviour:
         probeSamplingDebugMesh: {fileID: -3555484719484374845, guid: 20be25aac4e22ee49a7db76fb3df6de2, type: 3}
         numbersDisplayTex: {fileID: 2800000, guid: 73fe53b428c5b3440b7e87ee830b608a, type: 3}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - rid: 8718768865685536875
+=======
+    - rid: 8718768913509515347
+>>>>>>> Stashed changes
 =======
     - rid: 8718768913509515347
 >>>>>>> Stashed changes
@@ -323,7 +387,11 @@ MonoBehaviour:
         m_IncludeAssetsByLabel: 0
         m_LabelToInclude: 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - rid: 8718768865685536876
+=======
+    - rid: 8718768913509515348
+>>>>>>> Stashed changes
 =======
     - rid: 8718768913509515348
 >>>>>>> Stashed changes
@@ -334,7 +402,11 @@ MonoBehaviour:
         probeVolumeUploadDataCS: {fileID: 7200000, guid: 0951de5992461754fa73650732c4954c, type: 3}
         probeVolumeUploadDataL2CS: {fileID: 7200000, guid: 6196f34ed825db14b81fb3eb0ea8d931, type: 3}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - rid: 8718768865685536877
+=======
+    - rid: 8718768913509515349
+>>>>>>> Stashed changes
 =======
     - rid: 8718768913509515349
 >>>>>>> Stashed changes

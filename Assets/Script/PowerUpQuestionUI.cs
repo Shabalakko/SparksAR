@@ -4,6 +4,10 @@ using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+using System.Linq;
+>>>>>>> Stashed changes
 =======
 using System.Linq;
 >>>>>>> Stashed changes
@@ -43,6 +47,9 @@ public class PowerUpQuestionUI : MonoBehaviour
     private RectTransform timerRect;
 
     // Classe per la struttura della domanda
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     private class Question
     {
@@ -129,7 +136,12 @@ new Question("What is the primary component of Saturn’s rings?", new string[] { 
 
         answered = false;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         Time.timeScale = 0f;
+=======
+        Time.timeScale = 0f; // Ferma il gioco
+
+>>>>>>> Stashed changes
 =======
         Time.timeScale = 0f; // Ferma il gioco
 
@@ -187,7 +199,10 @@ new Question("What is the primary component of Saturn’s rings?", new string[] { 
 
         questionPanel.SetActive(true);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
         ResetTimerUI();
 
         // Disabilita temporaneamente altri componenti di gioco
@@ -258,6 +273,9 @@ new Question("What is the primary component of Saturn’s rings?", new string[] { 
         yield return new WaitForSecondsRealtime(0.1f);
 
         ResetUI();
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
 
@@ -291,12 +309,15 @@ new Question("What is the primary component of Saturn’s rings?", new string[] { 
     private void ResetUI()
     {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         foreach (Button btn in answerButtons)
         {
             btn.image.color = defaultColor;
         }
         questionPanel.SetActive(false);
 =======
+=======
+>>>>>>> Stashed changes
         foreach (Button btn in answerButtons) btn.image.color = defaultColor;
 
         LaserGun compR = Lasers.GetComponent<LaserGun>();
@@ -307,6 +328,9 @@ new Question("What is the primary component of Saturn’s rings?", new string[] { 
         PLaserR.SetActive(true);
         questionPanel.SetActive(false);
         timerText.text = "";
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         Time.timeScale = 1f;
     }
