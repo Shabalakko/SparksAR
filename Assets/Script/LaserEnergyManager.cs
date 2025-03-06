@@ -5,15 +5,14 @@ using System.Collections;
 public class LaserEnergyManager : MonoBehaviour
 {
     [Header("Impostazioni Energia")]
-    // Valori massimi separati per ciascun laser
     public float redMaxEnergy = 100f;
     public float blueMaxEnergy = 100f;
-    public float drainRate = 20f;           // Consumo di energia per secondo
-    public float rechargeRate = 10f;        // Ricarica passiva per secondo
-    public float bonusRecharge = 30f;       // Ricarica ottenuta sconfiggendo nemici
+    public float drainRate = 20f;
+    public float rechargeRate = 10f;
+    public float bonusRecharge = 30f;
 
     [Header("Durata Power Up")]
-    public float powerUpDuration = 10f;     // Durata dell'effetto power up in secondi
+    public float powerUpDuration = 10f;
 
     [Header("Barre dell'energia")]
     public Image laserBarRed;
@@ -24,6 +23,8 @@ public class LaserEnergyManager : MonoBehaviour
     private float blueEnergy;
     private bool redOverheated = false;
     private bool blueOverheated = false;
+    private bool redLaserActiveThisFrame = false;
+    private bool blueLaserActiveThisFrame = false;
 
     void Start()
     {
@@ -34,13 +35,19 @@ public class LaserEnergyManager : MonoBehaviour
 
     void Update()
     {
-        if (!redOverheated)
+        redLaserActiveThisFrame = false;
+        blueLaserActiveThisFrame = false;
+    }
+
+    void LateUpdate()
+    {
+        if (!redLaserActiveThisFrame && !redOverheated)
         {
             redEnergy += rechargeRate * Time.deltaTime;
             redEnergy = Mathf.Clamp(redEnergy, 0, redMaxEnergy);
         }
 
-        if (!blueOverheated)
+        if (!blueLaserActiveThisFrame && !blueOverheated)
         {
             blueEnergy += rechargeRate * Time.deltaTime;
             blueEnergy = Mathf.Clamp(blueEnergy, 0, blueMaxEnergy);
@@ -50,20 +57,14 @@ public class LaserEnergyManager : MonoBehaviour
         laserBarBlue.fillAmount = blueEnergy / blueMaxEnergy;
     }
 
-    public float GetRedEnergy()
-    {
-        return redEnergy;
-    }
-
-    public float GetBlueEnergy()
-    {
-        return blueEnergy;
-    }
+    public float GetRedEnergy() => redEnergy;
+    public float GetBlueEnergy() => blueEnergy;
 
     public bool UseRedLaser()
     {
         if (redOverheated) return false;
 
+        redLaserActiveThisFrame = true;
         redEnergy -= drainRate * Time.deltaTime;
         redEnergy = Mathf.Clamp(redEnergy, 0, redMaxEnergy);
 
@@ -72,7 +73,6 @@ public class LaserEnergyManager : MonoBehaviour
             redOverheated = true;
             Invoke(nameof(CoolDownRed), 3f);
         }
-
         return true;
     }
 
@@ -80,6 +80,7 @@ public class LaserEnergyManager : MonoBehaviour
     {
         if (blueOverheated) return false;
 
+        blueLaserActiveThisFrame = true;
         blueEnergy -= drainRate * Time.deltaTime;
         blueEnergy = Mathf.Clamp(blueEnergy, 0, blueMaxEnergy);
 
@@ -88,19 +89,11 @@ public class LaserEnergyManager : MonoBehaviour
             blueOverheated = true;
             Invoke(nameof(CoolDownBlue), 3f);
         }
-
         return true;
     }
 
-    void CoolDownRed()
-    {
-        redOverheated = false;
-    }
-
-    void CoolDownBlue()
-    {
-        blueOverheated = false;
-    }
+    void CoolDownRed() => redOverheated = false;
+    void CoolDownBlue() => blueOverheated = false;
 
     public void RechargeRed()
     {
@@ -128,11 +121,10 @@ public class LaserEnergyManager : MonoBehaviour
         Debug.Log("Blue energy increased by: " + amount);
     }
 
-    // Applica l'effetto power up e avvia il timer per il ripristino
     public void ApplyPowerUp(string powerUp)
     {
         Debug.Log("Applied Power-Up: " + powerUp);
-        float duration = 10f; // Durata standard dei power-up
+        float duration = 10f;
 
         switch (powerUp)
         {
@@ -141,15 +133,18 @@ public class LaserEnergyManager : MonoBehaviour
                 redEnergy += 300f;
                 StartCoroutine(RevertRedMaxEnergyAfterDelay(300f, duration));
                 break;
+
             case "300 LB Energy Gauge":
                 blueMaxEnergy += 300f;
                 blueEnergy += 300f;
                 StartCoroutine(RevertBlueMaxEnergyAfterDelay(300f, duration));
                 break;
+
             case "10 /s LR Energy Consumption":
                 drainRate = 10f;
                 StartCoroutine(RevertDrainRateAfterDelay(10f, duration));
                 break;
+
             case "20 /s LR Damage Output":
                 LaserGun laserGun = FindObjectOfType<LaserGun>();
                 if (laserGun != null)
@@ -158,14 +153,17 @@ public class LaserEnergyManager : MonoBehaviour
                     StartCoroutine(RevertLaserDamageRedAfterDelay(20f, duration));
                 }
                 break;
+
             case "40 Recharge LB Energy Gauge per D destroyed / C collected":
                 bonusRecharge += 40f;
                 StartCoroutine(RevertBonusRechargeAfterDelay(40f, duration));
                 break;
+
             case "10 /s LB Energy Consumption":
                 drainRate = 10f;
                 StartCoroutine(RevertDrainRateAfterDelay(10f, duration));
                 break;
+
             case "20 /s LB Damage Output":
                 LaserGunBlue laserGunBlue = FindObjectOfType<LaserGunBlue>();
                 if (laserGunBlue != null)
@@ -174,19 +172,17 @@ public class LaserEnergyManager : MonoBehaviour
                     StartCoroutine(RevertLaserDamageBlueAfterDelay(20f, duration));
                 }
                 break;
+
             case "40 Recharge LR Energy Gauge per D destroyed / C collected":
                 bonusRecharge += 40f;
                 StartCoroutine(RevertBonusRechargeAfterDelay(40f, duration));
                 break;
         }
 
-        // Attiva l'icona corrispondente nel UI Manager
         if (powerUpUIManager != null)
-        {
             powerUpUIManager.ActivatePowerUp(powerUp, duration);
-
-        }
     }
+
     private IEnumerator RevertRedMaxEnergyAfterDelay(float amount, float delay)
     {
         yield return new WaitForSeconds(delay);

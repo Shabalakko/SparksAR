@@ -14,14 +14,14 @@ public class OptionsMenu : MonoBehaviour
         settingsManager = FindObjectOfType<SettingsManager>();
 
         // Imposta i limiti dello slider
-        hitboxSlider.minValue = minHitboxSize;
-        hitboxSlider.maxValue = maxHitboxSize;
+        /*hitboxSlider.minValue = minHitboxSize;
+        hitboxSlider.maxValue = maxHitboxSize;*/
 
         // Imposta il valore iniziale dallo SettingsManager
-        hitboxSlider.value = settingsManager.enemyHitboxSize;
+        //hitboxSlider.value = settingsManager.enemyHitboxSize;
 
         // Salva il valore ogni volta che lo slider viene modificato
-        hitboxSlider.onValueChanged.AddListener(UpdateHitboxSize);
+        //hitboxSlider.onValueChanged.AddListener(UpdateHitboxSize);
     }
 
     public void UpdateHitboxSize(float newSize)
