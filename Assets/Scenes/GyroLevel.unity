@@ -1507,10 +1507,7 @@ MonoBehaviour:
   - {fileID: 1218152937}
   - {fileID: 1695390677}
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 =======
-=======
->>>>>>> Stashed changes
   timerText: {fileID: 591013602}
   expiredMessageText: {fileID: 1766062651}
   questionTime: 10
@@ -2659,7 +2656,4 @@ SceneRoots:
   - {fileID: 1964602099}
   - {fileID: 230382592}
   - {fileID: 338672302}
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
