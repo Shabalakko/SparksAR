@@ -8,13 +8,16 @@ public class ColorCombinationScoreSystem : ScoreSystemBase
 
     private Dictionary<string, int> colorCombinations = new Dictionary<string, int>()
     {
-        { "RedRedRed", 100 },
-        { "BlueBlueBlue", 150 },
-        { "GreenGreenGreen", 200 },
-        { "RedBlueGreen", 250 }
+        { "RedRedRed", 228 },
+        { "BlueBlueBlue", 228 },
+        { "RedRedBlue", 337 },
+        { "BlueBlueRed", 337 },
+        { "RedBlueRed", 446 },
+        { "BlueRedBlue", 446 },
+        // Aggiungi altre combinazioni se necessario
     };
 
-    private TextMeshProUGUI slotDisplayText;
+    private TextMeshProUGUI slotDisplayText; // Se usi un testo, altrimenti non serve
 
     public ColorCombinationScoreSystem(TextMeshProUGUI slotDisplayText)
     {
@@ -28,7 +31,7 @@ public class ColorCombinationScoreSystem : ScoreSystemBase
 
         colorSlots.Add(color);
         EvaluateColorCombo();
-        UpdateUI();
+        
     }
 
     public override void AddScoreCustom(string color, int basePoints)
@@ -39,7 +42,7 @@ public class ColorCombinationScoreSystem : ScoreSystemBase
         colorSlots.Add(color);
         EvaluateColorCombo();
         totalScore += basePoints;
-        UpdateUI();
+        
     }
 
     public override void Update()
@@ -57,14 +60,22 @@ public class ColorCombinationScoreSystem : ScoreSystemBase
                 int bonus = colorCombinations[comboKey];
                 totalScore += bonus;
                 Debug.Log($"Combo colore {comboKey} ottenuta! Bonus: {bonus} punti");
-                // Se preferisci, puoi resettare gli slot qui: colorSlots.Clear();
+                ResetColorSlots();
             }
         }
     }
 
-    private void UpdateUI()
+    public void ResetColorSlots()
     {
-        if (slotDisplayText != null)
-            slotDisplayText.text = string.Join(" - ", colorSlots.ToArray());
+
+        colorSlots.Clear();
+    }
+
+
+
+    // Proprietà per esporre la lista dei colori correnti
+    public List<string> CurrentColors
+    {
+        get { return colorSlots; }
     }
 }
