@@ -1,85 +1,25 @@
 using UnityEngine;
 
-public class EnemyTypeB : MonoBehaviour, IEnemy
+public class EnemyTypeB : EnemyBase
 {
-    [Header("Statistiche del Nemico (Tipo B)")]
-    [SerializeField] private float _maxHP = 100f;
-    public float maxHP { get { return _maxHP; } }
+    // Specifica il colore di questo nemico
+    public override string EnemyColor => "Blue";
 
-    private float currentHP;
-    public float regenRate = 5f;
-    public float regenDelay = 3f;
-    private float lastDamageTime;
-
-    private ScoreManager scoreManager;
-    private LaserEnergyManager energyManager;
-    private SettingsManager settingsManager;
-
-    void Start()
+    public override void TakeDamage(float damage, string color)
     {
-        currentHP = maxHP;
-        scoreManager = FindObjectOfType<ScoreManager>();
-        energyManager = FindObjectOfType<LaserEnergyManager>();
-        settingsManager = FindObjectOfType<SettingsManager>();
-
-        // Applica la dimensione dell'hitbox basata sulle impostazioni
-        AdjustHitbox();
-    }
-
-    void Update()
-    {
-        if (currentHP < maxHP && Time.time > lastDamageTime + regenDelay)
-        {
-            currentHP += regenRate * Time.deltaTime;
-            currentHP = Mathf.Clamp(currentHP, 0, maxHP);
-        }
-    }
-
-    public void TakeDamage(float damage, string color)
-    {
-        if (color == "Blue")
+        if (color == EnemyColor)
         {
             currentHP -= damage;
             lastDamageTime = Time.time;
-
             if (currentHP <= 0)
             {
+                // Se il nemico blu muore, ricarica l'energia rossa
+                if (energyManager != null)
+                {
+                    energyManager.RechargeRed();
+                }
                 Die();
             }
         }
-    }
-
-    private void Die()
-    {
-        if (scoreManager != null)
-        {
-            scoreManager.AddScore("Blue");
-        }
-
-        if (energyManager != null)
-        {
-            energyManager.RechargeRed();
-        }
-
-        Destroy(gameObject);
-    }
-
-    private void AdjustHitbox()
-    {
-        if (settingsManager != null)
-        {
-            BoxCollider boxCollider = GetComponent<BoxCollider>(); // Casting esplicito
-            if (boxCollider != null)
-            {
-                boxCollider.size = Vector3.one * settingsManager.enemyHitboxSize;
-            }
-        }
-    }
-
-
-
-    public float GetCurrentHP()
-    {
-        return currentHP;
     }
 }

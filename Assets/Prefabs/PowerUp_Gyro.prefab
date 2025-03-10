@@ -213,6 +213,7 @@ MonoBehaviour:
   _maxHP: 10
   regenRate: 5
   regenDelay: 3
+  _powerUpMaxHP: 10
 --- !u!114 &-5528029354056563799
 MonoBehaviour:
   m_ObjectHideFlags: 0

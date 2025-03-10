@@ -1,26 +1,13 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
-public class PowerUp : MonoBehaviour, IEnemy
+public class PowerUp : EnemyBase
 {
     [Header("Statistiche del PowerUp")]
-    [SerializeField] private float _maxHP = 100f;
+    [SerializeField] private float _powerUpMaxHP = 100f;
+    public override float maxHP { get { return _powerUpMaxHP; } }
 
-    // Implementazione della proprietà richiesta dall'interfaccia IEnemy
-    public float maxHP { get { return _maxHP; } }
-
-    private float currentHP;
-    public float regenRate = 5f;
-    public float regenDelay = 3f;
-    private float lastDamageTime;
-
-    private ScoreManager scoreManager;
-    private LaserEnergyManager energyManager;
-    private SettingsManager settingsManager;
-    private PowerUpQuestionUI questionUI;
-    private string pendingPowerUp;
-
-    // Liste dei power-up
+    // Liste di power-up per i colpi di tipo Red e Blue
     public static List<string> PURList = new List<string>
     {
         "300 LR Energy Gauge",
@@ -37,31 +24,24 @@ public class PowerUp : MonoBehaviour, IEnemy
         "40 Recharge LR Energy Gauge per D destroyed / C collected"
     };
 
-    // Variabile per memorizzare il colore dell'ultimo laser che ha inflitto danno
-    private string lastHitByColor;
+    private PowerUpQuestionUI questionUI;
+    private string pendingPowerUp;
+    private string lastHitByColor = "";
 
-    void Start()
+    // Per i power-up, il colore viene determinato dall'ultimo colpo subito
+    public override string EnemyColor => lastHitByColor;
+
+    protected override void Start()
     {
-        // Inizializza currentHP con il valore di maxHP definito in Inspector
-        currentHP = _maxHP;
-        scoreManager = FindObjectOfType<ScoreManager>();
-        energyManager = FindObjectOfType<LaserEnergyManager>();
-        settingsManager = FindObjectOfType<SettingsManager>();
-        AdjustHitbox();
+        base.Start();
         questionUI = FindObjectOfType<PowerUpQuestionUI>();
-
-    }
-
-    void Update()
-    {
-        if (currentHP < _maxHP && Time.time > lastDamageTime + regenDelay)
+        if (questionUI == null)
         {
-            currentHP += regenRate * Time.deltaTime;
-            currentHP = Mathf.Clamp(currentHP, 0, _maxHP);
+            Debug.LogError("PowerUpQuestionUI non trovato!");
         }
     }
 
-    public void TakeDamage(float damage, string color)
+    public override void TakeDamage(float damage, string color)
     {
         lastHitByColor = color;
         currentHP -= damage;
@@ -72,7 +52,11 @@ public class PowerUp : MonoBehaviour, IEnemy
         }
     }
 
-    private void Die()
+    /// <summary>
+    /// Al momento della "morte" del power-up, viene selezionato un bonus
+    /// e viene mostrata una UI per confermare l'azione.
+    /// </summary>
+    protected override void Die()
     {
         if (questionUI == null)
         {
@@ -81,6 +65,7 @@ public class PowerUp : MonoBehaviour, IEnemy
             return;
         }
 
+        // Seleziona il power-up in base al colore dell'ultimo colpo
         if (lastHitByColor == "Red")
         {
             pendingPowerUp = PUBList[Random.Range(0, PUBList.Count)];
@@ -96,40 +81,24 @@ public class PowerUp : MonoBehaviour, IEnemy
             pendingPowerUp = combinedList[Random.Range(0, combinedList.Count)];
         }
 
-        questionUI.ShowQuestion(this);  // Mostra la domanda
+        // Mostra la domanda tramite la UI dedicata
+        questionUI.ShowQuestion(this);
     }
 
-
-    private void AdjustHitbox()
-    {
-        if (settingsManager != null)
-        {
-            BoxCollider boxCollider = GetComponent<BoxCollider>();
-            if (boxCollider != null)
-            {
-                boxCollider.size = Vector3.one * settingsManager.enemyHitboxSize;
-            }
-        }
-    }
+    /// <summary>
+    /// Questo metodo viene chiamato dalla UI dopo che il giocatore ha risposto correttamente.
+    /// Applica il power-up e registra il punteggio.
+    /// </summary>
     public void GrantPowerUp()
     {
-        if (energyManager != null && pendingPowerUp != "")
+        if (energyManager != null && !string.IsNullOrEmpty(pendingPowerUp))
         {
             energyManager.ApplyPowerUp(pendingPowerUp);
         }
-
         if (scoreManager != null)
         {
-            scoreManager.AddScoreCustom(lastHitByColor, 5); // Aggiunge 5 punti base moltiplicati dai moltiplicatori
+            scoreManager.AddScoreCustom(lastHitByColor, 5);
         }
-
         Destroy(gameObject);
-    }
-
-
-
-    public float GetCurrentHP()
-    {
-        return currentHP;
     }
 }
