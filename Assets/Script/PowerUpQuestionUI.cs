@@ -3,10 +3,9 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
-<<<<<<< Updated upstream
-=======
+
 using System.Linq;
->>>>>>> Stashed changes
+
 
 public class PowerUpQuestionUI : MonoBehaviour
 {
@@ -36,14 +35,11 @@ public class PowerUpQuestionUI : MonoBehaviour
     private Color defaultColor = Color.white;
     private Color correctColor = Color.green;
     private Color wrongColor = Color.red;
-<<<<<<< Updated upstream
 
-=======
     public GameObject Lasers, PLaserR, PLaserB;
     private RectTransform timerRect;
 
     // Classe per la struttura della domanda
->>>>>>> Stashed changes
     private class Question
     {
         public string text;
@@ -128,12 +124,9 @@ new Question("What is the primary component of Saturn’s rings?", new string[] { 
         }
 
         answered = false;
-<<<<<<< Updated upstream
-        Time.timeScale = 0f;
-=======
-        Time.timeScale = 0f; // Ferma il gioco
 
->>>>>>> Stashed changes
+        Time.timeScale = 0f;
+
         currentPowerUp = powerUp;
 
         int randomIndex = UnityEngine.Random.Range(0, questionList.Count);
@@ -186,8 +179,7 @@ new Question("What is the primary component of Saturn’s rings?", new string[] { 
         }
 
         questionPanel.SetActive(true);
-<<<<<<< Updated upstream
-=======
+
         ResetTimerUI();
 
         // Disabilita temporaneamente altri componenti di gioco
@@ -258,7 +250,7 @@ new Question("What is the primary component of Saturn’s rings?", new string[] { 
         yield return new WaitForSecondsRealtime(0.1f);
 
         ResetUI();
->>>>>>> Stashed changes
+
     }
 
     private IEnumerator CheckAnswer(int index)
@@ -290,13 +282,13 @@ new Question("What is the primary component of Saturn’s rings?", new string[] { 
 
     private void ResetUI()
     {
-<<<<<<< Updated upstream
+
         foreach (Button btn in answerButtons)
         {
             btn.image.color = defaultColor;
         }
         questionPanel.SetActive(false);
-=======
+
         foreach (Button btn in answerButtons) btn.image.color = defaultColor;
 
         LaserGun compR = Lasers.GetComponent<LaserGun>();
@@ -307,7 +299,7 @@ new Question("What is the primary component of Saturn’s rings?", new string[] { 
         PLaserR.SetActive(true);
         questionPanel.SetActive(false);
         timerText.text = "";
->>>>>>> Stashed changes
+
         Time.timeScale = 1f;
     }
 
