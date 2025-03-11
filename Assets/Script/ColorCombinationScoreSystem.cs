@@ -34,13 +34,10 @@ public class ColorCombinationScoreSystem : ScoreSystemBase
             Debug.Log("Green enemy destroyed, awarding 515 points");
             return;
         }
-
         if (colorSlots.Count >= 3)
             colorSlots.RemoveAt(0);
-
         colorSlots.Add(color);
         EvaluateColorCombo();
-        
     }
 
     public override void AddScoreCustom(string color, int basePoints)
@@ -51,14 +48,11 @@ public class ColorCombinationScoreSystem : ScoreSystemBase
             Debug.Log("Green enemy destroyed, awarding 515 points");
             return;
         }
-
         if (colorSlots.Count >= 3)
             colorSlots.RemoveAt(0);
-
         colorSlots.Add(color);
         EvaluateColorCombo();
         totalScore += basePoints;
-        
     }
 
     public override void Update()

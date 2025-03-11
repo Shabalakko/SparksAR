@@ -99,11 +99,38 @@ public class ComboScoreSystem : ScoreSystemBase
         UpdateUI();
     }
 
+    // Aggiorna la UI: imposta il testo e il colore in base al tipo di combo attivo.
     private void UpdateUI()
     {
         if (multiplierText != null)
             multiplierText.text = "x" + currentMultiplier;
         if (nextMultiplierText != null)
             nextMultiplierText.text = "x" + colorComboStreak;
+
+        // Se la combo è attiva e lastColor è valorizzato, imposta il colore del testo.
+        if (comboTimer > 0 && !string.IsNullOrEmpty(lastColor))
+        {
+            if (lastColor.ToLower() == "red")
+            {
+                //multiplierText.color = Color.red;
+                nextMultiplierText.color = Color.red;
+            }
+            else if (lastColor.ToLower() == "blue")
+            {
+                //multiplierText.color = Color.blue;
+                nextMultiplierText.color = Color.blue;
+            }
+            else
+            {
+                //multiplierText.color = Color.white;
+                nextMultiplierText.color = Color.white;
+            }
+        }
+        else
+        {
+            // Se il timer è scaduto o non c'è una combo attiva, il testo diventa bianco.
+            //multiplierText.color = Color.white;
+            nextMultiplierText.color = Color.white;
+        }
     }
 }

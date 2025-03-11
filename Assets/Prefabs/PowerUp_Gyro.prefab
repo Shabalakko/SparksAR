@@ -214,6 +214,7 @@ MonoBehaviour:
   regenRate: 5
   regenDelay: 3
   _powerUpMaxHP: 10
+  isGreenEnemy: 1
 --- !u!114 &-5528029354056563799
 MonoBehaviour:
   m_ObjectHideFlags: 0

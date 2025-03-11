@@ -7,6 +7,9 @@ public class PowerUp : EnemyBase
     [SerializeField] private float _powerUpMaxHP = 100f;
     public override float maxHP { get { return _powerUpMaxHP; } }
 
+    [Header("Tipo di PowerUp")]
+    [SerializeField] private bool isGreenEnemy = false; // Imposta true per i power-up che devono essere trattati come "green" nella modalità ColorCombination
+
     // Liste di power-up per i colpi di tipo Red e Blue
     public static List<string> PURList = new List<string>
     {
@@ -61,7 +64,7 @@ public class PowerUp : EnemyBase
             return;
         }
 
-        // Seleziona il power-up in base al colore dell'ultimo colpo
+        // Selezione del power-up in base al colore dell'ultimo colpo
         if (lastHitByColor == "Red")
         {
             pendingPowerUp = PUBList[Random.Range(0, PUBList.Count)];
@@ -77,10 +80,15 @@ public class PowerUp : EnemyBase
             pendingPowerUp = combinedList[Random.Range(0, combinedList.Count)];
         }
 
-        // Mostra la domanda tramite la UI dedicata
+        // Mostra la UI per la conferma del power-up
         questionUI.ShowQuestion(this);
     }
 
+    /// <summary>
+    /// Metodo chiamato dalla UI dopo che il giocatore ha risposto correttamente.
+    /// In modalità ColorCombination, se questo power-up è "verde", viene forzato il colore "green"
+    /// per assegnare 515 punti direttamente; altrimenti, si utilizza il colore dell'ultimo laser.
+    /// </summary>
     public void GrantPowerUp()
     {
         if (energyManager != null && !string.IsNullOrEmpty(pendingPowerUp))
@@ -89,9 +97,7 @@ public class PowerUp : EnemyBase
         }
         if (scoreManager != null)
         {
-            // Se siamo in modalità ColorSlots, consideriamo il power-up come "green"
-            // solo se l'ultimo colpo non era "Red" o "Blue".
-            if (scoreManager.scoringMode == ScoringMode.ColorSlots && lastHitByColor != "Red" && lastHitByColor != "Blue")
+            if (scoreManager.scoringMode == ScoringMode.ColorSlots && isGreenEnemy)
             {
                 scoreManager.AddScoreCustom("green", 5);
             }
