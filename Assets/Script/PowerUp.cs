@@ -52,10 +52,6 @@ public class PowerUp : EnemyBase
         }
     }
 
-    /// <summary>
-    /// Al momento della "morte" del power-up, viene selezionato un bonus
-    /// e viene mostrata una UI per confermare l'azione.
-    /// </summary>
     protected override void Die()
     {
         if (questionUI == null)
@@ -85,10 +81,6 @@ public class PowerUp : EnemyBase
         questionUI.ShowQuestion(this);
     }
 
-    /// <summary>
-    /// Questo metodo viene chiamato dalla UI dopo che il giocatore ha risposto correttamente.
-    /// Applica il power-up e registra il punteggio.
-    /// </summary>
     public void GrantPowerUp()
     {
         if (energyManager != null && !string.IsNullOrEmpty(pendingPowerUp))
@@ -97,7 +89,16 @@ public class PowerUp : EnemyBase
         }
         if (scoreManager != null)
         {
-            scoreManager.AddScoreCustom(lastHitByColor, 5);
+            // Se siamo in modalità ColorSlots, consideriamo il power-up come "green"
+            // solo se l'ultimo colpo non era "Red" o "Blue".
+            if (scoreManager.scoringMode == ScoringMode.ColorSlots && lastHitByColor != "Red" && lastHitByColor != "Blue")
+            {
+                scoreManager.AddScoreCustom("green", 5);
+            }
+            else
+            {
+                scoreManager.AddScoreCustom(lastHitByColor, 5);
+            }
         }
         Destroy(gameObject);
     }

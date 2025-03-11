@@ -22,15 +22,15 @@ public class ScoreManager : MonoBehaviour
 
     private ScoreSystemBase scoreSystem;
     private Coroutine resetCoroutine;
-    
+    private string lastCombo = null; // Tiene traccia della combo corrente
 
     void Start()
     {
-        if(scoringMode == ScoringMode.Combo)
+        if (scoringMode == ScoringMode.Combo)
         {
             scoreSystem = new ComboScoreSystem(multiplierText, nextMultiplierText, comboTimerRadial);
         }
-        else if(scoringMode == ScoringMode.ColorSlots)
+        else if (scoringMode == ScoringMode.ColorSlots)
         {
             scoreSystem = new ColorCombinationScoreSystem(multiplierText);
         }
@@ -43,14 +43,43 @@ public class ScoreManager : MonoBehaviour
         UpdateScoreUI();
     }
 
+    // Se la combo è completa, la resetta e prende il nuovo colore come primo elemento
     public void AddScore(string color)
     {
+        if (scoringMode == ScoringMode.ColorSlots)
+        {
+            ColorCombinationScoreSystem colorSystem = scoreSystem as ColorCombinationScoreSystem;
+            if (colorSystem.CurrentColors.Count == 3)
+            {
+                colorSystem.ResetColorSlots();
+                if (resetCoroutine != null)
+                {
+                    StopCoroutine(resetCoroutine);
+                    resetCoroutine = null;
+                    lastCombo = null;
+                }
+            }
+        }
         scoreSystem.AddScore(color);
         UpdateScoreUI();
     }
 
     public void AddScoreCustom(string color, int basePoints)
     {
+        if (scoringMode == ScoringMode.ColorSlots)
+        {
+            ColorCombinationScoreSystem colorSystem = scoreSystem as ColorCombinationScoreSystem;
+            if (colorSystem.CurrentColors.Count == 3)
+            {
+                colorSystem.ResetColorSlots();
+                if (resetCoroutine != null)
+                {
+                    StopCoroutine(resetCoroutine);
+                    resetCoroutine = null;
+                    lastCombo = null;
+                }
+            }
+        }
         scoreSystem.AddScoreCustom(color, basePoints);
         UpdateScoreUI();
     }
@@ -77,40 +106,40 @@ public class ScoreManager : MonoBehaviour
             {
                 var currentColors = colorSystem.CurrentColors;
 
-                // Update the UI icons to match the current colors
+                // Aggiorna le icone UI in base ai colori correnti
                 for (int i = 0; i < combinationIcons.Length; i++)
                 {
                     if (i < currentColors.Count)
-                    {
                         combinationIcons[i].color = GetColorFromString(currentColors[i]);
-                    }
                     else
-                    {
                         combinationIcons[i].color = Color.white;
-                    }
                 }
 
-                // If we have a full combination, start (or restart) the reset timer...
+                // Avvia il timer di reset solo se la combo è completa (3 colori)
                 if (currentColors.Count == 3)
                 {
-                    // Stop current coroutine to reset timing if needed
-                    if (resetCoroutine != null)
-                        StopCoroutine(resetCoroutine);
-
-                    resetCoroutine = StartCoroutine(ResetIconsAfterDelay(2.0f));
+                    string currentCombo = string.Join("", currentColors);
+                    if (resetCoroutine == null || lastCombo != currentCombo)
+                    {
+                        if (resetCoroutine != null)
+                            StopCoroutine(resetCoroutine);
+                        resetCoroutine = StartCoroutine(ResetIconsAfterDelay(2.0f));
+                        lastCombo = currentCombo;
+                    }
                 }
-                // ...but if the combination is no longer complete,
-                // cancel any pending reset so that the new combination remains visible.
-                else if (resetCoroutine != null)
+                else
                 {
-                    StopCoroutine(resetCoroutine);
-                    resetCoroutine = null;
+                    // Se la combo non è completa, interrompi il timer (se in esecuzione)
+                    if (resetCoroutine != null)
+                    {
+                        StopCoroutine(resetCoroutine);
+                        resetCoroutine = null;
+                        lastCombo = null;
+                    }
                 }
             }
         }
     }
-
-
 
     private IEnumerator ResetIconsAfterDelay(float delay)
     {
@@ -120,18 +149,19 @@ public class ScoreManager : MonoBehaviour
         if (colorSystem != null)
         {
             colorSystem.ResetColorSlots();
-            // Reset della combinazione
-            UpdateScoreUI(); // Aggiorniamo la UI per mostrare le icone bianche
+            UpdateScoreUI(); // Aggiorna la UI per mostrare le icone resettate
         }
+        resetCoroutine = null;
+        lastCombo = null;
     }
 
     private Color GetColorFromString(string colorName)
     {
-        switch(colorName.ToLower())
+        switch (colorName.ToLower())
         {
             case "red": return Color.red;
             case "blue": return Color.blue;
-            //case "green": return Color.green;
+            case "green": return Color.green;
             default: return Color.white;
         }
     }

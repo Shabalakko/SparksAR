@@ -13,9 +13,9 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("GyroLevel");
     }
 
-    public void PlayGameTouch()
+    public void PlayGameCombination()
     {
-        SceneManager.LoadScene("TouchLevel");
+        SceneManager.LoadScene("GyroLevelCombination");
     }
 
     // --- 2. Options Button ---
