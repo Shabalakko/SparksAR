@@ -360,6 +360,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8666088465115562498, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 8666699298165096072, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

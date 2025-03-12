@@ -49,10 +49,12 @@ public class ScoreManager : MonoBehaviour
         }
         else if (scoringMode == ScoringMode.ColorSlots)
         {
-            scoreSystem = new ColorCombinationScoreSystem(multiplierText);
+            // Passa il metodo ShowScorePopup come callback
+            scoreSystem = new ColorCombinationScoreSystem(multiplierText, ShowScorePopup);
         }
         UpdateScoreUI();
     }
+
 
     void Update()
     {
@@ -74,8 +76,10 @@ public class ScoreManager : MonoBehaviour
             textComponent.text = "+" + score.ToString();
         }
 
-        Destroy(popup, 1.5f); // Distrugge l'animazione dopo 1.5 secondi
+        // Distrugge il popup dopo 1.5 secondi per non appesantire la scena
+        Destroy(popup, 1.5f);
     }
+
 
 
     // Se la combo è completa, la resetta e prende il nuovo colore come primo elemento

@@ -62,14 +62,23 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
     {
         if (scoreManager != null)
         {
-            int scoreBefore = scoreManager.GetTotalScore();
-            scoreManager.AddScore(EnemyColor);
-            int scoreGained = scoreManager.GetTotalScore() - scoreBefore;
-
-            scoreManager.ShowScorePopup(scoreGained); // Mostra il punteggio sulla UI
+            // Se stai usando la modalità ColorSlots, lascia che sia il sistema di combo a gestire il popup.
+            if (scoreManager.scoringMode == ScoringMode.Combo)
+            {
+                int scoreBefore = scoreManager.GetTotalScore();
+                scoreManager.AddScore(EnemyColor);
+                int scoreGained = scoreManager.GetTotalScore() - scoreBefore;
+                scoreManager.ShowScorePopup(scoreGained);
+            }
+            else // Modalità ColorSlots
+            {
+                // In modalità combo basata su combinazioni, aggiungi lo score
+                // e lascia che EvaluateColorCombo gestisca il popup.
+                scoreManager.AddScore(EnemyColor);
+            }
         }
-
         Destroy(gameObject);
     }
+
 
 }

@@ -91,15 +91,18 @@ public class PowerUp : EnemyBase
     /// </summary>
     public void GrantPowerUp()
     {
-        if (energyManager != null && !string.IsNullOrEmpty(pendingPowerUp))
-        {
-            energyManager.ApplyPowerUp(pendingPowerUp);
-        }
         if (scoreManager != null)
         {
+            int scoreBefore = scoreManager.GetTotalScore();
+
             if (scoreManager.scoringMode == ScoringMode.Combo)
             {
-                // In modalità Combo, usa il colore della combo corrente (se presente)
+                // Modalità Combo: applica il powerup al giocatore
+                if (energyManager != null && !string.IsNullOrEmpty(pendingPowerUp))
+                {
+                    energyManager.ApplyPowerUp(pendingPowerUp);
+                }
+                // Aggiungi i punti relativi al powerup
                 string currentComboColor = scoreManager.CurrentComboColor;
                 if (!string.IsNullOrEmpty(currentComboColor))
                 {
@@ -110,17 +113,25 @@ public class PowerUp : EnemyBase
                     scoreManager.AddScoreCustom(lastHitByColor, 15);
                 }
             }
-            else if (scoreManager.scoringMode == ScoringMode.ColorSlots && isGreenEnemy)
+            else if (scoreManager.scoringMode == ScoringMode.ColorSlots)
             {
-                scoreManager.AddScoreCustom("green", 5);
+                // Modalità ColorCombination: non applicare il powerup, solo assegnare il punteggio
+                if (isGreenEnemy)
+                {
+                    scoreManager.AddScoreCustom("green", 5);
+                }
+                else
+                {
+                    scoreManager.AddScoreCustom(lastHitByColor, 5);
+                }
             }
-            else
-            {
-                scoreManager.AddScoreCustom(lastHitByColor, 5);
-            }
+
+            int scoreGained = scoreManager.GetTotalScore() - scoreBefore;
+            // Mostra il popup del punteggio anche per i powerup in entrambe le modalità
+            scoreManager.ShowScorePopup(scoreGained);
         }
+
         Destroy(gameObject);
     }
-
 
 }

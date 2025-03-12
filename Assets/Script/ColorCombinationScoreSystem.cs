@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class ColorCombinationScoreSystem : ScoreSystemBase
 {
@@ -19,11 +20,14 @@ public class ColorCombinationScoreSystem : ScoreSystemBase
         // Aggiungi altre combinazioni se necessario
     };
 
-    private TextMeshProUGUI slotDisplayText; // Se usi un testo, altrimenti non serve
+    private TextMeshProUGUI slotDisplayText;
+    // Callback da invocare quando la combo è valutata
+    private Action<int> onComboEvaluated;
 
-    public ColorCombinationScoreSystem(TextMeshProUGUI slotDisplayText)
+    public ColorCombinationScoreSystem(TextMeshProUGUI slotDisplayText, Action<int> onComboEvaluated)
     {
         this.slotDisplayText = slotDisplayText;
+        this.onComboEvaluated = onComboEvaluated;
     }
 
     public override void AddScore(string color)
@@ -71,20 +75,16 @@ public class ColorCombinationScoreSystem : ScoreSystemBase
                 totalScore += bonus;
                 Debug.Log($"Combo colore {comboKey} ottenuta! Bonus: {bonus} punti");
 
-                
+                // Invoca la callback per mostrare il popup del punteggio
+                onComboEvaluated?.Invoke(bonus);
             }
         }
     }
 
-
-
     public void ResetColorSlots()
     {
-
         colorSlots.Clear();
     }
-
-
 
     // Proprietà per esporre la lista dei colori correnti
     public List<string> CurrentColors
