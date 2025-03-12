@@ -1,10 +1,19 @@
 # ninja log v5
 27	3866	7633894842764473	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	758be5c0de8d47bf
-0	3897	7633894842860530	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	64015a2a2fc3c9fd
-101	3940	7633894843393393	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	fcbb61197d05624b
-41	3989	7633894843795335	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	419b882ea4329bd7
-19	4081	7633894844750127	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	de54fd24ba0a8381
-63	4090	7633894844891239	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	b7f46d44c7ced46b
 82	4110	7633894845084268	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	1a29e2975d1c3d00
-7	4206	7633894846195635	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	2315ca42a04cdbf8
+0	3897	7633894842860530	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	64015a2a2fc3c9fd
+19	4081	7633894844750127	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	de54fd24ba0a8381
+101	3940	7633894843393393	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	fcbb61197d05624b
 4206	4603	7633894848662114	C:/Users/FABLAB_4/Documents/GitHub/SparksAR/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/3m33303x/obj/arm64-v8a/libgame.so	eeaa5de790202c23
+41	3989	7633894843795335	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	419b882ea4329bd7
+63	4090	7633894844891239	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	b7f46d44c7ced46b
+7	4206	7633894846195635	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	2315ca42a04cdbf8
+56	1781	7634994932782278	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	b7f46d44c7ced46b
+13	1787	7634994932829117	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	758be5c0de8d47bf
+82	1794	7634994932920714	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	fcbb61197d05624b
+24	1808	7634994933062980	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	64015a2a2fc3c9fd
+103	1817	7634994933159127	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	1a29e2975d1c3d00
+20	1820	7634994933204762	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	de54fd24ba0a8381
+38	1908	7634994934072777	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	419b882ea4329bd7
+31	1957	7634994934568575	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	2315ca42a04cdbf8
+1957	2156	7634994935935254	C:/Users/FABLAB_4/Documents/GitHub/SparksAR/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/3m33303x/obj/arm64-v8a/libgame.so	eeaa5de790202c23

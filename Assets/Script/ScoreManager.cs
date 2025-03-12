@@ -139,6 +139,11 @@ public class ScoreManager : MonoBehaviour
         if (scoreText != null)
             scoreText.text = scoreSystem.GetTotalScore().ToString();
 
+        if (AchievementManager.Instance != null)
+        {
+            AchievementManager.Instance.CheckAchievements(scoringMode);
+        }
+
         if (scoringMode == ScoringMode.ColorSlots && combinationIcons != null && combinationIcons.Length > 0)
         {
             ColorCombinationScoreSystem colorSystem = scoreSystem as ColorCombinationScoreSystem;
