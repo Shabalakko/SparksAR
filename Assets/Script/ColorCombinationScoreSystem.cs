@@ -70,10 +70,12 @@ public class ColorCombinationScoreSystem : ScoreSystemBase
                 int bonus = colorCombinations[comboKey];
                 totalScore += bonus;
                 Debug.Log($"Combo colore {comboKey} ottenuta! Bonus: {bonus} punti");
-                // Non resettare immediatamente la combinazione per permettere alla UI di mostrare il terzo colore
+
+                
             }
         }
     }
+
 
 
     public void ResetColorSlots()

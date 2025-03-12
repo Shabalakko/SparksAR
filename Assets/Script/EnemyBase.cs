@@ -62,8 +62,14 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
     {
         if (scoreManager != null)
         {
+            int scoreBefore = scoreManager.GetTotalScore();
             scoreManager.AddScore(EnemyColor);
+            int scoreGained = scoreManager.GetTotalScore() - scoreBefore;
+
+            scoreManager.ShowScorePopup(scoreGained); // Mostra il punteggio sulla UI
         }
+
         Destroy(gameObject);
     }
+
 }

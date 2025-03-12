@@ -423,6 +423,8 @@ MonoBehaviour:
   multiplierText: {fileID: 8410430998094243591}
   nextMultiplierText: {fileID: 5838811245420286860}
   comboTimerRadial: {fileID: 2616122667389653651}
+  scorePopupPrefab: {fileID: 7191108260732020870, guid: 62796c0fa2d1057498c766a487c25a13, type: 3}
+  uiAnchor: {fileID: 8666088465115562498}
   combinationIcons: []
 --- !u!1 &1701199895131145890
 GameObject:
@@ -651,6 +653,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2080575017639913863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8666088465115562498}
+  m_Layer: 0
+  m_Name: ScorePopAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8666088465115562498
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080575017639913863}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5328334457579195241}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2726034233854541280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,6 +1155,7 @@ Transform:
   m_Children:
   - {fileID: 1209358969951315418}
   - {fileID: 9011779527117211321}
+  - {fileID: 8666088465115562498}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8486671166003465966
@@ -1547,7 +1581,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 01:30
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 86844998872443d40b8f96eb3e021266, type: 2}
   m_sharedMaterial: {fileID: 1351569443011958921, guid: 86844998872443d40b8f96eb3e021266, type: 2}
@@ -1574,8 +1608,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
-  m_fontSizeBase: 48
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

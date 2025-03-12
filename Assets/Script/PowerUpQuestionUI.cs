@@ -226,13 +226,21 @@ new Question("What is the primary component of Saturn’s rings?", new string[] { 
 
         if (!answered)
         {
+            // Disabilita l'interazione dei bottoni delle risposte
+            foreach (Button btn in answerButtons)
+            {
+                btn.interactable = false;
+            }
+
             // Timer scaduto: mostra il messaggio di timeout
             timerText.text = "";
             expiredMessageText.text = "Time's UP!";
             yield return new WaitForSecondsRealtime(2f);
+
             expiredMessageText.text = "";
             StartCoroutine(HandleTimeout());
         }
+
     }
 
     private IEnumerator HandleTimeout()

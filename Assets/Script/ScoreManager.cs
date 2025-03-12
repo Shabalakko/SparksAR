@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public enum ScoringMode
 {
@@ -17,12 +18,28 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI multiplierText;
     public TextMeshProUGUI nextMultiplierText;
     public Image comboTimerRadial;
+    public GameObject scorePopupPrefab; // Prefab dell'animazione UI
+    public Transform uiAnchor; // Il tuo oggetto UI di ancoraggio
+
 
     public Image[] combinationIcons; // Icone UI per i colori
 
     private ScoreSystemBase scoreSystem;
     private Coroutine resetCoroutine;
     private string lastCombo = null; // Tiene traccia della combo corrente
+    public string CurrentComboColor
+    {
+        get
+        {
+            if (scoringMode == ScoringMode.Combo)
+            {
+                ComboScoreSystem comboScore = scoreSystem as ComboScoreSystem;
+                if (comboScore != null)
+                    return comboScore.CurrentComboColor;
+            }
+            return "";
+        }
+    }
 
     void Start()
     {
@@ -42,6 +59,24 @@ public class ScoreManager : MonoBehaviour
         scoreSystem.Update();
         UpdateScoreUI();
     }
+    public void ShowScorePopup(int score)
+    {
+        if (scorePopupPrefab == null || uiAnchor == null)
+        {
+            Debug.LogError("ScorePopupPrefab o UI Anchor non assegnati!");
+            return;
+        }
+
+        GameObject popup = Instantiate(scorePopupPrefab, uiAnchor);
+        TextMeshProUGUI textComponent = popup.GetComponentInChildren<TextMeshProUGUI>();
+        if (textComponent != null)
+        {
+            textComponent.text = "+" + score.ToString();
+        }
+
+        Destroy(popup, 1.5f); // Distrugge l'animazione dopo 1.5 secondi
+    }
+
 
     // Se la combo è completa, la resetta e prende il nuovo colore come primo elemento
     public void AddScore(string color)
@@ -60,6 +95,7 @@ public class ScoreManager : MonoBehaviour
                 }
             }
         }
+        
         scoreSystem.AddScore(color);
         UpdateScoreUI();
     }

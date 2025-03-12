@@ -97,7 +97,20 @@ public class PowerUp : EnemyBase
         }
         if (scoreManager != null)
         {
-            if (scoreManager.scoringMode == ScoringMode.ColorSlots && isGreenEnemy)
+            if (scoreManager.scoringMode == ScoringMode.Combo)
+            {
+                // In modalità Combo, usa il colore della combo corrente (se presente)
+                string currentComboColor = scoreManager.CurrentComboColor;
+                if (!string.IsNullOrEmpty(currentComboColor))
+                {
+                    scoreManager.AddScoreCustom(currentComboColor, 15);
+                }
+                else
+                {
+                    scoreManager.AddScoreCustom(lastHitByColor, 15);
+                }
+            }
+            else if (scoreManager.scoringMode == ScoringMode.ColorSlots && isGreenEnemy)
             {
                 scoreManager.AddScoreCustom("green", 5);
             }
@@ -108,4 +121,6 @@ public class PowerUp : EnemyBase
         }
         Destroy(gameObject);
     }
+
+
 }

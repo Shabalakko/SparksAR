@@ -19,6 +19,11 @@ public class ComboScoreSystem : ScoreSystemBase
     public float slowDownFactor = 0.5f;
     private float timerSpeedModifier = 1f;
 
+    public string CurrentComboColor
+    {
+        get { return lastColor; }
+    }
+
     public ComboScoreSystem(TextMeshProUGUI multiplierText, TextMeshProUGUI nextMultiplierText, Image comboTimerRadial)
     {
         this.multiplierText = multiplierText;
@@ -36,12 +41,17 @@ public class ComboScoreSystem : ScoreSystemBase
             colorComboStreak = 1;
 
         int comboBonus = currentMultiplier * colorComboStreak;
-        totalScore += 1 * comboBonus;
+        totalScore += 6 * comboBonus;
+
+        
+
         comboTimer = baseComboTime;
         if (comboTimerRadial) comboTimerRadial.fillAmount = 1f;
         lastColor = color;
         UpdateUI();
     }
+
+
 
     public override void AddScoreCustom(string color, int basePoints)
     {
