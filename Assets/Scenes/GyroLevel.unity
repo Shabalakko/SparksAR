@@ -662,7 +662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3225430877016708308, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8402084663624020346, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -819,6 +819,10 @@ PrefabInstance:
       propertyPath: timerText
       value: 
       objectReference: {fileID: 871263448}
+    - target: {fileID: 6891697181550196722, guid: cccf4602170373a4aaf2ec8ba2dc134d, type: 3}
+      propertyPath: gameDuration
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 6891697181550196722, guid: cccf4602170373a4aaf2ec8ba2dc134d, type: 3}
       propertyPath: scoreManager
       value: 

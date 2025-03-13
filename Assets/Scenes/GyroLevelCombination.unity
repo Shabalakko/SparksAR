@@ -2350,6 +2350,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 439486221}
     - target: {fileID: 6891697181550196722, guid: cccf4602170373a4aaf2ec8ba2dc134d, type: 3}
+      propertyPath: gameDuration
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6891697181550196722, guid: cccf4602170373a4aaf2ec8ba2dc134d, type: 3}
       propertyPath: scoreManager
       value: 
       objectReference: {fileID: 472309385}

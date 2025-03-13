@@ -4,12 +4,12 @@ using TMPro;
 public class GameOverManager : MonoBehaviour
 {
     [Header("UI References")]
-    public GameObject gameOverCanvas;      // Pannello Game Over
-    public TextMeshProUGUI finalScoreText;   // Testo per mostrare il punteggio finale
-    public TextMeshProUGUI highScoreText;    // Testo per mostrare l'HighScore
+    public GameObject gameOverCanvas;       // Pannello Game Over (da disattivare all'inizio)
+    public TextMeshProUGUI finalScoreText;    // Testo per il punteggio finale
+    public TextMeshProUGUI highScoreText;     // Testo per l'highscore
 
     [Header("Score Manager Reference")]
-    public ScoreManager scoreManager;
+    public ScoreManager scoreManager;         // Riferimento allo ScoreManager
 
     public void OnGameOver()
     {
@@ -19,29 +19,27 @@ public class GameOverManager : MonoBehaviour
             return;
         }
 
-        // Calcola il punteggio finale
         int finalScore = scoreManager.GetTotalScore();
 
-        // Aggiorna il final score nella UI
-        if (finalScoreText != null)
-            finalScoreText.text = finalScore.ToString();
+        // Aggiorna l'highscore per la modalità corrente
+        bool isNewHighScore = HighScoreManager.UpdateHighScore(scoreManager.scoringMode, finalScore);
+        int currentHighScore = HighScoreManager.GetHighScore(scoreManager.scoringMode);
 
-        // Aggiorna l'HighScore per la modalità corrente
-        bool newHighScore = HighScoreManager.UpdateHighScore(scoreManager.scoringMode, finalScore);
-        int highScore = HighScoreManager.GetHighScore(scoreManager.scoringMode);
+        if (finalScoreText != null)
+            finalScoreText.text = "" + finalScore;
+
         if (highScoreText != null)
         {
-            if (newHighScore)
-                highScoreText.text = "New!!! " + highScore;
+            if (isNewHighScore)
+                highScoreText.text = "New!!! " + currentHighScore;
             else
-                highScoreText.text = "" + highScore;
+                highScoreText.text = "" + currentHighScore;
         }
 
-        // Mostra il pannello di Game Over
         if (gameOverCanvas != null)
             gameOverCanvas.SetActive(true);
 
-        // Verifica e aggiorna gli achievement basati sull'HighScore
+        // Controlla eventuali achievement basati sull'highscore
         if (AchievementManager.Instance != null)
             AchievementManager.Instance.CheckAchievements(scoreManager.scoringMode);
     }

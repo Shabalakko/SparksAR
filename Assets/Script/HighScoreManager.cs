@@ -2,23 +2,22 @@ using UnityEngine;
 
 public static class HighScoreManager
 {
-    // Recupera l'HighScore in base alla modalità
     public static int GetHighScore(ScoringMode mode)
     {
         string key = (mode == ScoringMode.Combo) ? "HighScore_Combo" : "HighScore_ColorSlots";
-        return PlayerPrefs.GetInt(key, 0);
+        int score = PlayerPrefs.GetInt(key, 0);
+        //Debug.Log("GetHighScore: Mode " + mode + " | Key: " + key + " | Value: " + score);
+        return score;
     }
 
-    // Salva l'HighScore in base alla modalità
     public static void SetHighScore(ScoringMode mode, int score)
     {
         string key = (mode == ScoringMode.Combo) ? "HighScore_Combo" : "HighScore_ColorSlots";
         PlayerPrefs.SetInt(key, score);
-        PlayerPrefs.Save(); // Salva immediatamente i dati
+        PlayerPrefs.Save();
+        //Debug.Log("SetHighScore: Mode " + mode + " | Key: " + key + " | New Score: " + score);
     }
 
-
-    // Se il nuovo punteggio è maggiore dell'HighScore salvato, lo aggiorna e restituisce true
     public static bool UpdateHighScore(ScoringMode mode, int newScore)
     {
         int currentHighScore = GetHighScore(mode);
@@ -28,5 +27,13 @@ public static class HighScoreManager
             return true;
         }
         return false;
+    }
+
+    public static void ResetHighScore(ScoringMode mode)
+    {
+        string key = (mode == ScoringMode.Combo) ? "HighScore_Combo" : "HighScore_ColorSlots";
+        PlayerPrefs.DeleteKey(key);
+        PlayerPrefs.Save();
+        //Debug.Log("ResetHighScore: Mode " + mode + " | Key: " + key);
     }
 }

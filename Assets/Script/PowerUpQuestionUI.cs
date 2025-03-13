@@ -209,11 +209,11 @@ new Question("What is the primary component of Saturn’s rings?", new string[] { 
             // Cambia colore
             timerText.color = Color.Lerp(startColor, endColor, t);
 
-            // Cambia scala
+            // Cambia scala (il valore massimo lo imposti tramite "endScale" nell'inspector)
             timerRect.localScale = Vector3.Lerp(startScale, endScale, t);
 
-            // Cambia posizione
-            timerRect.anchoredPosition = Vector3.Lerp(startPosition, endPosition, t);
+            // Rimuovi la modifica della posizione: il timer rimane fisso
+            // timerRect.anchoredPosition = Vector3.Lerp(startPosition, endPosition, t);
 
             // Cambia alpha
             Color currentColor = timerText.color;
@@ -240,8 +240,8 @@ new Question("What is the primary component of Saturn’s rings?", new string[] { 
             expiredMessageText.text = "";
             StartCoroutine(HandleTimeout());
         }
-
     }
+
 
     private IEnumerator HandleTimeout()
     {
