@@ -214,6 +214,7 @@ MonoBehaviour:
   _maxHP: 10
   regenRate: 10
   regenDelay: 3
+  particellePrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
 --- !u!114 &-2547438490021685638
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -215,6 +215,7 @@ MonoBehaviour:
   regenDelay: 3
   _powerUpMaxHP: 10
   isGreenEnemy: 1
+  particellePrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
 --- !u!114 &-5528029354056563799
 MonoBehaviour:
   m_ObjectHideFlags: 0

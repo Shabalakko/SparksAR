@@ -7,6 +7,8 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
     protected float currentHP;
     public float regenRate = 5f;
     public float regenDelay = 3f;
+    
+
     protected float lastDamageTime;
 
     protected ScoreManager scoreManager;
@@ -79,6 +81,7 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
         }
         Destroy(gameObject);
     }
+
 
 
 }

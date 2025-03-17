@@ -54,6 +54,7 @@ public class PowerUp : EnemyBase
             Die();
         }
     }
+    public GameObject particellePrefab; // Aggiungi questo campo e assegnagli il prefab tramite Inspector
 
     protected override void Die()
     {
@@ -82,6 +83,20 @@ public class PowerUp : EnemyBase
 
         // Mostra la UI per la conferma del power-up
         questionUI.ShowQuestion(this);
+        if (particellePrefab != null)
+        {
+            GameObject effetto = Instantiate(particellePrefab, transform.position, Quaternion.identity);
+            ParticleSystem ps = effetto.GetComponent<ParticleSystem>();
+            if (ps != null)
+            {
+                // Distruggi l'effetto dopo la sua durata
+                Destroy(effetto, ps.main.duration + ps.main.startLifetime.constantMax);
+            }
+            else
+            {
+                Destroy(effetto, 2f);
+            }
+        }
     }
 
     /// <summary>
