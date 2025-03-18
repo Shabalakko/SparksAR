@@ -1216,6 +1216,7 @@ MonoBehaviour:
   - {fileID: 1695390677}
   timerText: {fileID: 591013602}
   expiredMessageText: {fileID: 1766062651}
+  myCanvasGroup: {fileID: 1756850587}
   questionTime: 10
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 1, g: 0, b: 0, a: 1}
@@ -1523,6 +1524,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 915228667639267505, guid: 848b64e5a0d47624b9e0862639451b20, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 330585545}
+    - target: {fileID: 915228667639267505, guid: 848b64e5a0d47624b9e0862639451b20, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 915228667639267505, guid: 848b64e5a0d47624b9e0862639451b20, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1210672782161375262, guid: 848b64e5a0d47624b9e0862639451b20, type: 3}
       propertyPath: pauseMenuUI
       value: 
@@ -1567,6 +1580,18 @@ PrefabInstance:
       propertyPath: 'combinationIcons.Array.data[2]'
       value: 
       objectReference: {fileID: 966106251}
+    - target: {fileID: 2379438878667169796, guid: 848b64e5a0d47624b9e0862639451b20, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 330585545}
+    - target: {fileID: 2379438878667169796, guid: 848b64e5a0d47624b9e0862639451b20, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379438878667169796, guid: 848b64e5a0d47624b9e0862639451b20, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2861020884374451714, guid: 848b64e5a0d47624b9e0862639451b20, type: 3}
       propertyPath: powerUpIcons.Array.data[0].powerUpImage
       value: 
@@ -1721,6 +1746,11 @@ Transform:
 --- !u!224 &1756850586 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4028400426830647302, guid: 848b64e5a0d47624b9e0862639451b20, type: 3}
+  m_PrefabInstance: {fileID: 1756850584}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1756850587 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 6142952179325455954, guid: 848b64e5a0d47624b9e0862639451b20, type: 3}
   m_PrefabInstance: {fileID: 1756850584}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1766062651 stripped
@@ -2158,6 +2188,22 @@ PrefabInstance:
     - target: {fileID: 3225430877016708308, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
       propertyPath: m_Name
       value: GameOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 7192875172710039895, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7192875172710039895, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7192875172710039895, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7192875172710039895, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8402084663624020346, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

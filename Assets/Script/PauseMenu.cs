@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;
     private bool isPaused = false;
     private MouseLook mouseLook;
-
+    
     void Start()
     {
         mouseLook = FindObjectOfType<MouseLook>(); // Trova lo script MouseLook
@@ -29,6 +30,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = true;
         Time.timeScale = 0f;
         pauseMenuUI.SetActive(true);
+        
     }
 
     public void ResumeGame()

@@ -14,6 +14,7 @@ public class PowerUpQuestionUI : MonoBehaviour
     public Button[] answerButtons;
     public TMP_Text timerText;           // Testo del timer
     public TMP_Text expiredMessageText;  // Messaggio "Time's UP"
+    public CanvasGroup myCanvasGroup; // Assegna questo componente dal Inspector
 
     [Header("Timer Settings")]
     public float questionTime = 10f; // Tempo a disposizione
@@ -123,10 +124,14 @@ new Question("What is the primary component of Saturn’s rings?", new string[] { 
             return;
         }
 
+        // Imposta l'alpha del CanvasGroup a 0 quando la domanda appare
+        if (myCanvasGroup != null)
+        {
+            myCanvasGroup.alpha = 0;
+        }
+
         answered = false;
-
         Time.timeScale = 0f;
-
         currentPowerUp = powerUp;
 
         int randomIndex = UnityEngine.Random.Range(0, questionList.Count);
@@ -179,7 +184,6 @@ new Question("What is the primary component of Saturn’s rings?", new string[] { 
         }
 
         questionPanel.SetActive(true);
-
         ResetTimerUI();
 
         // Disabilita temporaneamente altri componenti di gioco
@@ -290,14 +294,14 @@ new Question("What is the primary component of Saturn’s rings?", new string[] { 
 
     private void ResetUI()
     {
-
         foreach (Button btn in answerButtons)
         {
             btn.image.color = defaultColor;
         }
         questionPanel.SetActive(false);
 
-        foreach (Button btn in answerButtons) btn.image.color = defaultColor;
+        foreach (Button btn in answerButtons)
+            btn.image.color = defaultColor;
 
         LaserGun compR = Lasers.GetComponent<LaserGun>();
         LaserGunBlue compB = Lasers.GetComponent<LaserGunBlue>();
@@ -307,6 +311,12 @@ new Question("What is the primary component of Saturn’s rings?", new string[] { 
         PLaserR.SetActive(true);
         questionPanel.SetActive(false);
         timerText.text = "";
+
+        // Ripristina l'alpha del CanvasGroup a 1 quando l'interfaccia scompare
+        if (myCanvasGroup != null)
+        {
+            myCanvasGroup.alpha = 1;
+        }
 
         Time.timeScale = 1f;
     }

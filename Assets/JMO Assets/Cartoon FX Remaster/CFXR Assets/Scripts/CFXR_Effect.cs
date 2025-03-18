@@ -35,6 +35,7 @@ namespace CartoonFX
 			AnimatedLight.editorPreview = EditorPrefs.GetBool("CFXR Light EditorPreview", true);
 	#if !DISABLE_CAMERA_SHAKE
 			CameraShake.editorPreview = EditorPrefs.GetBool("CFXR CameraShake EditorPreview", true);
+
 	#endif
 		}
 #endif
@@ -82,7 +83,8 @@ namespace CartoonFX
 			public bool perlinColor;
 			public float perlinColorSpeed = 1f;
 
-			public void animate(float time)
+            
+            public void animate(float time)
 			{
 #if UNITY_EDITOR
 				if (!editorPreview && !EditorApplication.isPlaying)
@@ -486,14 +488,16 @@ namespace CartoonFX
 #if !DISABLE_CAMERA_SHAKE || !DISABLE_CLEAR_BEHAVIOR
 		void Awake()
 		{
-	#if !DISABLE_CAMERA_SHAKE
-			if (cameraShake != null && cameraShake.enabled)
-			{
-				cameraShake.fetchCameras();
-			}
-	#endif
-	#if !DISABLE_CLEAR_BEHAVIOR
-			startFrameOffset = GlobalStartFrameOffset++;
+		#if !DISABLE_CAMERA_SHAKE
+            if (cameraShake != null && cameraShake.enabled)
+            {
+                cameraShake.effectTransform = this.transform; // Inserisci qui
+                cameraShake.fetchCameras();
+            }
+		#endif
+
+#if !DISABLE_CLEAR_BEHAVIOR
+            startFrameOffset = GlobalStartFrameOffset++;
 #endif
 			// Detect if world position needs to be passed to the shader
 			particleRenderer = this.GetComponent<ParticleSystemRenderer>();

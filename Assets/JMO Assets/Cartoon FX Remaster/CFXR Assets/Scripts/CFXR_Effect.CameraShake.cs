@@ -34,8 +34,10 @@ namespace CartoonFX
 			public AnimationCurve shakeCurve = AnimationCurve.Linear(0, 1, 1, 0);
 			[Space]
 			[Range(0, 0.1f)] public float shakesDelay = 0;
+            public float maxShakeDistance = 20f;  // Distanza massima oltre la quale il camera shake viene annullato
+            public Transform effectTransform;     // Riferimento al transform dell'oggetto che genera l'effetto
 
-			[System.NonSerialized] public bool isShaking;
+            [System.NonSerialized] public bool isShaking;
 			Dictionary<Camera, Vector3> camerasPreRenderPosition = new Dictionary<Camera, Vector3>();
 			Vector3 shakeVector;
 			float delaysTimer;
@@ -156,19 +158,27 @@ namespace CartoonFX
 				}
 #endif
 
-				if (isShaking && camerasPreRenderPosition.ContainsKey(cam))
-				{
-					camerasPreRenderPosition[cam] = cam.transform.localPosition;
+                if (isShaking && camerasPreRenderPosition.ContainsKey(cam))
+                {
+                    camerasPreRenderPosition[cam] = cam.transform.localPosition;
+                    if (Time.timeScale <= 0) return;
 
-					if (Time.timeScale <= 0) return;
+                    // Calcola la distanza tra la telecamera e l'effetto
+                    float distance = Vector3.Distance(cam.transform.position, effectTransform.position);
+                    // Il fattore va da 1 (vicinissimo) a 0 (distanza >= maxShakeDistance)
+                    float attenuation = Mathf.Clamp01(1f - distance / maxShakeDistance);
 
-					switch (shakeSpace)
-					{
-						case ShakeSpace.Screen: cam.transform.localPosition += cam.transform.rotation * shakeVector; break;
-						case ShakeSpace.World: cam.transform.localPosition += shakeVector; break;
-					}
-				}
-			}
+                    switch (shakeSpace)
+                    {
+                        case ShakeSpace.Screen:
+                            cam.transform.localPosition += cam.transform.rotation * (shakeVector * attenuation);
+                            break;
+                        case ShakeSpace.World:
+                            cam.transform.localPosition += shakeVector * attenuation;
+                            break;
+                    }
+                }
+            }
 
 			void onPostRenderCamera(Camera cam)
 			{
