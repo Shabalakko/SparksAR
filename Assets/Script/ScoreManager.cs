@@ -141,7 +141,7 @@ public class ScoreManager : MonoBehaviour
 
         if (AchievementManager.Instance != null)
         {
-            AchievementManager.Instance.CheckAchievements(scoringMode);
+            AchievementManager.Instance.CheckAchievements(scoringMode, scoreSystem.GetTotalScore());
         }
 
         if (scoringMode == ScoringMode.ColorSlots && combinationIcons != null && combinationIcons.Length > 0)

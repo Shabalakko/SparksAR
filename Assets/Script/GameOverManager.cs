@@ -41,6 +41,7 @@ public class GameOverManager : MonoBehaviour
 
         // Controlla eventuali achievement basati sull'highscore
         if (AchievementManager.Instance != null)
-            AchievementManager.Instance.CheckAchievements(scoreManager.scoringMode);
+            AchievementManager.Instance.CheckAchievements(scoreManager.scoringMode, finalScore);
+
     }
 }

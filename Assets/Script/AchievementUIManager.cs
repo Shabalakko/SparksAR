@@ -49,7 +49,7 @@ public class AchievementUIManager : MonoBehaviour
         if (canvasGroup == null)
             canvasGroup = popup.AddComponent<CanvasGroup>();
 
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(5f);
 
         float fadeDuration = 1f;
         float startAlpha = canvasGroup.alpha;
