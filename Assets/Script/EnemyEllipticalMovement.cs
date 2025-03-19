@@ -8,12 +8,15 @@ public class EnemyEllipticalMovement : MonoBehaviour
     public float verticalAmplitude = 2f;      // Ampiezza verticale dell'ellisse (asse Y)
     public float rotationSpeed = 20f;         // Velocità di rotazione dell'ellisse
     public float transitionSpeed = 0.5f;      // Velocità di transizione tra le orbite
+    public Transform meshTransform;
 
     private Vector3 startPosition;
     private Vector3 currentEllipse;
     private Vector3 nextEllipse;
     private float angle = 0f;
     private float rotationAngle = 0f;
+    private Vector3 previousVelocity;
+
 
     void Start()
     {
@@ -23,6 +26,7 @@ public class EnemyEllipticalMovement : MonoBehaviour
         // Imposta un'ellisse di partenza
         currentEllipse = CalculateEllipse();
         nextEllipse = currentEllipse;
+        previousVelocity = transform.forward;
     }
 
     void Update()
@@ -41,28 +45,31 @@ public class EnemyEllipticalMovement : MonoBehaviour
         targetPosition.x += Mathf.Cos(angle) * currentEllipse.x;
         targetPosition.y += Mathf.Sin(angle * 2) * currentEllipse.y;
         targetPosition.z += Mathf.Sin(angle) * currentEllipse.z;
-
-        // Applica la rotazione all'ellisse
         targetPosition = startPosition + rotation * (targetPosition - startPosition);
 
-        // Muove il nemico con una transizione fluida
+        // Memorizza la posizione precedente per il calcolo della direzione di movimento
+        Vector3 previousPosition = transform.position;
+
+        // Muove il GameObject padre in modo fluido verso la posizione target
         transform.position = Vector3.Lerp(transform.position, targetPosition, transitionSpeed * Time.deltaTime);
 
-        // Ruota gradualmente nella direzione di movimento
-        Vector3 direction = (targetPosition - transform.position).normalized;
-        if (direction != Vector3.zero)
+        // Calcola la direzione effettiva del movimento
+        Vector3 movementDirection = (transform.position - previousPosition).normalized;
+        if (movementDirection.sqrMagnitude > 0.001f)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, transitionSpeed * Time.deltaTime);
+            // Ruota il figlio in modo che il suo asse Z punti verso la direzione di movimento
+            Quaternion targetRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+            meshTransform.rotation = Quaternion.Slerp(meshTransform.rotation, targetRotation, transitionSpeed * Time.deltaTime);
         }
 
-        // Cambia dinamicamente l'ellisse per il prossimo loop
+        // Cambia dinamicamente l'ellisse per il prossimo loop se l'angolo è quasi completato
         if (angle >= 359f)
         {
             currentEllipse = nextEllipse;
             nextEllipse = CalculateEllipse();
         }
     }
+
 
     // Calcola un'ellisse casuale per variare il movimento
     Vector3 CalculateEllipse()
