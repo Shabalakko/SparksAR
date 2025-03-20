@@ -20,13 +20,15 @@ public class LaserGun : MonoBehaviour
 
     void OnEnable()
     {
-        inputActions.Shooting.ShootRed.performed += ctx => StartShooting();
-        inputActions.Shooting.ShootRed.canceled += ctx => StopShooting();
+        inputActions.Shooting.ShootRed.performed += OnShootRedPerformed;
+        inputActions.Shooting.ShootRed.canceled += OnShootRedCanceled;
         inputActions.Enable();
     }
 
     void OnDisable()
     {
+        inputActions.Shooting.ShootRed.performed -= OnShootRedPerformed;
+        inputActions.Shooting.ShootRed.canceled -= OnShootRedCanceled;
         inputActions.Disable();
     }
 
@@ -41,6 +43,7 @@ public class LaserGun : MonoBehaviour
         laserEmitter.position = transform.position + transform.right * 0.5f + transform.up * -0.2f;
         laserEmitter.rotation = transform.rotation;
 
+        // Supporto touchscreen: se viene toccato il lato destro dello schermo, attiva lo sparo
         bool isTouchingRight = false;
         if (Touchscreen.current != null)
         {
@@ -58,7 +61,8 @@ public class LaserGun : MonoBehaviour
             }
         }
 
-        if (isTouchingRight)
+        // Se si sta sparando tramite il mouse (o touchscreen) e c'è energia disponibile
+        if (isTouchingRight || isShooting)
         {
             if (energyManager.UseRedLaser())
             {
@@ -81,12 +85,22 @@ public class LaserGun : MonoBehaviour
         }
     }
 
+    void OnShootRedPerformed(InputAction.CallbackContext context)
+    {
+        StartShooting();
+    }
+
+    void OnShootRedCanceled(InputAction.CallbackContext context)
+    {
+        StopShooting();
+    }
+
     void StartShooting()
     {
         isShooting = true;
     }
 
-    void StopShooting()
+    public void StopShooting()
     {
         isShooting = false;
         StopLaser();
@@ -100,7 +114,7 @@ public class LaserGun : MonoBehaviour
 
         if (Physics.Raycast(centerRay, out centerHit, maxLaserDistance))
         {
-            // Controlla se il raycast ha colpito un nemico
+            // Se colpisce un nemico, applica danno e registra il colpo
             Enemy enemy = centerHit.collider.GetComponentInParent<Enemy>();
             if (enemy != null)
             {
@@ -108,7 +122,7 @@ public class LaserGun : MonoBehaviour
                 enemy.TakeDamage(laserDamage * Time.deltaTime, "Red");
                 FindObjectOfType<ScoreManager>().OnHit();
             }
-            // Altrimenti, controlla se il collider ha il tag "PowerUP"
+            // Se colpisce un PowerUp, applica danno
             else if (centerHit.collider.CompareTag("PowerUp"))
             {
                 PowerUp powerUp = centerHit.collider.GetComponentInParent<PowerUp>();

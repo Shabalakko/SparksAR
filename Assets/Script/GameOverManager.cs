@@ -43,5 +43,15 @@ public class GameOverManager : MonoBehaviour
         if (AchievementManager.Instance != null)
             AchievementManager.Instance.CheckAchievements(scoreManager.scoringMode, finalScore);
 
+        // Mostra il cursore e sbloccalo
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        // Disabilita il controllo della pausa (ad esempio, lo script PauseMenu) per evitare che ESC metta in pausa il gioco
+        PauseMenu pauseMenu = FindObjectOfType<PauseMenu>();
+        if (pauseMenu != null)
+        {
+            pauseMenu.enabled = false;
+        }
     }
 }

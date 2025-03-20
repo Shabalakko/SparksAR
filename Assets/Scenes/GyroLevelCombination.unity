@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45ee69bc0c2fd549aafc1663519d1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gyroSensitivity: 100
+  mouseSensitivity: 50
   playerBody: {fileID: 937848743}
 --- !u!114 &330585551
 MonoBehaviour:
@@ -436,6 +436,17 @@ MonoBehaviour:
   activationThreshold: 0.3
   minEmissionRate: 0
   maxEmissionRate: 50
+--- !u!114 &388330851 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5865877524427866921, guid: b7fbaf992e454694381eaeb4d879319c, type: 3}
+  m_PrefabInstance: {fileID: 7453763829426038872}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,6 +1551,10 @@ PrefabInstance:
       propertyPath: pauseMenuUI
       value: 
       objectReference: {fileID: 278344500}
+    - target: {fileID: 1210672782161375262, guid: 848b64e5a0d47624b9e0862639451b20, type: 3}
+      propertyPath: mouseSensitivitySlider
+      value: 
+      objectReference: {fileID: 388330851}
     - target: {fileID: 2000154938587494703, guid: 848b64e5a0d47624b9e0862639451b20, type: 3}
       propertyPath: scoreCanvas
       value: 
@@ -2518,7 +2533,7 @@ PrefabInstance:
       objectReference: {fileID: 439486221}
     - target: {fileID: 6891697181550196722, guid: cccf4602170373a4aaf2ec8ba2dc134d, type: 3}
       propertyPath: gameDuration
-      value: 10
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6891697181550196722, guid: cccf4602170373a4aaf2ec8ba2dc134d, type: 3}
       propertyPath: scoreManager

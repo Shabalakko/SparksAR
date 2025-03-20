@@ -3,69 +3,55 @@ using UnityEngine.InputSystem;
 
 public class MouseLook : MonoBehaviour
 {
-    public float gyroSensitivity = 50f;
+    public float mouseSensitivity = 100f;
     public Transform playerBody;
 
     private PlayerInputActions inputActions;
-    private Vector3 gyroInput;
+    private Vector2 mouseInput;
     private float xRotation = 0f;
-    private Quaternion initialRotation;
 
     void Awake()
     {
         inputActions = new PlayerInputActions();
-        initialRotation = transform.localRotation; // Salva la rotazione iniziale della telecamera
+        // Blocca e nasconde il cursore al gioco
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void OnEnable()
     {
         inputActions.CameraControls.Look.performed += ctx =>
         {
-            if (ctx.control.device is UnityEngine.InputSystem.Gyroscope)
-            {
-                gyroInput = ctx.ReadValue<Vector3>();
-            }
+            mouseInput = ctx.ReadValue<Vector2>();
         };
 
         inputActions.CameraControls.Look.canceled += ctx =>
         {
-            if (ctx.control.device is UnityEngine.InputSystem.Gyroscope)
-            {
-                gyroInput = Vector3.zero;
-            }
+            mouseInput = Vector2.zero;
         };
 
         inputActions.Enable();
-
-        if (SystemInfo.supportsGyroscope && UnityEngine.InputSystem.Gyroscope.current != null)
-        {
-            InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
-        }
     }
 
     void OnDisable()
     {
         inputActions.Disable();
+        // Sblocca il cursore quando il componente viene disabilitato
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     void Update()
     {
-        if (Application.platform == RuntimePlatform.Android && UnityEngine.InputSystem.Gyroscope.current != null)
-        {
-            float gyroX = gyroInput.x * gyroSensitivity * Time.unscaledDeltaTime; // Usa Time.unscaledDeltaTime per funzionare in pausa
-            float gyroY = -gyroInput.y * gyroSensitivity * Time.unscaledDeltaTime;
+        float mouseX = mouseInput.x * mouseSensitivity * Time.deltaTime;
+        float mouseY = mouseInput.y * mouseSensitivity * Time.deltaTime;
 
-            xRotation -= gyroX;
-            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-            transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-            playerBody.Rotate(Vector3.up * gyroY);
-        }
-    }
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-    public void ResetCameraRotation()
-    {
-        transform.localRotation = initialRotation; // Resetta la telecamera
-        playerBody.rotation = Quaternion.Euler(0f, playerBody.rotation.eulerAngles.y, 0f); // Reset Y del player
-        xRotation = 0f;
+        // Ruota la telecamera in verticale
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        // Ruota il corpo del player in orizzontale
+        playerBody.Rotate(Vector3.up * mouseX);
     }
 }

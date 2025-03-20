@@ -20,13 +20,15 @@ public class LaserGunBlue : MonoBehaviour
 
     void OnEnable()
     {
-        inputActions.Shooting.ShootBlue.performed += ctx => StartShooting();
-        inputActions.Shooting.ShootBlue.canceled += ctx => StopShooting();
+        inputActions.Shooting.ShootBlue.performed += OnShootBluePerformed;
+        inputActions.Shooting.ShootBlue.canceled += OnShootBlueCanceled;
         inputActions.Enable();
     }
 
     void OnDisable()
     {
+        inputActions.Shooting.ShootBlue.performed -= OnShootBluePerformed;
+        inputActions.Shooting.ShootBlue.canceled -= OnShootBlueCanceled;
         inputActions.Disable();
     }
 
@@ -37,10 +39,11 @@ public class LaserGunBlue : MonoBehaviour
 
     void Update()
     {
-        // Aggiornamento della posizione e rotazione dell'emettitore laser
+        // Aggiorna la posizione e rotazione dell'emettitore laser
         laserEmitter.position = transform.position + transform.right * -0.5f + transform.up * -0.2f;
         laserEmitter.rotation = transform.rotation;
 
+        // Supporto touchscreen: se viene toccato il lato sinistro dello schermo, attiva lo sparo
         bool isTouchingLeft = false;
         if (Touchscreen.current != null)
         {
@@ -58,7 +61,8 @@ public class LaserGunBlue : MonoBehaviour
             }
         }
 
-        if (isTouchingLeft)
+        // Se si sta sparando tramite il mouse (o touchscreen) e c'è energia disponibile
+        if (isTouchingLeft || isShooting)
         {
             if (energyManager.UseBlueLaser())
             {
@@ -81,12 +85,22 @@ public class LaserGunBlue : MonoBehaviour
         }
     }
 
+    void OnShootBluePerformed(InputAction.CallbackContext context)
+    {
+        StartShooting();
+    }
+
+    void OnShootBlueCanceled(InputAction.CallbackContext context)
+    {
+        StopShooting();
+    }
+
     void StartShooting()
     {
         isShooting = true;
     }
 
-    void StopShooting()
+    public void StopShooting()
     {
         isShooting = false;
         StopLaser();
@@ -108,7 +122,7 @@ public class LaserGunBlue : MonoBehaviour
                 enemy.TakeDamage(laserDamage * Time.deltaTime, "Blue");
                 FindObjectOfType<ScoreManager>().OnHit();
             }
-            // Altrimenti, controlla se il collider ha il tag "PowerUP"
+            // Altrimenti, controlla se il collider ha il tag "PowerUp"
             else if (centerHit.collider.CompareTag("PowerUp"))
             {
                 PowerUp powerUp = centerHit.collider.GetComponentInParent<PowerUp>();
