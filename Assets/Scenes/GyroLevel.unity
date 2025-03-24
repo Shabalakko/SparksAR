@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 851fdf1cbe886184c99ea92551cd1711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserPrefab: {fileID: 256739400669774389, guid: 3ce8d1e25d7e31e4cb80e2ab0a192ab7, type: 3}
+  laserPrefab: {fileID: 7834434380170384362, guid: 68101499d07aced4aa0ded4acb624942, type: 3}
   laserEmitter: {fileID: 1166726492}
   laserDamage: 10
   maxLaserDistance: 50
@@ -556,7 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a79b781f10f53c45a04167cc69ca151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserPrefab: {fileID: 256739400669774389, guid: 1ff29e96831155747815936e56138e8f, type: 3}
+  laserPrefab: {fileID: 7834434380170384362, guid: 3df2f7fe7a8146c4e9e1661227ba1c17, type: 3}
   laserEmitter: {fileID: 1493166752}
   laserDamage: 10
   maxLaserDistance: 50
