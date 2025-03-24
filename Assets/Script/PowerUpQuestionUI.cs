@@ -194,6 +194,23 @@ new Question("What is the primary component of Saturn’s rings?", new string[] { 
         PLaserB.SetActive(false);
         PLaserR.SetActive(false);
 
+        ParticleSystem psR = PLaserR.GetComponent<ParticleSystem>();
+        if (psR != null)
+        {
+            psR.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+        ParticleSystem psB = PLaserB.GetComponent<ParticleSystem>();
+        if (psB != null)
+        {
+            psB.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+
+        compR = Lasers.GetComponent<LaserGun>();
+        compB = Lasers.GetComponent<LaserGunBlue>();
+        if (compB != null) compB.enabled = false;
+        if (compR != null) compR.enabled = false;
+
+
         // Avvia il timer per la domanda
         timerCoroutine = StartCoroutine(QuestionTimerCoroutine());
     }
