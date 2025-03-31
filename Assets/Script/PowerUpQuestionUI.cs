@@ -303,7 +303,7 @@ new Question("What is the primary component of Saturn’s rings?", new string[] { 
             answerButtons[index].image.color = wrongColor;
         }
 
-        Destroy(currentPowerUp.gameObject);
+        //Destroy(currentPowerUp.gameObject);
         yield return new WaitForSecondsRealtime(2f);
 
         ResetUI();

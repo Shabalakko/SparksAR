@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public abstract class EnemyBase : MonoBehaviour, IEnemy
 {
@@ -7,20 +8,16 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
     protected float currentHP;
     public float regenRate = 5f;
     public float regenDelay = 3f;
-
     protected float lastDamageTime;
-
     protected ScoreManager scoreManager;
     protected LaserEnergyManager energyManager;
     protected SettingsManager settingsManager;
-
-    // IEnemy richiede la proprietà per il colore
     public abstract string EnemyColor { get; }
-
-    [SerializeField] protected Mesh[] _possibleMeshes; // Array di mesh da assegnare nell'Inspector
+    [SerializeField] protected Mesh[] _possibleMeshes;
     protected MeshFilter _meshFilter;
-
-    private SpawnDeathSound _spawnDeathSound; // Riferimento allo script SpawnDeathSound
+    private SpawnDeathSound _spawnDeathSound;
+    [SerializeField] public GameObject particellePrefab; // Moved to EnemyBase
+    private bool _isDead = false;
 
     protected virtual void Start()
     {
@@ -34,9 +31,6 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
             int randomIndex = Random.Range(0, _possibleMeshes.Length);
             _meshFilter.mesh = _possibleMeshes[randomIndex];
         }
-        //AdjustHitbox();
-
-        // Ottieni il componente SpawnDeathSound
         _spawnDeathSound = GetComponent<SpawnDeathSound>();
         if (_spawnDeathSound == null)
         {
@@ -51,7 +45,7 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
             currentHP += regenRate * Time.deltaTime;
             currentHP = Mathf.Clamp(currentHP, 0, maxHP);
         }
-        if (currentHP <= 0)
+        if (currentHP <= 0 && !_isDead)
         {
             Die();
         }
@@ -62,24 +56,30 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
         return currentHP;
     }
 
-    // Ogni nemico dovrà implementare come reagire al danno
     public abstract void TakeDamage(float damage, string color);
 
-    /// <summary>
-    /// Metodo comune da chiamare quando il nemico muore.
-    /// Usa il proprio EnemyColor per registrarsi al punteggio.
-    /// </summary>
     protected virtual void Die()
     {
-        // Riproduci il suono di morte usando lo script SpawnDeathSound
+        _isDead = true;
         if (_spawnDeathSound != null)
         {
             _spawnDeathSound.PlaySound();
         }
-
+        if (particellePrefab != null)
+        {
+            GameObject effetto = Instantiate(particellePrefab, transform.position, Quaternion.identity);
+            ParticleSystem ps = effetto.GetComponent<ParticleSystem>();
+            if (ps != null)
+            {
+                Destroy(effetto, ps.main.duration + ps.main.startLifetime.constantMax);
+            }
+            else
+            {
+                Destroy(effetto, 2f);
+            }
+        }
         if (scoreManager != null)
         {
-            // Se stai usando la modalità ColorSlots, lascia che sia il sistema di combo a gestire il popup.
             if (scoreManager.scoringMode == ScoringMode.Combo)
             {
                 int scoreBefore = scoreManager.GetTotalScore();
@@ -87,12 +87,11 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
                 int scoreGained = scoreManager.GetTotalScore() - scoreBefore;
                 scoreManager.ShowScorePopup(scoreGained);
             }
-            else // Modalità ColorSlots
+            else
             {
-                // In modalità combo basata su combinazioni, aggiungi lo score
                 scoreManager.AddScore(EnemyColor);
             }
         }
-        Destroy(gameObject); // Distruggi il nemico immediatamente
+        Destroy(gameObject);
     }
 }
