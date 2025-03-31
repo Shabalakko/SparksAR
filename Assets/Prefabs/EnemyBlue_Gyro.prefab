@@ -68,6 +68,7 @@ GameObject:
   - component: {fileID: -3980991875866783779}
   - component: {fileID: 1637772580131364937}
   - component: {fileID: 6617644157516200499}
+  - component: {fileID: 515397297084757775}
   m_Layer: 0
   m_Name: EnemyBlue_Gyro
   m_TagString: Enemy
@@ -241,6 +242,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &515397297084757775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8326784908700247730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78783a8b5b96a2649861edd364dd7019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundPrefab: {fileID: 5697197134473765615, guid: e3005bd36017a6a4aa8db599beddc78e, type: 3}
 --- !u!1001 &3246147549289344653
 PrefabInstance:
   m_ObjectHideFlags: 0

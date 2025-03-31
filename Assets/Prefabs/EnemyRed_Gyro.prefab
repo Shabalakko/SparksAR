@@ -68,6 +68,7 @@ GameObject:
   - component: {fileID: -712152171519041055}
   - component: {fileID: 889521902757706428}
   - component: {fileID: 5317330716937623661}
+  - component: {fileID: 3617418015419216361}
   m_Layer: 0
   m_Name: EnemyRed_Gyro
   m_TagString: Enemy
@@ -241,6 +242,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8326784908700247730}
   m_Mesh: {fileID: 0}
+--- !u!114 &3617418015419216361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8326784908700247730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78783a8b5b96a2649861edd364dd7019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundPrefab: {fileID: 5697197134473765615, guid: e3005bd36017a6a4aa8db599beddc78e, type: 3}
 --- !u!1001 &1365965437109392172
 PrefabInstance:
   m_ObjectHideFlags: 0

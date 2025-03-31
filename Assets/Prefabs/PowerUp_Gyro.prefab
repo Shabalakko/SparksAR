@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 8446529247710014842}
   - component: {fileID: 7748303807177955480}
   - component: {fileID: -5528029354056563799}
+  - component: {fileID: 6270023302379928965}
   m_Layer: 0
   m_Name: PowerUp_Gyro
   m_TagString: PowerUp
@@ -215,6 +216,7 @@ MonoBehaviour:
   _maxHP: 10
   regenRate: 5
   regenDelay: 3
+  _possibleMeshes: []
   _powerUpMaxHP: 10
   isGreenEnemy: 1
   particellePrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
@@ -237,6 +239,19 @@ MonoBehaviour:
   rotationSpeed: 8
   transitionSpeed: 0.5
   meshTransform: {fileID: 6383021487754201494}
+--- !u!114 &6270023302379928965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8326784908700247730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78783a8b5b96a2649861edd364dd7019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundPrefab: {fileID: 5697197134473765615, guid: e3005bd36017a6a4aa8db599beddc78e, type: 3}
 --- !u!1001 &3589628368074208279
 PrefabInstance:
   m_ObjectHideFlags: 0

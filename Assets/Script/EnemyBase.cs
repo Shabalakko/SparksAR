@@ -14,11 +14,13 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
     protected LaserEnergyManager energyManager;
     protected SettingsManager settingsManager;
 
-    // IEnemy richiede la proprietà per il colore
-    public abstract string EnemyColor { get; }
+    // IEnemy richiede la proprietà per il colore
+    public abstract string EnemyColor { get; }
 
     [SerializeField] protected Mesh[] _possibleMeshes; // Array di mesh da assegnare nell'Inspector
-    protected MeshFilter _meshFilter;
+    protected MeshFilter _meshFilter;
+
+    private SpawnDeathSound _spawnDeathSound; // Riferimento allo script SpawnDeathSound
 
     protected virtual void Start()
     {
@@ -32,8 +34,15 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
             int randomIndex = Random.Range(0, _possibleMeshes.Length);
             _meshFilter.mesh = _possibleMeshes[randomIndex];
         }
-        //AdjustHitbox();
-    }
+        //AdjustHitbox();
+
+        // Ottieni il componente SpawnDeathSound
+        _spawnDeathSound = GetComponent<SpawnDeathSound>();
+        if (_spawnDeathSound == null)
+        {
+            Debug.LogError("SpawnDeathSound non trovato nel GameObject!", gameObject);
+        }
+    }
 
     protected virtual void Update()
     {
@@ -42,6 +51,10 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
             currentHP += regenRate * Time.deltaTime;
             currentHP = Mathf.Clamp(currentHP, 0, maxHP);
         }
+        if (currentHP <= 0)
+        {
+            Die();
+        }
     }
 
     public float GetCurrentHP()
@@ -49,31 +62,25 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
         return currentHP;
     }
 
-    /*protected virtual void AdjustHitbox()
-    {
-        if (settingsManager != null)
-        {
-            BoxCollider boxCollider = GetComponent<BoxCollider>();
-            if (boxCollider != null)
-            {
-                boxCollider.size = Vector3.one * settingsManager.enemyHitboxSize;
-            }
-        }
-    }*/
+    // Ogni nemico dovrà implementare come reagire al danno
+    public abstract void TakeDamage(float damage, string color);
 
-    // Ogni nemico dovrà implementare come reagire al danno
-    public abstract void TakeDamage(float damage, string color);
-
-    /// <summary>
-    /// Metodo comune da chiamare quando il nemico muore.
-    /// Usa il proprio EnemyColor per registrarsi al punteggio.
-    /// </summary>
-    protected virtual void Die()
+    /// <summary>
+    /// Metodo comune da chiamare quando il nemico muore.
+    /// Usa il proprio EnemyColor per registrarsi al punteggio.
+    /// </summary>
+    protected virtual void Die()
     {
+        // Riproduci il suono di morte usando lo script SpawnDeathSound
+        if (_spawnDeathSound != null)
+        {
+            _spawnDeathSound.PlaySound();
+        }
+
         if (scoreManager != null)
         {
-            // Se stai usando la modalità ColorSlots, lascia che sia il sistema di combo a gestire il popup.
-            if (scoreManager.scoringMode == ScoringMode.Combo)
+            // Se stai usando la modalità ColorSlots, lascia che sia il sistema di combo a gestire il popup.
+            if (scoreManager.scoringMode == ScoringMode.Combo)
             {
                 int scoreBefore = scoreManager.GetTotalScore();
                 scoreManager.AddScore(EnemyColor);
@@ -81,12 +88,11 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
                 scoreManager.ShowScorePopup(scoreGained);
             }
             else // Modalità ColorSlots
-            {
-                // In modalità combo basata su combinazioni, aggiungi lo score
-                // e lascia che EvaluateColorCombo gestisca il popup.
-                scoreManager.AddScore(EnemyColor);
+            {
+                // In modalità combo basata su combinazioni, aggiungi lo score
+                scoreManager.AddScore(EnemyColor);
             }
         }
-        Destroy(gameObject);
+        Destroy(gameObject); // Distruggi il nemico immediatamente
     }
 }
