@@ -24,7 +24,7 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
         scoreManager = FindObjectOfType<ScoreManager>();
         energyManager = FindObjectOfType<LaserEnergyManager>();
         settingsManager = FindObjectOfType<SettingsManager>();
-        AdjustHitbox();
+        //AdjustHitbox();
     }
 
     protected virtual void Update()
@@ -41,7 +41,7 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
         return currentHP;
     }
 
-    protected virtual void AdjustHitbox()
+    /*protected virtual void AdjustHitbox()
     {
         if (settingsManager != null)
         {
@@ -51,7 +51,7 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
                 boxCollider.size = Vector3.one * settingsManager.enemyHitboxSize;
             }
         }
-    }
+    }*/
 
     // Ogni nemico dovrà implementare come reagire al danno
     public abstract void TakeDamage(float damage, string color);

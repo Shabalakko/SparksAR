@@ -12,8 +12,13 @@ public class GameTimer : MonoBehaviour
     public ScoreManager scoreManager;
     public GameOverManager gameOverManager;  // Riferimento al GameOverManager
 
+    public GameObject Terrain;
     void Start()
     {
+        if (Terrain != null)
+        {
+            Terrain.SetActive(true);
+        }
         Time.timeScale = 1f;
         timeLeft = gameDuration;
         if (gameOverCanvas != null)

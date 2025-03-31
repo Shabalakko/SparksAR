@@ -26,6 +26,6 @@ public class OptionsMenu : MonoBehaviour
 
     public void UpdateHitboxSize(float newSize)
     {
-        settingsManager.SetEnemyHitboxSize(newSize);
+        //settingsManager.SetEnemyHitboxSize(newSize);
     }
 }

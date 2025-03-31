@@ -7,12 +7,18 @@ public class GameOverManager : MonoBehaviour
     public GameObject gameOverCanvas;       // Pannello Game Over (da disattivare all'inizio)
     public TextMeshProUGUI finalScoreText;    // Testo per il punteggio finale
     public TextMeshProUGUI highScoreText;     // Testo per l'highscore
-
+    
     [Header("Score Manager Reference")]
     public ScoreManager scoreManager;         // Riferimento allo ScoreManager
 
+    public GameObject Terrain;
     public void OnGameOver()
     {
+        if (Terrain != null)
+        {
+            Terrain.SetActive(false);
+        }
+        
         if (scoreManager == null)
         {
             Debug.LogError("ScoreManager non assegnato in GameOverManager!");
