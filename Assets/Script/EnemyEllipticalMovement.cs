@@ -59,7 +59,7 @@ public class EnemyEllipticalMovement : MonoBehaviour
         {
             // Ruota il figlio in modo che il suo asse Z punti verso la direzione di movimento
             Quaternion targetRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-            meshTransform.rotation = Quaternion.Slerp(meshTransform.rotation, targetRotation, transitionSpeed * Time.deltaTime);
+            //meshTransform.rotation = Quaternion.Slerp(meshTransform.rotation, targetRotation, transitionSpeed * Time.deltaTime);
         }
 
         // Cambia dinamicamente l'ellisse per il prossimo loop se l'angolo è quasi completato
