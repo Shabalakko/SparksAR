@@ -18,15 +18,14 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI multiplierText;
     public TextMeshProUGUI nextMultiplierText;
     public Image comboTimerRadial;
-    public GameObject scorePopupPrefab; // Prefab dell'animazione UI
-    public Transform uiAnchor; // Il tuo oggetto UI di ancoraggio
-
-
-    public Image[] combinationIcons; // Icone UI per i colori
+    public GameObject scorePopupPrefab;
+    public Transform uiAnchor;
+    public Image[] combinationIcons;
 
     private ScoreSystemBase scoreSystem;
     private Coroutine resetCoroutine;
-    private string lastCombo = null; // Tiene traccia della combo corrente
+    private string lastCombo = null;
+
     public string CurrentComboColor
     {
         get
@@ -43,24 +42,34 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        if (scoringMode == ScoringMode.Combo)
-        {
-            scoreSystem = new ComboScoreSystem(multiplierText, nextMultiplierText, comboTimerRadial);
-        }
-        else if (scoringMode == ScoringMode.ColorSlots)
-        {
-            // Passa il metodo ShowScorePopup come callback
-            scoreSystem = new ColorCombinationScoreSystem(multiplierText, ShowScorePopup);
-        }
+        InitializeScoreSystem();
         UpdateScoreUI();
     }
-
 
     void Update()
     {
         scoreSystem.Update();
         UpdateScoreUI();
     }
+
+    private void InitializeScoreSystem()
+    {
+        if (scoringMode == ScoringMode.Combo)
+        {
+            scoreSystem = new ComboScoreSystem(multiplierText, nextMultiplierText, comboTimerRadial);
+        }
+        else if (scoringMode == ScoringMode.ColorSlots)
+        {
+            scoreSystem = new ColorCombinationScoreSystem(multiplierText, ShowScorePopup);
+        }
+        else
+        {
+            Debug.LogError("Modalità di punteggio non valida!");
+            // Imposta una modalità di default per evitare errori null
+            scoreSystem = new ComboScoreSystem(multiplierText, nextMultiplierText, comboTimerRadial);
+        }
+    }
+
     public void ShowScorePopup(int score)
     {
         if (scorePopupPrefab == null || uiAnchor == null)
@@ -75,51 +84,17 @@ public class ScoreManager : MonoBehaviour
         {
             textComponent.text = "+" + score.ToString();
         }
-
-        // Distrugge il popup dopo 1.5 secondi per non appesantire la scena
         Destroy(popup, 1.5f);
     }
 
-
-
-    // Se la combo è completa, la resetta e prende il nuovo colore come primo elemento
     public void AddScore(string color)
     {
-        if (scoringMode == ScoringMode.ColorSlots)
-        {
-            ColorCombinationScoreSystem colorSystem = scoreSystem as ColorCombinationScoreSystem;
-            if (colorSystem.CurrentColors.Count == 3)
-            {
-                colorSystem.ResetColorSlots();
-                if (resetCoroutine != null)
-                {
-                    StopCoroutine(resetCoroutine);
-                    resetCoroutine = null;
-                    lastCombo = null;
-                }
-            }
-        }
-        
         scoreSystem.AddScore(color);
         UpdateScoreUI();
     }
 
     public void AddScoreCustom(string color, int basePoints)
     {
-        if (scoringMode == ScoringMode.ColorSlots)
-        {
-            ColorCombinationScoreSystem colorSystem = scoreSystem as ColorCombinationScoreSystem;
-            if (colorSystem.CurrentColors.Count == 3)
-            {
-                colorSystem.ResetColorSlots();
-                if (resetCoroutine != null)
-                {
-                    StopCoroutine(resetCoroutine);
-                    resetCoroutine = null;
-                    lastCombo = null;
-                }
-            }
-        }
         scoreSystem.AddScoreCustom(color, basePoints);
         UpdateScoreUI();
     }
@@ -127,6 +102,7 @@ public class ScoreManager : MonoBehaviour
     public void OnHit()
     {
         scoreSystem.OnHit();
+        UpdateScoreUI();
     }
 
     public int GetTotalScore()
@@ -150,8 +126,6 @@ public class ScoreManager : MonoBehaviour
             if (colorSystem != null)
             {
                 var currentColors = colorSystem.CurrentColors;
-
-                // Aggiorna le icone UI in base ai colori correnti
                 for (int i = 0; i < combinationIcons.Length; i++)
                 {
                     if (i < currentColors.Count)
@@ -159,8 +133,6 @@ public class ScoreManager : MonoBehaviour
                     else
                         combinationIcons[i].color = Color.white;
                 }
-
-                // Avvia il timer di reset solo se la combo è completa (3 colori)
                 if (currentColors.Count == 3)
                 {
                     string currentCombo = string.Join("", currentColors);
@@ -174,7 +146,6 @@ public class ScoreManager : MonoBehaviour
                 }
                 else
                 {
-                    // Se la combo non è completa, interrompi il timer (se in esecuzione)
                     if (resetCoroutine != null)
                     {
                         StopCoroutine(resetCoroutine);
@@ -194,7 +165,7 @@ public class ScoreManager : MonoBehaviour
         if (colorSystem != null)
         {
             colorSystem.ResetColorSlots();
-            UpdateScoreUI(); // Aggiorna la UI per mostrare le icone resettate
+            UpdateScoreUI();
         }
         resetCoroutine = null;
         lastCombo = null;
@@ -211,3 +182,4 @@ public class ScoreManager : MonoBehaviour
         }
     }
 }
+

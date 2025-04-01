@@ -41,9 +41,7 @@ public class ComboScoreSystem : ScoreSystemBase
             colorComboStreak = 1;
 
         int comboBonus = currentMultiplier * colorComboStreak;
-        totalScore += 6 * comboBonus;
-
-        
+        totalScore += comboBonus; //assegna solo il moltiplicatore
 
         comboTimer = baseComboTime;
         if (comboTimerRadial) comboTimerRadial.fillAmount = 1f;
@@ -51,23 +49,9 @@ public class ComboScoreSystem : ScoreSystemBase
         UpdateUI();
     }
 
-
-
     public override void AddScoreCustom(string color, int basePoints)
     {
-        currentMultiplier++;
-
-        if (color == lastColor)
-            colorComboStreak++;
-        else
-            colorComboStreak = 1;
-
-        int comboBonus = currentMultiplier * colorComboStreak;
-        totalScore += basePoints * comboBonus;
-        comboTimer = baseComboTime;
-        if (comboTimerRadial) comboTimerRadial.fillAmount = 1f;
-        lastColor = color;
-        UpdateUI();
+        //non fare niente, i punti sono gia gestiti nello script
     }
 
     public override void Update()
@@ -109,7 +93,6 @@ public class ComboScoreSystem : ScoreSystemBase
         UpdateUI();
     }
 
-    // Aggiorna la UI: imposta il testo e il colore in base al tipo di combo attivo.
     private void UpdateUI()
     {
         if (multiplierText != null)
@@ -117,29 +100,23 @@ public class ComboScoreSystem : ScoreSystemBase
         if (nextMultiplierText != null)
             nextMultiplierText.text = "x" + colorComboStreak;
 
-        // Se la combo è attiva e lastColor è valorizzato, imposta il colore del testo.
         if (comboTimer > 0 && !string.IsNullOrEmpty(lastColor))
         {
             if (lastColor.ToLower() == "red")
             {
-                //multiplierText.color = Color.red;
                 nextMultiplierText.color = Color.red;
             }
             else if (lastColor.ToLower() == "blue")
             {
-                //multiplierText.color = Color.blue;
                 nextMultiplierText.color = Color.blue;
             }
             else
             {
-                //multiplierText.color = Color.white;
                 nextMultiplierText.color = Color.white;
             }
         }
         else
         {
-            // Se il timer è scaduto o non c'è una combo attiva, il testo diventa bianco.
-            //multiplierText.color = Color.white;
             nextMultiplierText.color = Color.white;
         }
     }

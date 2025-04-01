@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 1637772580131364937}
   - component: {fileID: 6617644157516200499}
   - component: {fileID: 515397297084757775}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyBlue_Gyro
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -271,6 +271,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dust
       objectReference: {fileID: 0}
+    - target: {fileID: 2959062603516140986, guid: 5a16227c71658294ca0a8bb4fc57a4f8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2980411067777473368, guid: 5a16227c71658294ca0a8bb4fc57a4f8, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -326,6 +330,18 @@ PrefabInstance:
     - target: {fileID: 4463059883511052613, guid: 5a16227c71658294ca0a8bb4fc57a4f8, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463059883511052619, guid: 5a16227c71658294ca0a8bb4fc57a4f8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463059883998057344, guid: 5a16227c71658294ca0a8bb4fc57a4f8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5103510542231967159, guid: 5a16227c71658294ca0a8bb4fc57a4f8, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -449,6 +465,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyBlueCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5952089374933610006, guid: 2f905a41be971564b97f303fc6318774, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7046686439941990481, guid: 2f905a41be971564b97f303fc6318774, type: 3}
       propertyPath: canvas
       value: 
@@ -457,6 +477,14 @@ PrefabInstance:
       propertyPath: enemyScript
       value: 
       objectReference: {fileID: 6501671739173448601}
+    - target: {fileID: 7562836597864114306, guid: 2f905a41be971564b97f303fc6318774, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879879449748011362, guid: 2f905a41be971564b97f303fc6318774, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -524,6 +552,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trail
       objectReference: {fileID: 0}
+    - target: {fileID: 7383868292177357169, guid: 755773a43661e9648895afc2df02e77e, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -545,6 +577,10 @@ PrefabInstance:
     - target: {fileID: 602421482293342497, guid: 29ef4293125f3ff4ead21cbce0840f78, type: 3}
       propertyPath: m_Name
       value: MeteorTrail
+      objectReference: {fileID: 0}
+    - target: {fileID: 602421482293342497, guid: 29ef4293125f3ff4ead21cbce0840f78, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 602421482293342497, guid: 29ef4293125f3ff4ead21cbce0840f78, type: 3}
       propertyPath: m_IsActive

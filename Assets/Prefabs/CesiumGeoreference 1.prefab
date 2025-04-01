@@ -102,9 +102,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3729167595501130472}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00000026211234, y: 0.0000070732567, z: -1.8232293e-12, w: 1}
-  m_LocalPosition: {x: -1.1641532e-10, y: -1000, z: 0.0005273563}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.009329406, y: -0.00015007699, z: -0.00015253256, w: 0.9999565}
+  m_LocalPosition: {x: 196.70439, y: -30.00188, z: -11881.595}
+  m_LocalScale: {x: 1.0000012, y: 1.0000001, z: 1.0000011}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6794822870077712010}
@@ -125,13 +125,13 @@ MonoBehaviour:
   _ellipsoidOverride: {fileID: 0}
   _originPlacement: 1
   _originAuthority: 0
-  _latitude: 44.84717000000001
-  _longitude: 7.717769999999999
-  _height: 1000.0000000007902
-  _ecefX: 4489256.145377935
-  _ecefY: 608389.0769381975
-  _ecefZ: 4476028.093506504
-  _scale: 1
+  _latitude: 45.06913
+  _longitude: 7.693249
+  _height: 600
+  _ecefX: 4471751.241833613
+  _ecefY: 604067.9718081626
+  _ecefZ: 4492989.848639805
+  _scale: 0.1
 --- !u!114 &7268454510315190767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,24 +163,24 @@ MonoBehaviour:
   _detectTransformChanges: 1
   _localToGlobeFixedMatrix:
     c0:
-      x: -0.1342836414404339
-      y: 0.9909429365714764
-      z: -0.00001002974200287279
+      x: -1.3429368397478858
+      y: 9.90942778686894
+      z: 0.000000035689665659876385
       w: 0
     c1:
-      x: 0.7025680677203114
-      y: 0.09521282020105144
-      z: 0.7052181429097737
+      x: 7.128231973537398
+      y: 0.9660260186022844
+      z: 6.946590998960936
       w: 0
     c2:
-      x: -0.6988318924185164
-      y: -0.09469221366332603
-      z: 0.708990388376524
+      x: -6.883672542268887
+      y: -0.9328830993439396
+      z: 7.193399476796168
       w: 0
     c3:
-      x: 4488553.577308026
-      y: 608293.8641176997
-      z: 4475322.875365814
+      x: 4554637.6764035765
+      y: 617249.6229274259
+      z: 4408863.327086201
       w: 1
   _localToGlobeFixedMatrixIsValid: 1
 --- !u!114 &5640379232615222369
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3729167595501130472}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8619718474b85c543b58da550431c656, type: 3}
   m_Name: 

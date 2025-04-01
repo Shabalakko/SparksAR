@@ -8,9 +8,8 @@ public class PowerUp : EnemyBase
     public override float maxHP { get { return _powerUpMaxHP; } }
 
     [Header("Tipo di PowerUp")]
-    [SerializeField] private bool isGreenEnemy = false; // Imposta true per i power-up che devono essere trattati come "green" nella modalità ColorCombination
+    [SerializeField] private bool isGreenEnemy = false;
 
-    // Liste di power-up per i colpi di tipo Red e Blue
     public static List<string> PURList = new List<string>
     {
         "300 LR Energy Gauge",
@@ -31,7 +30,6 @@ public class PowerUp : EnemyBase
     private string pendingPowerUp;
     private string lastHitByColor = "";
 
-    // Per i power-up, il colore viene determinato dall'ultimo colpo subito
     public override string EnemyColor => lastHitByColor;
 
     protected override void Start()
@@ -55,7 +53,7 @@ public class PowerUp : EnemyBase
         }
     }
 
-    protected override void Die() // Modificato
+    protected override void Die()
     {
         if (questionUI == null)
         {
@@ -64,7 +62,6 @@ public class PowerUp : EnemyBase
             return;
         }
 
-        // Selezione del power-up in base al colore dell'ultimo colpo
         if (lastHitByColor == "Red")
         {
             pendingPowerUp = PUBList[Random.Range(0, PUBList.Count)];
@@ -80,58 +77,49 @@ public class PowerUp : EnemyBase
             pendingPowerUp = combinedList[Random.Range(0, combinedList.Count)];
         }
 
-        // Mostra la UI per la conferma del power-up
         questionUI.ShowQuestion(this);
-        base.Die(); // Chiama la logica di distruzione di EnemyBase (particelle, suono, punteggio)
     }
 
-    /// <summary>
-    /// Metodo chiamato dalla UI dopo che il giocatore ha risposto correttamente.
-    /// In modalità ColorCombination, se questo power-up è "verde", viene forzato il colore "green"
-    /// per assegnare 515 punti direttamente; altrimenti, si utilizza il colore dell'ultimo laser.
-    /// </summary>
-    public void GrantPowerUp()
+    public void GrantPowerUp(bool correct)
     {
         if (scoreManager != null)
         {
-            int scoreBefore = scoreManager.GetTotalScore();
-
-            if (scoreManager.scoringMode == ScoringMode.Combo)
+            if (correct)
             {
-                // Modalità Combo: applica il powerup al giocatore
-                if (energyManager != null && !string.IsNullOrEmpty(pendingPowerUp))
+                int scoreBefore = scoreManager.GetTotalScore();
+                if (scoreManager.scoringMode == ScoringMode.Combo)
                 {
-                    energyManager.ApplyPowerUp(pendingPowerUp);
+                    if (energyManager != null && !string.IsNullOrEmpty(pendingPowerUp))
+                    {
+                        energyManager.ApplyPowerUp(pendingPowerUp);
+                    }
+                    if (string.IsNullOrEmpty(scoreManager.CurrentComboColor))
+                    {
+                        scoreManager.AddScoreCustom(lastHitByColor, 15);
+                    }
+
+                    int scoreGained = scoreManager.GetTotalScore() - scoreBefore;
+                    scoreManager.ShowScorePopup(scoreGained);
                 }
-                // Aggiungi i punti relativi al powerup
-                string currentComboColor = scoreManager.CurrentComboColor;
-                if (!string.IsNullOrEmpty(currentComboColor))
+                else if (scoreManager.scoringMode == ScoringMode.ColorSlots)
                 {
-                    scoreManager.AddScoreCustom(currentComboColor, 15);
-                }
-                else
-                {
-                    scoreManager.AddScoreCustom(lastHitByColor, 15);
+                    if (isGreenEnemy)
+                    {
+                        scoreManager.AddScoreCustom("green", 0); //non aggiunge punti, lascia gestire tutto a colorCombinationScoreSystem
+                    }
+                    else
+                    {
+                        scoreManager.AddScoreCustom(lastHitByColor, 0); //non aggiunge punti, lascia gestire tutto a colorCombinationScoreSystem
+                    }
+                    int scoreGained = scoreManager.GetTotalScore() - scoreBefore;
+                    scoreManager.ShowScorePopup(scoreGained);
                 }
             }
-            else if (scoreManager.scoringMode == ScoringMode.ColorSlots)
+            else
             {
-                // Modalità ColorCombination: non applicare il powerup, solo assegnare il punteggio
-                if (isGreenEnemy)
-                {
-                    scoreManager.AddScoreCustom("green", 5);
-                }
-                else
-                {
-                    scoreManager.AddScoreCustom(lastHitByColor, 5);
-                }
+                scoreManager.ShowScorePopup(0);
             }
-
-            int scoreGained = scoreManager.GetTotalScore() - scoreBefore;
-            // Mostra il popup del punteggio anche per i powerup in entrambe le modalità
-            scoreManager.ShowScorePopup(scoreGained);
         }
-
-        Destroy(gameObject);
+        base.Die();
     }
 }
