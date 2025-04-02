@@ -13,7 +13,7 @@ public class ColorCombinationScoreSystem : ScoreSystemBase
         { "BlueBlueBlue", 228 },
         { "RedRedBlue", 337 },
         { "BlueBlueRed", 337 },
-        { "BlueRedRed", 373 },
+        { "BlueRedRed",373 },
         { "RedBlueBlue", 373 },
         { "RedBlueRed", 446 },
         { "BlueRedBlue", 446 },
@@ -32,7 +32,12 @@ public class ColorCombinationScoreSystem : ScoreSystemBase
 
     public override void AddScore(string color)
     {
-        //il colore viene aggiunto solo se la risposta è corretta
+        if (color.ToLower() == "green")
+        {
+            totalScore += 515;
+            Debug.Log("Green enemy destroyed, awarding 515 points");
+            return;
+        }
         if (colorSlots.Count >= 3)
             colorSlots.RemoveAt(0);
         colorSlots.Add(color);
@@ -41,7 +46,17 @@ public class ColorCombinationScoreSystem : ScoreSystemBase
 
     public override void AddScoreCustom(string color, int basePoints)
     {
-        //non fare niente, i punti sono già gestiti nello script
+        if (color.ToLower() == "green")
+        {
+            totalScore += 515;
+            Debug.Log("Green enemy destroyed, awarding 515 points");
+            return;
+        }
+        if (colorSlots.Count >= 3)
+            colorSlots.RemoveAt(0);
+        colorSlots.Add(color);
+        EvaluateColorCombo();
+        totalScore += basePoints;
     }
 
     public override void Update()

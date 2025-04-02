@@ -68,7 +68,6 @@ GameObject:
   - component: {fileID: -712152171519041055}
   - component: {fileID: 889521902757706428}
   - component: {fileID: 5317330716937623661}
-  - component: {fileID: 3617418015419216361}
   m_Layer: 7
   m_Name: EnemyRed_Gyro
   m_TagString: Enemy
@@ -242,19 +241,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8326784908700247730}
   m_Mesh: {fileID: 0}
---- !u!114 &3617418015419216361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8326784908700247730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78783a8b5b96a2649861edd364dd7019, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _soundPrefab: {fileID: 5697197134473765615, guid: e3005bd36017a6a4aa8db599beddc78e, type: 3}
 --- !u!1001 &1365965437109392172
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -375,18 +361,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyRedCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 5952089374933610006, guid: 1c4f95f448ad8cd489f060b0efee0b1a, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7562836597864114306, guid: 1c4f95f448ad8cd489f060b0efee0b1a, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7879879449748011362, guid: 1c4f95f448ad8cd489f060b0efee0b1a, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -449,10 +423,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrailRed
       objectReference: {fileID: 0}
-    - target: {fileID: 7383868292177357169, guid: c6b08a479399c5f42831c51b11fa91be, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -474,10 +444,6 @@ PrefabInstance:
     - target: {fileID: 2959062603516140986, guid: 5a16227c71658294ca0a8bb4fc57a4f8, type: 3}
       propertyPath: m_Name
       value: Dust
-      objectReference: {fileID: 0}
-    - target: {fileID: 2959062603516140986, guid: 5a16227c71658294ca0a8bb4fc57a4f8, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2980411067777473368, guid: 5a16227c71658294ca0a8bb4fc57a4f8, type: 3}
       propertyPath: m_LocalScale.x
@@ -531,18 +497,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4463059883511052619, guid: 5a16227c71658294ca0a8bb4fc57a4f8, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4463059883998057344, guid: 5a16227c71658294ca0a8bb4fc57a4f8, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5103510542231967159, guid: 5a16227c71658294ca0a8bb4fc57a4f8, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -564,10 +518,6 @@ PrefabInstance:
     - target: {fileID: 602421482293342497, guid: 29ef4293125f3ff4ead21cbce0840f78, type: 3}
       propertyPath: m_Name
       value: MeteorTrail
-      objectReference: {fileID: 0}
-    - target: {fileID: 602421482293342497, guid: 29ef4293125f3ff4ead21cbce0840f78, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 602421482293342497, guid: 29ef4293125f3ff4ead21cbce0840f78, type: 3}
       propertyPath: m_IsActive
