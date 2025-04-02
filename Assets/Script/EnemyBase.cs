@@ -13,12 +13,13 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
     protected ScoreManager scoreManager;
     protected LaserEnergyManager energyManager;
     protected SettingsManager settingsManager;
+    protected IstantiateAudioAtPosition istantiateAudioAtPosition; // Riferimento a IstantiateAudioAtPosition
 
-    // IEnemy richiede la proprietà per il colore
-    public abstract string EnemyColor { get; }
+    // IEnemy richiede la proprietà per il colore
+    public abstract string EnemyColor { get; }
 
     [SerializeField] protected Mesh[] _possibleMeshes; // Array di mesh da assegnare nell'Inspector
-    protected MeshFilter _meshFilter;
+    protected MeshFilter _meshFilter;
 
     protected virtual void Start()
     {
@@ -26,14 +27,15 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
         scoreManager = FindObjectOfType<ScoreManager>();
         energyManager = FindObjectOfType<LaserEnergyManager>();
         settingsManager = FindObjectOfType<SettingsManager>();
+        istantiateAudioAtPosition = FindObjectOfType<IstantiateAudioAtPosition>(); // Ottieni riferimento a IstantiateAudioAtPosition
         _meshFilter = GetComponent<MeshFilter>();
         if (_meshFilter != null && _possibleMeshes != null && _possibleMeshes.Length > 0)
         {
             int randomIndex = Random.Range(0, _possibleMeshes.Length);
             _meshFilter.mesh = _possibleMeshes[randomIndex];
         }
-        //AdjustHitbox();
-    }
+        //AdjustHitbox();
+    }
 
     protected virtual void Update()
     {
@@ -49,31 +51,29 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
         return currentHP;
     }
 
-    /*protected virtual void AdjustHitbox()
-    {
-        if (settingsManager != null)
-        {
-            BoxCollider boxCollider = GetComponent<BoxCollider>();
-            if (boxCollider != null)
-            {
-                boxCollider.size = Vector3.one * settingsManager.enemyHitboxSize;
-            }
-        }
-    }*/
+    // Ogni nemico dovrà implementare come reagire al danno
+    public abstract void TakeDamage(float damage, string color);
 
-    // Ogni nemico dovrà implementare come reagire al danno
-    public abstract void TakeDamage(float damage, string color);
-
-    /// <summary>
-    /// Metodo comune da chiamare quando il nemico muore.
-    /// Usa il proprio EnemyColor per registrarsi al punteggio.
-    /// </summary>
-    protected virtual void Die()
+    /// <summary>
+    /// Metodo comune da chiamare quando il nemico muore.
+    /// Usa il proprio EnemyColor per registrarsi al punteggio.
+    /// </summary>
+    protected virtual void Die()
     {
+        // Ottieni la posizione *prima* di distruggere l'oggetto
+        Vector3 deathPosition = transform.position;
+        int dyingObjectId = gameObject.GetInstanceID(); // Ottieni l'ID dell'oggetto morente
+
+        // Chiama IstantiateAudioAtPosition *prima* di distruggere
+        if (istantiateAudioAtPosition != null)
+        {
+            istantiateAudioAtPosition.StartCoroutine(istantiateAudioAtPosition.InstantiateAudioAtPosition(deathPosition, dyingObjectId)); // Passa anche l'ID
+        }
+
         if (scoreManager != null)
         {
-            // Se stai usando la modalità ColorSlots, lascia che sia il sistema di combo a gestire il popup.
-            if (scoreManager.scoringMode == ScoringMode.Combo)
+            // Se stai usando la modalità ColorSlots, lascia che sia il sistema di combo a gestire il popup.
+            if (scoreManager.scoringMode == ScoringMode.Combo)
             {
                 int scoreBefore = scoreManager.GetTotalScore();
                 scoreManager.AddScore(EnemyColor);
@@ -81,12 +81,13 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
                 scoreManager.ShowScorePopup(scoreGained);
             }
             else // Modalità ColorSlots
-            {
-                // In modalità combo basata su combinazioni, aggiungi lo score
-                // e lascia che EvaluateColorCombo gestisca il popup.
-                scoreManager.AddScore(EnemyColor);
+            {
+                // In modalità combo basata su combinazioni, aggiungi lo score
+                // e lascia che EvaluateColorCombo gestisca il popup.
+                scoreManager.AddScore(EnemyColor);
             }
         }
+
         Destroy(gameObject);
     }
 }

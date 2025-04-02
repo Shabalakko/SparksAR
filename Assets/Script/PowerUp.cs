@@ -65,6 +65,12 @@ public class PowerUp : EnemyBase
             return;
         }
 
+        Vector3 deathPosition = transform.position;
+        int dyingObjectId = gameObject.GetInstanceID();
+
+        // Play sound before showing the question
+        PlayDestructionSound(deathPosition, dyingObjectId);
+
         // Selezione del power-up in base al colore dell'ultimo colpo
         if (lastHitByColor == "Red")
         {
@@ -96,6 +102,15 @@ public class PowerUp : EnemyBase
             {
                 Destroy(effetto, 2f);
             }
+        }
+        //Destroy(gameObject); // Remove from here
+    }
+
+    private void PlayDestructionSound(Vector3 position, int dyingObjectId)
+    {
+        if (istantiateAudioAtPosition != null)
+        {
+            istantiateAudioAtPosition.StartCoroutine(istantiateAudioAtPosition.InstantiateAudioAtPosition(position, dyingObjectId));
         }
     }
 
@@ -146,7 +161,6 @@ public class PowerUp : EnemyBase
             scoreManager.ShowScorePopup(scoreGained);
         }
 
-        Destroy(gameObject);
+        Destroy(gameObject); // Add destroy here
     }
-
 }
