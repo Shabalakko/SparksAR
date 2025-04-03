@@ -234,6 +234,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6383021487754201494}
     m_Modifications:
+    - target: {fileID: 806510721552834178, guid: c2b354e899baa7840924306914308edf, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 806510721552834178, guid: c2b354e899baa7840924306914308edf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 009d3550a7546d44bbce4832f0b4342b, type: 3}
+    - target: {fileID: 806510721552834178, guid: c2b354e899baa7840924306914308edf, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 806510721552834178, guid: c2b354e899baa7840924306914308edf, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 806510721552834178, guid: c2b354e899baa7840924306914308edf, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 806510721552834178, guid: c2b354e899baa7840924306914308edf, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 806510721552834178, guid: c2b354e899baa7840924306914308edf, type: 3}
+      propertyPath: m_Maskable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 806510721552834178, guid: c2b354e899baa7840924306914308edf, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 31437d7532ad6604c8d7b047e20be51f, type: 2}
+    - target: {fileID: 806510721552834178, guid: c2b354e899baa7840924306914308edf, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 806510721552834178, guid: c2b354e899baa7840924306914308edf, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3157341327763609674, guid: c2b354e899baa7840924306914308edf, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -322,9 +362,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4421688785355510316, guid: c2b354e899baa7840924306914308edf, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4421688785355510316, guid: c2b354e899baa7840924306914308edf, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4421688785355510316, guid: c2b354e899baa7840924306914308edf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4421688785355510316, guid: c2b354e899baa7840924306914308edf, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4421688785355510316, guid: c2b354e899baa7840924306914308edf, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 5952089374933610006, guid: c2b354e899baa7840924306914308edf, type: 3}
       propertyPath: m_Name
       value: PowerUpCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879879449748011362, guid: c2b354e899baa7840924306914308edf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
