@@ -1,10 +1,19 @@
 # ninja log v5
 68	2993	7653035106481379	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	feab8778965fc97b
+3568	3717	7653035113327363	C:/Users/FABLAB_4/Documents/GitHub/SparksAR/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/206z2j93/obj/armeabi-v7a/libgame.so	dbb65cbc92363346
+92	3370	7653035110132244	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	723a9c437b1f1fac
 34	3062	7653035107028486	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	d62c384239c7075a
+112	3279	7653035109215073	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	4e4e8cb9a4f2f82a
 1	3159	7653035108117128	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	3a7ddb1d872c4018
 54	3234	7653035108775368	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	f3d655e70ca7659b
-112	3279	7653035109215073	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	4e4e8cb9a4f2f82a
-92	3370	7653035110132244	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	723a9c437b1f1fac
 21	3564	7653035112159015	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	b0c1d300b5be7d72
 80	3568	7653035112215108	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	fb671756bbea9cc5
-3568	3717	7653035113327363	C:/Users/FABLAB_4/Documents/GitHub/SparksAR/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/206z2j93/obj/armeabi-v7a/libgame.so	dbb65cbc92363346
+48	2003	7657404037231193	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	f3d655e70ca7659b
+6	2063	7657404037850675	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	feab8778965fc97b
+63	2143	7657404038636218	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	4e4e8cb9a4f2f82a
+15	2177	7657404038956813	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	3a7ddb1d872c4018
+24	2187	7657404039058369	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	d62c384239c7075a
+94	2216	7657404039382544	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	723a9c437b1f1fac
+81	2456	7657404041811009	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	fb671756bbea9cc5
+37	2539	7657404042605522	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	b0c1d300b5be7d72
+2540	2750	7657404044309213	C:/Users/FABLAB_4/Documents/GitHub/SparksAR/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/206z2j93/obj/armeabi-v7a/libgame.so	dbb65cbc92363346

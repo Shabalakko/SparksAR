@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject mainMenuCanvas;  // Canvas del menu principale
-    public GameObject optionsCanvas;   // Canvas delle opzioni di gioco
+    public GameObject optionsCanvas;    // Canvas delle opzioni di gioco
+    public string shopSceneName = "ModelShop"; // Nome della scena del negozio
 
     // --- 1. Play Button ---
     public void PlayGameGyro()
@@ -48,5 +49,12 @@ public class MainMenu : MonoBehaviour
 
         // Nasconde il Canvas delle opzioni
         optionsCanvas.SetActive(false);
+    }
+
+    // --- 4. Shop Button ---
+    public void OpenShop()
+    {
+        // Carica la scena del negozio
+        SceneManager.LoadScene(shopSceneName);
     }
 }

@@ -1386,6 +1386,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bf725f8c6d16d646bd7d8fe01f7932c, type: 3}
+--- !u!1001 &1326429083
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1610892533113430156, guid: fbe7c37c0dacac247a1cad29aeece74d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610892533113430156, guid: fbe7c37c0dacac247a1cad29aeece74d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610892533113430156, guid: fbe7c37c0dacac247a1cad29aeece74d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610892533113430156, guid: fbe7c37c0dacac247a1cad29aeece74d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610892533113430156, guid: fbe7c37c0dacac247a1cad29aeece74d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610892533113430156, guid: fbe7c37c0dacac247a1cad29aeece74d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610892533113430156, guid: fbe7c37c0dacac247a1cad29aeece74d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610892533113430156, guid: fbe7c37c0dacac247a1cad29aeece74d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610892533113430156, guid: fbe7c37c0dacac247a1cad29aeece74d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610892533113430156, guid: fbe7c37c0dacac247a1cad29aeece74d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491306581053048044, guid: fbe7c37c0dacac247a1cad29aeece74d, type: 3}
+      propertyPath: m_Name
+      value: WalletManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fbe7c37c0dacac247a1cad29aeece74d, type: 3}
 --- !u!1 &1422626811
 GameObject:
   m_ObjectHideFlags: 0
@@ -2488,6 +2545,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+--- !u!114 &4094438306634953665 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6737198867705191733, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+  m_PrefabInstance: {fileID: 4094438306634953664}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4094438306634953666 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7068287840206409104, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+  m_PrefabInstance: {fileID: 4094438306634953664}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4178956913512986168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2746,6 +2825,14 @@ PrefabInstance:
       propertyPath: gameOverCanvas
       value: 
       objectReference: {fileID: 121633488}
+    - target: {fileID: 3796261491442968433, guid: b62fd34199976844fbe1448f9ceb8528, type: 3}
+      propertyPath: earnedCoinsText
+      value: 
+      objectReference: {fileID: 4094438306634953666}
+    - target: {fileID: 3796261491442968433, guid: b62fd34199976844fbe1448f9ceb8528, type: 3}
+      propertyPath: currentCoinsText
+      value: 
+      objectReference: {fileID: 4094438306634953665}
     - target: {fileID: 8738683904789168587, guid: b62fd34199976844fbe1448f9ceb8528, type: 3}
       propertyPath: m_Name
       value: GameOverManager
@@ -3198,3 +3285,4 @@ SceneRoots:
   - {fileID: 1236688818}
   - {fileID: 7631576716898125541}
   - {fileID: 3653246114596656097}
+  - {fileID: 1326429083}

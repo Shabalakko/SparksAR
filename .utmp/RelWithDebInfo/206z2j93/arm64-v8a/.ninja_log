@@ -1,10 +1,19 @@
 # ninja log v5
 96	3428	7653035023934622	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	e75926acb9b13ce8
+115	3903	7653035028746334	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	c33d1f1496964c88
 1	3472	7653035024152025	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	484c2b2705451166
+19	3768	7653035027413737	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	819b7c73c34c6016
 136	3512	7653035024897075	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	d3454702ffe4a49a
 69	3638	7653035026172412	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	6914a0ff9983f7c3
-19	3768	7653035027413737	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	819b7c73c34c6016
-115	3903	7653035028746334	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	c33d1f1496964c88
 57	4069	7653035030528953	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	d0a57878dc3f129b
-36	4365	7653035033489857	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	91f5951b327801af
 4365	4660	7653035035831480	C:/Users/FABLAB_4/Documents/GitHub/SparksAR/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/206z2j93/obj/arm64-v8a/libgame.so	5fef4a1fbc30c25c
+36	4365	7653035033489857	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	91f5951b327801af
+232	3269	7657403995912776	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	6914a0ff9983f7c3
+106	3274	7657403995928181	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	e75926acb9b13ce8
+151	3279	7657403996049601	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	484c2b2705451166
+201	3293	7657403996206475	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	d3454702ffe4a49a
+245	3363	7657403996885233	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	c33d1f1496964c88
+178	3368	7657403996885233	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	819b7c73c34c6016
+220	3770	7657404000924919	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	d0a57878dc3f129b
+65	4037	7657404003349833	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	91f5951b327801af
+4037	4315	7657404005924756	C:/Users/FABLAB_4/Documents/GitHub/SparksAR/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/206z2j93/obj/arm64-v8a/libgame.so	5fef4a1fbc30c25c
