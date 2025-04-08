@@ -28,6 +28,7 @@ public class ModelShopManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1f;
         if (walletManager == null)
         {
             Debug.LogError("WalletManager non assegnato a ModelShopManager!");
