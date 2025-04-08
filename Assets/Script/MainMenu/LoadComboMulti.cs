@@ -13,4 +13,9 @@ public class LoadComboMulti : MonoBehaviour
     {
         SceneManager.LoadScene("GyroLevelCombination");
     }
+    public void OpenShop()
+    {
+        // Carica la scena del negozio
+        SceneManager.LoadScene("ModelShop");
+    }
 }

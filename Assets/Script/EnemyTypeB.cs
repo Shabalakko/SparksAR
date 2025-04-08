@@ -37,10 +37,10 @@ public class EnemyTypeB : EnemyBase
         base.Start(); // Chiama l'override di Start nella classe EnemyBase
 
         // Istanzia un prefab casuale all'avvio
-        InstanziaPrefabCasuale();
+        //InstanziaPrefabCasuale();
     }
 
-    void InstanziaPrefabCasuale()
+    /*void InstanziaPrefabCasuale()
     {
         if (prefabVarianti != null && prefabVarianti.Count > 0 && spawnPoint != null)
         {
@@ -57,7 +57,7 @@ public class EnemyTypeB : EnemyBase
             // Puoi anche istanziare un prefab di default o distruggere questo oggetto
             //Destroy(gameObject);
         }
-    }
+    }*/
 
     public GameObject particellePrefab; // Aggiungi questo campo e assegnagli il prefab tramite Inspector
     protected override void Die()
