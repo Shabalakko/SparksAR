@@ -24,6 +24,14 @@ public class GameOverManager : MonoBehaviour
     private bool coinsAwarded = false;
     public bool resetCoinsOnStart = false; //aggiunto per il reset
 
+    [Header("Localization Keys")]
+    public string finalScoreKey = "final_score";
+    public string highScoreNewKey = "high_score_new";
+    public string highScoreKey = "high_score";
+    public string earnedCoinsKey = "earned_coins";
+    public string coinsKey = "coins";
+    public string currentCoinsKey = "current_coins";
+
     private void Start()
     {
         if (gameOverCanvas != null)
@@ -35,6 +43,7 @@ public class GameOverManager : MonoBehaviour
             ResetTotalCoins();
         }
         UpdateCoinsUI();
+        UpdateLocalizedUI(); // Aggiorna i testi localizzati all'avvio
     }
 
     public void OnGameOver()
@@ -63,19 +72,19 @@ public class GameOverManager : MonoBehaviour
         int currentHighScore = HighScoreManager.GetHighScore(scoreManager.scoringMode);
 
         if (finalScoreText != null)
-            finalScoreText.text = "" + finalScore;
+            finalScoreText.text = LanguageManager.instance.GetLocalizedText(finalScoreKey, "Final Score") + ": " + finalScore;
 
         if (highScoreText != null)
         {
             if (isNewHighScore)
-                highScoreText.text = "New!!! " + currentHighScore;
+                highScoreText.text = LanguageManager.instance.GetLocalizedText(highScoreNewKey, "New!!!") + " " + LanguageManager.instance.GetLocalizedText(highScoreKey, "High Score") + ": " + currentHighScore;
             else
-                highScoreText.text = "" + currentHighScore;
+                highScoreText.text = LanguageManager.instance.GetLocalizedText(highScoreKey, "High Score") + ": " + currentHighScore;
         }
         UpdateCoinsUI();
         if (earnedCoinsText != null)
         {
-            earnedCoinsText.text = "+" + earnedCoins + " Coins";
+            earnedCoinsText.text = "+" + earnedCoins + " " + LanguageManager.instance.GetLocalizedText(earnedCoinsKey, "Coins");
         }
 
         if (gameOverCanvas != null)
@@ -94,11 +103,57 @@ public class GameOverManager : MonoBehaviour
     {
         if (coinsText != null)
         {
-            coinsText.text = "Coins: " + WalletManager.Instance.GetTotalCoins();
+            coinsText.text = LanguageManager.instance.GetLocalizedText(coinsKey, "Coins") + ": " + WalletManager.Instance.GetTotalCoins();
         }
         if (currentCoinsText != null)
         {
-            currentCoinsText.text = "Current Coins: " + WalletManager.Instance.GetTotalCoins();
+            currentCoinsText.text = LanguageManager.instance.GetLocalizedText(currentCoinsKey, "Current Coins") + ": " + WalletManager.Instance.GetTotalCoins();
+        }
+    }
+
+    // Metodo per aggiornare tutti i testi localizzati
+    public void UpdateLocalizedUI()
+    {
+        if (finalScoreText != null)
+            finalScoreText.text = LanguageManager.instance.GetLocalizedText(finalScoreKey, "Final Score") + ": " + (scoreManager != null ? scoreManager.GetTotalScore() : "0");
+
+        if (highScoreText != null)
+        {
+            ScoringMode currentMode = (scoreManager != null) ? scoreManager.scoringMode : ScoringMode.ColorSlots; // Imposta un valore di default se scoreManager è null
+            int currentHighScore = HighScoreManager.GetHighScore(currentMode);
+            // Per ora, rimuoviamo la riga con HasNewHighScore perché non è definita
+            bool isNewHighScore = (scoreManager != null) ? HighScoreManager.UpdateHighScore(currentMode, scoreManager.GetTotalScore()) : false; // Tentativo di usare UpdateHighScore come indicatore di nuovo record
+
+            if (isNewHighScore)
+                highScoreText.text = LanguageManager.instance.GetLocalizedText(highScoreNewKey, "New!!!") + " " + LanguageManager.instance.GetLocalizedText(highScoreKey, "High Score") + ": " + currentHighScore;
+            else
+                highScoreText.text = LanguageManager.instance.GetLocalizedText(highScoreKey, "High Score") + ": " + currentHighScore;
+        }
+
+        UpdateCoinsUI(); // Assicurati che anche il testo delle monete sia aggiornato
+
+        if (earnedCoinsText != null && scoreManager != null)
+        {
+            int earnedCoins = CalculateCoins(scoreManager.GetTotalScore());
+            earnedCoinsText.text = "+" + earnedCoins + " " + LanguageManager.instance.GetLocalizedText(earnedCoinsKey, "Coins");
+        }
+    }
+
+    private void OnEnable()
+    {
+        // Sottoscrivi la funzione UpdateLocalizedUI all'evento di cambio lingua
+        if (LanguageManager.instance != null)
+        {
+            LanguageManager.onLanguageChanged += UpdateLocalizedUI;
+        }
+    }
+
+    private void OnDisable()
+    {
+        // Annulla la sottoscrizione per evitare memory leak
+        if (LanguageManager.instance != null)
+        {
+            LanguageManager.onLanguageChanged -= UpdateLocalizedUI;
         }
     }
 
