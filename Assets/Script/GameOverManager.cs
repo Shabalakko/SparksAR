@@ -72,14 +72,14 @@ public class GameOverManager : MonoBehaviour
         int currentHighScore = HighScoreManager.GetHighScore(scoreManager.scoringMode);
 
         if (finalScoreText != null)
-            finalScoreText.text = LanguageManager.instance.GetLocalizedText(finalScoreKey, "Final Score") + ": " + finalScore;
+            finalScoreText.text = LanguageManager.instance.GetLocalizedText(finalScoreKey, "") + "" + finalScore;
 
         if (highScoreText != null)
         {
             if (isNewHighScore)
-                highScoreText.text = LanguageManager.instance.GetLocalizedText(highScoreNewKey, "New!!!") + " " + LanguageManager.instance.GetLocalizedText(highScoreKey, "High Score") + ": " + currentHighScore;
+                highScoreText.text = "" + currentHighScore;
             else
-                highScoreText.text = LanguageManager.instance.GetLocalizedText(highScoreKey, "High Score") + ": " + currentHighScore;
+                highScoreText.text = "" + currentHighScore;
         }
         UpdateCoinsUI();
         if (earnedCoinsText != null)
@@ -115,7 +115,7 @@ public class GameOverManager : MonoBehaviour
     public void UpdateLocalizedUI()
     {
         if (finalScoreText != null)
-            finalScoreText.text = LanguageManager.instance.GetLocalizedText(finalScoreKey, "Final Score") + ": " + (scoreManager != null ? scoreManager.GetTotalScore() : "0");
+            finalScoreText.text = LanguageManager.instance.GetLocalizedText(finalScoreKey, "") + "" + (scoreManager != null ? scoreManager.GetTotalScore() : "0");
 
         if (highScoreText != null)
         {
@@ -125,9 +125,9 @@ public class GameOverManager : MonoBehaviour
             bool isNewHighScore = (scoreManager != null) ? HighScoreManager.UpdateHighScore(currentMode, scoreManager.GetTotalScore()) : false; // Tentativo di usare UpdateHighScore come indicatore di nuovo record
 
             if (isNewHighScore)
-                highScoreText.text = LanguageManager.instance.GetLocalizedText(highScoreNewKey, "New!!!") + " " + LanguageManager.instance.GetLocalizedText(highScoreKey, "High Score") + ": " + currentHighScore;
+                highScoreText.text = LanguageManager.instance.GetLocalizedText(highScoreNewKey, "") + " " + LanguageManager.instance.GetLocalizedText(highScoreKey, "High Score") + ": " + currentHighScore;
             else
-                highScoreText.text = LanguageManager.instance.GetLocalizedText(highScoreKey, "High Score") + ": " + currentHighScore;
+                highScoreText.text = LanguageManager.instance.GetLocalizedText(highScoreKey, "") + ": " + currentHighScore;
         }
 
         UpdateCoinsUI(); // Assicurati che anche il testo delle monete sia aggiornato

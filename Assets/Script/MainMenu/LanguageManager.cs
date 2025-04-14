@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro; // Se stai usando TextMesh Pro
+using System.Collections.Generic; // Necessario per Dictionary
 
 public class LanguageManager : MonoBehaviour
 {
@@ -10,14 +11,19 @@ public class LanguageManager : MonoBehaviour
     public delegate void LanguageChanged();
     public static event LanguageChanged onLanguageChanged;
 
+    public LocalizationData localizationData; // Riferimento allo ScriptableObject
+
+    // Usa un Dictionary per memorizzare le traduzioni in modo efficiente
+    private Dictionary<string, Dictionary<string, string>> localizedText = new Dictionary<string, Dictionary<string, string>>();
+
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            // Inizializza la lingua salvata se presente, altrimenti usa quella di default
             LoadSavedLanguage();
+            LoadLocalizationData(); // Carica i dati di localizzazione all'avvio
         }
         else
         {
@@ -25,45 +31,57 @@ public class LanguageManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        SetLanguage(currentLanguage);
+    }
+
+    void LoadLocalizationData()
+    {
+        localizedText.Clear(); // Pulisci il dizionario prima di caricare nuovi dati
+        if (localizationData != null)
+        {
+            // Assicurati che le lingue siano presenti nel dizionario principale
+            if (!localizedText.ContainsKey("ENGLISH"))
+                localizedText.Add("ENGLISH", new Dictionary<string, string>());
+            if (!localizedText.ContainsKey("FRENCH"))
+                localizedText.Add("FRENCH", new Dictionary<string, string>());
+
+            // Itera attraverso le entries dello ScriptableObject e popola il dizionario
+            foreach (var entry in localizationData.entries)
+            {
+                if (!localizedText["ENGLISH"].ContainsKey(entry.key))
+                    localizedText["ENGLISH"].Add(entry.key, entry.englishText);
+                if (!localizedText["FRENCH"].ContainsKey(entry.key))
+                    localizedText["FRENCH"].Add(entry.key, entry.frenchText);
+            }
+        }
+        else
+        {
+            Debug.LogError("Localization Data is not assigned in LanguageManager!");
+        }
+    }
+
     public void SetLanguage(string language)
     {
         currentLanguage = language.ToUpper();
-        SaveLanguage(); // Salva la lingua corrente
-        // Notifica tutti gli interessati del cambio di lingua
+        SaveLanguage();
         if (onLanguageChanged != null)
         {
             onLanguageChanged();
-        }
-        // Aggiorna anche gli oggetti LocalizedTextSimple
-        LocalizedTextSimple[] allLocalizedTexts = FindObjectsOfType<LocalizedTextSimple>();
-        foreach (LocalizedTextSimple localizedText in allLocalizedTexts)
-        {
-            localizedText.UpdateText();
         }
     }
 
     public string GetLocalizedText(string key, string englishTextFallback)
     {
-        switch (key)
+        if (localizedText.ContainsKey(currentLanguage) && localizedText[currentLanguage].ContainsKey(key))
         {
-            case "final_score":
-                return currentLanguage == "FRENCH" ? "Score Final" : englishTextFallback;
-            case "high_score_new":
-                return currentLanguage == "FRENCH" ? "Nouveau!!!" : englishTextFallback;
-            case "high_score":
-                return currentLanguage == "FRENCH" ? "Meilleur Score" : englishTextFallback;
-            case "earned_coins":
-                return currentLanguage == "FRENCH" ? "Pièces Gagnées" : englishTextFallback;
-            case "coins":
-                return currentLanguage == "FRENCH" ? "Pièces" : englishTextFallback;
-            case "current_coins":
-                return currentLanguage == "FRENCH" ? "Pièces Actuelles" : englishTextFallback;
-            case "time_up": // Aggiungi questo caso
-                return currentLanguage == "FRENCH" ? "Temps écoulé !" : englishTextFallback; // Traduzione francese
-                                                                                             // Aggiungi altri casi per le tue chiavi
-            default:
-                Debug.LogWarning("Chiave di localizzazione non trovata: " + key);
-                return englishTextFallback;
+            return localizedText[currentLanguage][key];
+        }
+        else
+        {
+            Debug.LogWarning("Chiave di localizzazione non trovata: " + key);
+            return englishTextFallback;
         }
     }
 

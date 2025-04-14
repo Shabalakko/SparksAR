@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f324eb96adbbfa4d820449beee6b4e5, type: 3}
+  m_Name: LocalizationData
+  m_EditorClassIdentifier: 
+  entries:
+  - key: play_button
+    englishText: Play
+    frenchText: Juer
+  - key: options_button
+    englishText: Options
+    frenchText: Options
+  - key: gyrolevelmulti_button
+    englishText: Combo Chain
+    frenchText: "Combo en Cha\xEEne"
+  - key: gyrolevelcombination_button
+    englishText: Color Mix
+    frenchText: Mix de Couleurs
+  - key: tutorial_button
+    englishText: Tutorial
+    frenchText: Tutoriel
+  - key: map_button
+    englishText: Map ON
+    frenchText: Carte ON
+  - key: back_button
+    englishText: Back
+    frenchText: Retour
+  - key: exit_button
+    englishText: Exit
+    frenchText: Quitter
+  - key: build_button
+    englishText: Build
+    frenchText: "B\xE2tir"
+  - key: gameover_text
+    englishText: MISSION OVER
+    frenchText: "MISSION TERMIN\xC9E"
+  - key: finalscore_text
+    englishText: Score
+    frenchText: Score
+  - key: highscore_text
+    englishText: High Score
+    frenchText: Meilleur Score

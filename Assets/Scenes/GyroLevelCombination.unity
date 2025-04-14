@@ -635,6 +635,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &461652737
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4562695772663387972, guid: ecce1504910223f4e9c637dc8d59330d, type: 3}
+      propertyPath: m_Name
+      value: LanguageManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019547627824221453, guid: ecce1504910223f4e9c637dc8d59330d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.10931489
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019547627824221453, guid: ecce1504910223f4e9c637dc8d59330d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.2259378
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019547627824221453, guid: ecce1504910223f4e9c637dc8d59330d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.7302732
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019547627824221453, guid: ecce1504910223f4e9c637dc8d59330d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019547627824221453, guid: ecce1504910223f4e9c637dc8d59330d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019547627824221453, guid: ecce1504910223f4e9c637dc8d59330d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019547627824221453, guid: ecce1504910223f4e9c637dc8d59330d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019547627824221453, guid: ecce1504910223f4e9c637dc8d59330d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019547627824221453, guid: ecce1504910223f4e9c637dc8d59330d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019547627824221453, guid: ecce1504910223f4e9c637dc8d59330d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ecce1504910223f4e9c637dc8d59330d, type: 3}
 --- !u!114 &472309385 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2000154938587494703, guid: 848b64e5a0d47624b9e0862639451b20, type: 3}
@@ -1437,6 +1494,452 @@ MonoBehaviour:
   Lasers: {fileID: 330585543}
   PLaserR: {fileID: 1166726491}
   PLaserB: {fileID: 1493166751}
+  localizedQuestions:
+  - englishText: What is the smallest planet in the Solar System?
+    frenchText: "Quelle est la plus petite plan\xE8te du syst\xE8me solaire ?"
+    englishAnswers:
+    - Mars
+    - Mercury
+    - Pluto
+    frenchAnswers:
+    - Mars
+    - Mercure
+    - Pluton
+    correctIndex: 1
+  - englishText: What is the hottest planet in the Solar System?
+    frenchText: "Quelle est la plan\xE8te la plus chaude du syst\xE8me solaire ?"
+    englishAnswers:
+    - Mercury
+    - Venus
+    - Mars
+    frenchAnswers:
+    - Mercure
+    - "V\xE9nus"
+    - Mars
+    correctIndex: 1
+  - englishText: Which planet is known as the Red Planet?
+    frenchText: "Quelle plan\xE8te est connue comme la plan\xE8te rouge ?"
+    englishAnswers:
+    - Venus
+    - Mars
+    - Jupiter
+    frenchAnswers:
+    - "V\xE9nus"
+    - Mars
+    - Jupiter
+    correctIndex: 1
+  - englishText: What celestial body orbits a planet?
+    frenchText: "Quel corps c\xE9leste orbite autour d'une plan\xE8te ?"
+    englishAnswers:
+    - Star
+    - Asteroid
+    - Moon
+    frenchAnswers:
+    - "\xC9toile"
+    - "Ast\xE9ro\xEFde"
+    - Lune
+    correctIndex: 2
+  - englishText: Which planet is famous for having a Great Red Spot?
+    frenchText: "Quelle plan\xE8te est c\xE9l\xE8bre pour avoir une Grande Tache
+      Rouge ?"
+    englishAnswers:
+    - Jupiter
+    - Saturn
+    - Neptune
+    frenchAnswers:
+    - Jupiter
+    - Saturne
+    - Neptune
+    correctIndex: 0
+  - englishText: What force keeps planets in orbit around the Sun?
+    frenchText: "Quelle force maintient les plan\xE8tes en orbite autour du Soleil
+      ?"
+    englishAnswers:
+    - Gravity
+    - Magnetism
+    - Tides
+    frenchAnswers:
+    - "Gravit\xE9"
+    - "Magn\xE9tisme"
+    - "Mar\xE9es"
+    correctIndex: 0
+  - englishText: Which planet has the most moons?
+    frenchText: "Quelle plan\xE8te a le plus de lunes ?"
+    englishAnswers:
+    - Saturn
+    - Jupiter
+    - Mars
+    frenchAnswers:
+    - Saturne
+    - Jupiter
+    - Mars
+    correctIndex: 1
+  - englishText: What is the closest star to Earth?
+    frenchText: "Quelle est l'\xE9toile la plus proche de la Terre ?"
+    englishAnswers:
+    - Proxima Centauri
+    - Alpha Centauri
+    - The Sun
+    frenchAnswers:
+    - Proxima Centauri
+    - Alpha Centauri
+    - Le Soleil
+    correctIndex: 2
+  - englishText: What is the name of the galaxy closest to the Milky Way?
+    frenchText: "Quel est le nom de la galaxie la plus proche de la Voie lact\xE9e
+      ?"
+    englishAnswers:
+    - Andromeda
+    - Triangulum
+    - Whirlpool
+    frenchAnswers:
+    - "Androm\xE8de"
+    - Triangulum
+    - Whirlpool
+    correctIndex: 0
+  - englishText: What is a comet primarily made of?
+    frenchText: "De quoi une com\xE8te est-elle principalement constitu\xE9e ?"
+    englishAnswers:
+    - Ice and dust
+    - Rock and metal
+    - Gas and plasma
+    frenchAnswers:
+    - "Glace et poussi\xE8re"
+    - "Roche et m\xE9tal"
+    - Gaz et plasma
+    correctIndex: 0
+  - englishText: Which planet has the highest mountain in the Solar System?
+    frenchText: "Quelle plan\xE8te a la plus haute montagne du syst\xE8me solaire
+      ?"
+    englishAnswers:
+    - Mars
+    - Earth
+    - Venus
+    frenchAnswers:
+    - Mars
+    - Terre
+    - "V\xE9nus"
+    correctIndex: 0
+  - englishText: What is the name of the first human-made satellite?
+    frenchText: "Quel est le nom du premier satellite fabriqu\xE9 par l'homme ?"
+    englishAnswers:
+    - Sputnik 1
+    - Apollo 11
+    - Voyager 1
+    frenchAnswers:
+    - Spoutnik 1
+    - Apollo 11
+    - Voyager 1
+    correctIndex: 0
+  - englishText: Who was the first person to walk on the Moon?
+    frenchText: "Qui a \xE9t\xE9 la premi\xE8re personne \xE0 marcher sur la Lune
+      ?"
+    englishAnswers:
+    - Neil Armstrong
+    - Buzz Aldrin
+    - Yuri Gagarin
+    frenchAnswers:
+    - Neil Armstrong
+    - Buzz Aldrin
+    - Youri Gagarine
+    correctIndex: 0
+  - englishText: What is the name of the largest asteroid in the asteroid belt?
+    frenchText: "Quel est le nom du plus grand ast\xE9ro\xEFde de la ceinture d'ast\xE9ro\xEFdes
+      ?"
+    englishAnswers:
+    - Vesta
+    - Ceres
+    - Pallas
+    frenchAnswers:
+    - Vesta
+    - "C\xE9r\xE8s"
+    - Pallas
+    correctIndex: 1
+  - englishText: Which planet has a day longer than its year?
+    frenchText: "Quelle plan\xE8te a un jour plus long que son ann\xE9e ?"
+    englishAnswers:
+    - Venus
+    - Neptune
+    - Mercury
+    frenchAnswers:
+    - "V\xE9nus"
+    - Neptune
+    - Mercure
+    correctIndex: 0
+  - englishText: What is the most common element in the Sun?
+    frenchText: "Quel est l'\xE9l\xE9ment le plus commun dans le Soleil ?"
+    englishAnswers:
+    - Oxygen
+    - Hydrogen
+    - Helium
+    frenchAnswers:
+    - "Oxyg\xE8ne"
+    - "Hydrog\xE8ne"
+    - "H\xE9lium"
+    correctIndex: 1
+  - englishText: Which planet rotates on its side?
+    frenchText: "Quelle plan\xE8te tourne sur son c\xF4t\xE9 ?"
+    englishAnswers:
+    - Uranus
+    - Saturn
+    - Pluto
+    frenchAnswers:
+    - Uranus
+    - Saturne
+    - Pluton
+    correctIndex: 0
+  - englishText: Which planet has the shortest year in the Solar System?
+    frenchText: "Quelle plan\xE8te a l'ann\xE9e la plus courte du syst\xE8me solaire
+      ?"
+    englishAnswers:
+    - Jupiter
+    - Mercury
+    - Neptune
+    frenchAnswers:
+    - Jupiter
+    - Mercure
+    - Neptune
+    correctIndex: 1
+  - englishText: Which planet has the longest year in the Solar System?
+    frenchText: "Quelle plan\xE8te a l'ann\xE9e la plus longue du syst\xE8me solaire
+      ?"
+    englishAnswers:
+    - Uranus
+    - Neptune
+    - Saturn
+    frenchAnswers:
+    - Uranus
+    - Neptune
+    - Saturne
+    correctIndex: 1
+  - englishText: What is the Kuiper Belt?
+    frenchText: Qu'est-ce que la ceinture de Kuiper ?
+    englishAnswers:
+    - A region beyond Neptune
+    - A ring around Saturn
+    - A group of comets around the Sun
+    frenchAnswers:
+    - "Une r\xE9gion au-del\xE0 de Neptune"
+    - Un anneau autour de Saturne
+    - "Un groupe de com\xE8tes autour du Soleil"
+    correctIndex: 0
+  - englishText: Which planet has the fastest winds in the Solar System?
+    frenchText: "Quelle plan\xE8te a les vents les plus rapides du syst\xE8me solaire
+      ?"
+    englishAnswers:
+    - Neptune
+    - Saturn
+    - Mars
+    frenchAnswers:
+    - Neptune
+    - Saturne
+    - Mars
+    correctIndex: 0
+  - englishText: What is the Oort Cloud?
+    frenchText: Qu'est-ce que le nuage d'Oort ?
+    englishAnswers:
+    - A region of icy bodies
+    - A black hole
+    - A planet's atmosphere
+    frenchAnswers:
+    - "Une r\xE9gion de corps glac\xE9s"
+    - Un trou noir
+    - "L'atmosph\xE8re d'une plan\xE8te"
+    correctIndex: 0
+  - englishText: What is a light-year?
+    frenchText: "Qu'est-ce qu'une ann\xE9e-lumi\xE8re ?"
+    englishAnswers:
+    - A unit of time
+    - A unit of distance
+    - A measure of brightness
+    frenchAnswers:
+    - "Une unit\xE9 de temps"
+    - "Une unit\xE9 de distance"
+    - "Une mesure de luminosit\xE9"
+    correctIndex: 1
+  - englishText: What is the name of the first animal sent to space?
+    frenchText: "Quel est le nom du premier animal envoy\xE9 dans l'espace ?"
+    englishAnswers:
+    - Laika
+    - Belka
+    - Strelka
+    frenchAnswers:
+    - "La\xEFka"
+    - Belka
+    - Strelka
+    correctIndex: 0
+  - englishText: Which space telescope has provided stunning images of deep space?
+    frenchText: "Quel t\xE9lescope spatial a fourni des images \xE9tonnantes de l'espace
+      lointain ?"
+    englishAnswers:
+    - Hubble
+    - Kepler
+    - Chandra
+    frenchAnswers:
+    - Hubble
+    - Kepler
+    - Chandra
+    correctIndex: 0
+  - englishText: What is the largest volcano in the Solar System?
+    frenchText: "Quel est le plus grand volcan du syst\xE8me solaire ?"
+    englishAnswers:
+    - Olympus Mons
+    - Mauna Loa
+    - Mount Everest
+    frenchAnswers:
+    - Olympus Mons
+    - Mauna Loa
+    - Mont Everest
+    correctIndex: 0
+  - englishText: What is the name of the first space station?
+    frenchText: "Quel est le nom de la premi\xE8re station spatiale ?"
+    englishAnswers:
+    - Mir
+    - Skylab
+    - Salyut 1
+    frenchAnswers:
+    - Mir
+    - Skylab
+    - Saliout 1
+    correctIndex: 2
+  - englishText: Which planet is sometimes called Earth's twin?
+    frenchText: "Quelle plan\xE8te est parfois appel\xE9e la jumelle de la Terre
+      ?"
+    englishAnswers:
+    - Mars
+    - Venus
+    - Neptune
+    frenchAnswers:
+    - Mars
+    - "V\xE9nus"
+    - Neptune
+    correctIndex: 1
+  - englishText: Which planet has the lowest density?
+    frenchText: "Quelle plan\xE8te a la plus faible densit\xE9 ?"
+    englishAnswers:
+    - Saturn
+    - Uranus
+    - Jupiter
+    frenchAnswers:
+    - Saturne
+    - Uranus
+    - Jupiter
+    correctIndex: 0
+  - englishText: Which dwarf planet was once considered the ninth planet?
+    frenchText: "Quelle plan\xE8te naine \xE9tait autrefois consid\xE9r\xE9e comme
+      la neuvi\xE8me plan\xE8te ?"
+    englishAnswers:
+    - Ceres
+    - Eris
+    - Pluto
+    frenchAnswers:
+    - "C\xE9r\xE8s"
+    - "\xC9ris"
+    - Pluton
+    correctIndex: 2
+  - englishText: What is a pulsar?
+    frenchText: Qu'est-ce qu'un pulsar ?
+    englishAnswers:
+    - A type of neutron star
+    - A small black hole
+    - A planet with rapid rotation
+    frenchAnswers:
+    - "Un type d'\xE9toile \xE0 neutrons"
+    - Un petit trou noir
+    - "Une plan\xE8te avec une rotation rapide"
+    correctIndex: 0
+  - englishText: Which spacecraft was the first to land on the Moon?
+    frenchText: "Quel vaisseau spatial a \xE9t\xE9 le premier \xE0 se poser sur la
+      Lune ?"
+    englishAnswers:
+    - Luna 2
+    - Apollo 11
+    - Viking 1
+    frenchAnswers:
+    - Luna 2
+    - Apollo 11
+    - Viking 1
+    correctIndex: 1
+  - englishText: "What is the name of NASA\u2019s rover currently exploring Mars?"
+    frenchText: Quel est le nom du rover de la NASA qui explore actuellement Mars
+      ?
+    englishAnswers:
+    - Curiosity
+    - Opportunity
+    - Voyager
+    frenchAnswers:
+    - Curiosity
+    - Opportunity
+    - Voyager
+    correctIndex: 0
+  - englishText: What is dark matter?
+    frenchText: "Qu'est-ce que la mati\xE8re noire ?"
+    englishAnswers:
+    - Invisible mass in the universe
+    - A type of black hole
+    - A star in deep space
+    frenchAnswers:
+    - Masse invisible dans l'univers
+    - Un type de trou noir
+    - "Une \xE9toile dans l'espace lointain"
+    correctIndex: 0
+  - englishText: What is dark energy?
+    frenchText: "Qu'est-ce que l'\xE9nergie noire ?"
+    englishAnswers:
+    - An unknown force causing expansion
+    - A type of radiation
+    - The energy of black holes
+    frenchAnswers:
+    - Une force inconnue provoquant l'expansion
+    - Un type de rayonnement
+    - "L'\xE9nergie des trous noirs"
+    correctIndex: 0
+  - englishText: What is a quasar?
+    frenchText: Qu'est-ce qu'un quasar ?
+    englishAnswers:
+    - A black hole with extreme brightness
+    - A type of pulsar
+    - A small galaxy
+    frenchAnswers:
+    - "Un trou noir d'une luminosit\xE9 extr\xEAme"
+    - Un type de pulsar
+    - Une petite galaxie
+    correctIndex: 0
+  - englishText: Which mission first landed humans on the Moon?
+    frenchText: Quelle mission a permis aux premiers humains de se poser sur la Lune
+      ?
+    englishAnswers:
+    - Apollo 11
+    - Apollo 13
+    - Gemini 4
+    frenchAnswers:
+    - Apollo 11
+    - Apollo 13
+    - Gemini 4
+    correctIndex: 0
+  - englishText: What is the name of the boundary around a black hole?
+    frenchText: Quel est le nom de la limite autour d'un trou noir ?
+    englishAnswers:
+    - Event horizon
+    - Singularity
+    - Photon ring
+    frenchAnswers:
+    - "Horizon des \xE9v\xE9nements"
+    - "Singularit\xE9"
+    - Anneau de photons
+    correctIndex: 0
+  - englishText: "What is the primary component of Saturn\u2019s rings?"
+    frenchText: Quel est le composant principal des anneaux de Saturne ?
+    englishAnswers:
+    - Ice and rock
+    - Dust and gas
+    - Iron and nickel
+    frenchAnswers:
+    - Glace et roche
+    - "Poussi\xE8re et gaz"
+    - Fer et nickel
+    correctIndex: 0
+  timeUpKey: time_up
 --- !u!4 &1208076041
 Transform:
   m_ObjectHideFlags: 0
@@ -2366,7 +2869,7 @@ AudioSource:
   m_Resource: {fileID: 8300000, guid: e8dd7ce8a9a146b4190b035db16c97ab, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.05
-  m_Pitch: 1
+  m_Pitch: 0.75
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -2822,7 +3325,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5601597991642280980, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4094438306634953674}
+    - targetCorrespondingSourceObject: {fileID: 6450532539239425843, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4094438306634953673}
+    - targetCorrespondingSourceObject: {fileID: 3058814857377611157, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4094438306634953672}
+    - targetCorrespondingSourceObject: {fileID: 4165111179184648421, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4094438306634953671}
   m_SourcePrefab: {fileID: 100100000, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
 --- !u!114 &4094438306634953665 stripped
 MonoBehaviour:
@@ -2846,6 +3361,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4094438306634953667 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4165111179184648421, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+  m_PrefabInstance: {fileID: 4094438306634953664}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4094438306634953668 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3058814857377611157, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+  m_PrefabInstance: {fileID: 4094438306634953664}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4094438306634953669 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6450532539239425843, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+  m_PrefabInstance: {fileID: 4094438306634953664}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4094438306634953670 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5601597991642280980, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+  m_PrefabInstance: {fileID: 4094438306634953664}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4094438306634953671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4094438306634953667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fcc19c9a50df9245a089e0973c745f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: highscore_text
+--- !u!114 &4094438306634953672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4094438306634953668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fcc19c9a50df9245a089e0973c745f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: finalscore_text
+--- !u!114 &4094438306634953673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4094438306634953669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fcc19c9a50df9245a089e0973c745f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: gameover_text
+--- !u!114 &4094438306634953674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4094438306634953670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fcc19c9a50df9245a089e0973c745f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: exit_button
 --- !u!1001 &4178956913512986168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3619,3 +4206,4 @@ SceneRoots:
   - {fileID: 1089544997}
   - {fileID: 8248229429509008409}
   - {fileID: 2097273140}
+  - {fileID: 461652737}
