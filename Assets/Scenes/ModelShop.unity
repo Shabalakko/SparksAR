@@ -417,6 +417,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5916124344581850774, guid: e27eaf8a6999e544296b611edac4c0c5, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5935709872084575726, guid: e27eaf8a6999e544296b611edac4c0c5, type: 3}
       propertyPath: m_Name
       value: UnloadAnim
@@ -6647,7 +6651,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1510584728}
   m_HandleRect: {fileID: 1510584727}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7048,6 +7052,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8419300614233146166, guid: 51b1b9e509b73db44b06646b5c088055, type: 3}
       propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419300614233146166, guid: 51b1b9e509b73db44b06646b5c088055, type: 3}
+      propertyPath: m_MatchWidthOrHeight
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8419300614233146166, guid: 51b1b9e509b73db44b06646b5c088055, type: 3}
