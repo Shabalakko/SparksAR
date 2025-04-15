@@ -1145,6 +1145,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 79a28fbcda3d891419cb3b59b4c5d125, type: 3}
+    - target: {fileID: 6475140382133158890, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: m_Maskable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475140382133158890, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6911630934631348290, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
       propertyPath: m_Color.b
       value: 0

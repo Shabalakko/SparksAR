@@ -1495,8 +1495,8 @@ MonoBehaviour:
   endColor: {r: 1, g: 0, b: 0, a: 1}
   startScale: {x: 1, y: 1, z: 1}
   endScale: {x: 3, y: 3, z: 3}
-  startPosition: {x: 0, y: -110, z: 0}
-  endPosition: {x: 0, y: -110, z: 0}
+  startPosition: {x: -441, y: -254.6405, z: 0}
+  endPosition: {x: -441, y: -254.6405, z: 0}
   startAlpha: 1
   endAlpha: 1
   Lasers: {fileID: 330585543}
@@ -2970,7 +2970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &2097273139
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3629,6 +3629,10 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5479037567296096564, guid: ad9678b2e48e5814fb1018f868ea6937, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5543503853802565553, guid: ad9678b2e48e5814fb1018f868ea6937, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4139,7 +4143,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2453874375886175988, guid: 4ff01c38ae982fc4a9b194beba2e9c79, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.458745e-11
+      value: -8.731149e-11
       objectReference: {fileID: 0}
     - target: {fileID: 2453874375886175988, guid: 4ff01c38ae982fc4a9b194beba2e9c79, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4183,7 +4187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3729167595501130472, guid: 4ff01c38ae982fc4a9b194beba2e9c79, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7568418414435223656, guid: 4ff01c38ae982fc4a9b194beba2e9c79, type: 3}
       propertyPath: _localToGlobeFixedMatrix.c0.x
