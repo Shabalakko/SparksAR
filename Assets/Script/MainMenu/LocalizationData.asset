@@ -46,6 +46,9 @@ MonoBehaviour:
   - key: finalscore_text
     englishText: Score
     frenchText: Score
-  - key: highscore_text
-    englishText: High Score
-    frenchText: Meilleur Score
+  - key: resetcamera_button
+    englishText: Reset Camera
+    frenchText: "R\xE9initialiser la Cam\xE9ra"
+  - key: resume_button
+    englishText: Resume
+    frenchText: Reprendre le Jeu

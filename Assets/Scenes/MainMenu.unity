@@ -6050,6 +6050,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5598723419344813297, guid: 7bf725f8c6d16d646bd7d8fe01f7932c, type: 3}
+      propertyPath: m_IsGlobal
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7466876041929143061, guid: 7bf725f8c6d16d646bd7d8fe01f7932c, type: 3}
       propertyPath: m_Name
       value: CRT
