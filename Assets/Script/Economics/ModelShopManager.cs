@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using System;
-using UnityEngine.SceneManagement; // Assicurati di includere questo namespace
+using UnityEngine.SceneManagement;
 
 public class ModelShopManager : MonoBehaviour
 {
@@ -14,7 +14,6 @@ public class ModelShopManager : MonoBehaviour
     public TextMeshProUGUI totalCoinsText;
     public Transform shopItemsContainer;
     public GameObject shopItemPrefab;
-    public Button resetButton; // Riferimento al pulsante di reset
 
     [Header("Model Parts Data")]
     public List<ModelPartData> modelPartsData = new List<ModelPartData>();
@@ -24,7 +23,7 @@ public class ModelShopManager : MonoBehaviour
     public static event Action<ModelPartData> OnPartPurchased;
 
     [Header("Testing Options")]
-    public bool resetPartsOnStart = false; // Resetta le parti all'avvio per il testing
+    public bool resetPartsOnStart = false;
 
     void Start()
     {
@@ -38,24 +37,13 @@ public class ModelShopManager : MonoBehaviour
         {
             Debug.LogError("Model Container non assegnato a ModelShopManager!");
         }
-        if (resetPartsOnStart) // Resetta le parti se l'opzione è abilitata
+        if (resetPartsOnStart)
         {
-            ResetUnlockedParts();
+            //ResetUnlockedParts();
         }
         InitializeModel();
         PopulateShop();
         UpdateCoinsUI();
-
-        // Assicura che il pulsante di reset sia assegnato
-        if (resetButton != null)
-        {
-            // Aggiunge un listener al click del pulsante di reset
-            resetButton.onClick.AddListener(ResetUnlockedParts); // Corretto qui
-        }
-        else
-        {
-            Debug.LogError("Reset button not assigned to ModelShopManager script!");
-        }
     }
 
     void OnEnable()
@@ -104,7 +92,7 @@ public class ModelShopManager : MonoBehaviour
                 Debug.LogError("ShopItemPrefab non ha uno script ShopItemUI!");
             }
         }
-        LoadButtonStates(); // Carica lo stato dei pulsanti dopo averli creati
+        LoadButtonStates();
     }
 
     void UpdateCoinsUI(int totalCoins)
@@ -153,7 +141,7 @@ public class ModelShopManager : MonoBehaviour
     void SaveUnlockedPart(ModelPartData partData)
     {
         PlayerPrefs.SetInt(partData.partName, 1);
-        PlayerPrefs.SetInt(partData.partName + "_purchased", 1); // Salva anche lo stato di acquisto
+        PlayerPrefs.SetInt(partData.partName + "_purchased", 1);
         PlayerPrefs.Save();
     }
 
@@ -176,25 +164,11 @@ public class ModelShopManager : MonoBehaviour
             if (shopItemUI != null && shopItemUI.partData == partData)
             {
                 shopItemUI.purchaseButton.interactable = false;
-                PlayerPrefs.SetInt(partData.partName + "_button", 0); //salva anche lo stato del bottone
+                PlayerPrefs.SetInt(partData.partName + "_button", 0);
                 PlayerPrefs.Save();
                 break;
             }
         }
-    }
-
-    // Metodo per resettare le parti sbloccate in PlayerPrefs
-    public void ResetUnlockedParts() // Modificato da private a public
-    {
-        foreach (ModelPartData partData in modelPartsData)
-        {
-            PlayerPrefs.DeleteKey(partData.partName);
-            PlayerPrefs.DeleteKey(partData.partName + "_purchased"); // Resetta anche lo stato di acquisto
-            PlayerPrefs.DeleteKey(partData.partName + "_button");
-        }
-        PlayerPrefs.Save();
-        Debug.Log("Unlocked parts reset!");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void LoadButtonStates()

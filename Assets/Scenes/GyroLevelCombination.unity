@@ -3631,7 +3631,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5479037567296096564, guid: ad9678b2e48e5814fb1018f868ea6937, type: 3}
       propertyPath: m_MatchWidthOrHeight
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5543503853802565553, guid: ad9678b2e48e5814fb1018f868ea6937, type: 3}
       propertyPath: m_Pivot.x
@@ -3795,6 +3795,10 @@ PrefabInstance:
       propertyPath: Terrain
       value: 
       objectReference: {fileID: 4426006395656265373}
+    - target: {fileID: 3796261491442968433, guid: b62fd34199976844fbe1448f9ceb8528, type: 3}
+      propertyPath: coinsText
+      value: 
+      objectReference: {fileID: 4094438306634953665}
     - target: {fileID: 3796261491442968433, guid: b62fd34199976844fbe1448f9ceb8528, type: 3}
       propertyPath: scoreManager
       value: 

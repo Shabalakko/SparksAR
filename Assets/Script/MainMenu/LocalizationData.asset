@@ -52,3 +52,152 @@ MonoBehaviour:
   - key: resume_button
     englishText: Resume
     frenchText: Reprendre le Jeu
+  - key: controls_text
+    englishText: Controls
+    frenchText: Commandes
+  - key: gyroscope_title
+    englishText: Gyroscope
+    frenchText: Gyroscope
+  - key: You can look around freely with a full 360-degree view using the gyroscope_desc
+    englishText: You can look around freely with a full 360-degree view using the
+      gyroscope
+    frenchText: "Vous pouvez regarder librement autour de vous avec une vue compl\xE8te
+      \xE0 360 degr\xE9s en utilisant le gyroscope."
+  - key: Red Laser (RL)_title
+    englishText: Red Laser (RL)
+    frenchText: Laser Rouge (LR)
+  - key: Activate the Red Laser by tapping and holding on the highlighted area on
+      the right side of the screen_desc
+    englishText: Activate the Red Laser by tapping and holding on the highlighted
+      area on the right side of the screen
+    frenchText: "Activez le Laser Rouge en touchant et en maintenant la zone en surbrillance
+      sur le c\xF4t\xE9 droit de l'\xE9cran."
+  - key: Blue Laser (BL)_title
+    englishText: Blue Laser (BL)
+    frenchText: Laser Bleu (LB)
+  - key: Activate the Blue Laser by tapping and holding on the highlighted area on
+      the left side of the screen_desc
+    englishText: Activate the Blue Laser by tapping and holding on the highlighted
+      area on the left side of the screen
+    frenchText: "Activez le Laser Bleu en touchant et en maintenant la zone en surbrillance
+      sur le c\xF4t\xE9 gauche de l'\xE9cran"
+  - key: Red Debris (RD)_title
+    englishText: Red Debris (RD)
+    frenchText: "D\xE9bris Rouges (DR)"
+  - key: Aim at RDs. Use the Red Laser to destroy them_desc
+    englishText: Aim at RDs. Use the Red Laser to destroy them
+    frenchText: "Visez les DRs. Utilisez le Laser Rouge pour les d\xE9truire."
+  - key: Blue Debris (BD)_title
+    englishText: Blue Debris (BD)
+    frenchText: "D\xE9bris Bleus (DB)"
+  - key: Aim at BDs. Use the Blue Laser to destroy them_desc
+    englishText: Aim at BDs. Use the Blue Laser to destroy them
+    frenchText: "Visez les DBs. Utilisez le Laser Bleu pour les d\xE9truire."
+  - key: Special Data Debris (SDD)_title
+    englishText: Special Data Debris (SDD)
+    frenchText: "D\xE9bris de Donn\xE9es Sp\xE9ciaux (DDS)"
+  - key: Aim at SDDs. Use the Red Laser or Blue Laser to destroy them. By using both
+      lasers at the same time, you'll destroy SDDs faster. Next, you'll face a multiple-choice
+      data quiz_desc
+    englishText: Aim at SDDs. Use the Red Laser or Blue Laser to destroy them. By
+      using both lasers at the same time, you'll destroy SDDs faster. Next, you'll
+      face a multiple-choice data quiz
+    frenchText: "Visez les DDS. Utilisez le Laser Rouge ou le Laser Bleu pour les
+      d\xE9truire. En utilisant les deux lasers en m\xEAme temps, vous d\xE9truirez
+      les DDS plus rapidement. Ensuite, vous ferez face \xE0 un quiz de donn\xE9es
+      \xE0 choix multiples"
+  - key: Color Mix mechanic_title
+    englishText: Color Mix mechanic
+    frenchText: "M\xE9canique de M\xE9lange de Couleurs"
+  - key: Destroy RDs and/or BDs to charge the three central modules and trigger different
+      combinations. No time limit. SDDs will not charge the modules_desc
+    englishText: Destroy RDs and/or BDs to charge the three central modules and trigger
+      different combinations. No time limit. SDDs will not charge the modules
+    frenchText: "D\xE9truisez les DRs et/ou les DBs pour charger les trois modules
+      centraux et d\xE9clencher diff\xE9rentes combinaisons. Pas de limite de temps.
+      Les DDS ne chargeront pas les modules"
+  - key: Mix Points_title
+    englishText: Mix Points
+    frenchText: "Points de M\xE9lange"
+  - key: Trigger different combinations to earn different amounts of points_desc
+    englishText: Trigger different combinations to earn different amounts of points
+    frenchText: "D\xE9clenchez diff\xE9rentes combinaisons pour gagner diff\xE9rentes
+      quantit\xE9s de points"
+  - key: SDDs Mix Points_title
+    englishText: SDDs Mix Points
+    frenchText: "Points de M\xE9lange DDS"
+  - key: Destroying SSDs, and correctly answering the Data Quiz, will earn you high
+      points_desc
+    englishText: Destroying SSDs, and correctly answering the Data Quiz, will earn
+      you high points
+    frenchText: "D\xE9truire les DDS et r\xE9pondre correctement au Quiz de Donn\xE9es
+      vous rapportera beaucoup de points"
+  - key: Red Debris (RD)_title
+    englishText: Red Debris (RD)
+    frenchText: "D\xE9bris Rouges (DR)"
+  - key: Aim at RDs. Use the Red Laser to destroy them. Performing this action will
+      drain the Red Battery. Destroying the RDs will charge the Blue Battery_desc
+    englishText: Aim at RDs. Use the Red Laser to destroy them. Performing this action
+      will drain the Red Battery. Destroying the RDs will charge the Blue Battery
+    frenchText: " Visez les DRs. Utilisez le Laser Rouge pour les d\xE9truire. Cette
+      action videra la Batterie Rouge. D\xE9truire les DRs chargera la Batterie Bleue"
+  - key: Blue Debris (BD)_title
+    englishText: Blue Debris (BD)
+    frenchText: "D\xE9bris Bleus (DB)"
+  - key: Aim at BDs. Use the Blue Laser to destroy them. Performing this action will
+      drain the Blue Battery. Destroying the BDs will charge the Red Battery_desc
+    englishText: Aim at BDs. Use the Blue Laser to destroy them. Performing this
+      action will drain the Blue Battery. Destroying the BDs will charge the Red
+      Battery
+    frenchText: "Visez les DBs. Utilisez le Laser Bleu pour les d\xE9truire. Cette
+      action videra la Batterie Bleue. D\xE9truire les DBs chargera la Batterie Rouge"
+  - key: Special Data Debris (SDD)_title
+    englishText: Special Data Debris (SDD)
+    frenchText: "D\xE9bris de Donn\xE9es Sp\xE9ciaux (DDS)"
+  - key: Aim at SDDs. Use the Red Laser or Blue Laser to destroy them, draining the
+      corresponding batteries. By using both lasers at the same time, you'll destroy
+      SDDs faster, but you'll also drain both batteries. Next, you'll face a multiple-choice
+      data quiz_desc
+    englishText: Aim at SDDs. Use the Red Laser or Blue Laser to destroy them, draining
+      the corresponding batteries. By using both lasers at the same time, you'll
+      destroy SDDs faster, but you'll also drain both batteries. Next, you'll face
+      a multiple-choice data quiz
+    frenchText: "Visez les DDS. Utilisez le Laser Rouge ou le Laser Bleu pour les
+      d\xE9truire, ce qui videra les batteries correspondantes. En utilisant les
+      deux lasers en m\xEAme temps, vous d\xE9truirez les DDS plus rapidement, mais
+      vous viderez \xE9galement les deux batteries. Ensuite, vous ferez face \xE0
+      un quiz de donn\xE9es \xE0 choix multiples"
+  - key: Combo Chain mechanic_title
+    englishText: Combo Chain mechanic
+    frenchText: "M\xE9canique de Cha\xEEne Combo"
+  - key: Destroying RDs and BDs will increase the first multiplier value. Destroying
+      RDs or BDs consecutively, will also increase the second multiplier value. The
+      higher these values, the less time you'll have to keep the chain going_desc
+    englishText: Destroying RDs and BDs will increase the first multiplier value.
+      Destroying RDs or BDs consecutively, will also increase the second multiplier
+      value. The higher these values, the less time you'll have to keep the chain
+      going
+    frenchText: "D\xE9truire les DRs et les DBs augmentera la valeur du premier multiplicateur.
+      D\xE9truire les DRs ou les DBs cons\xE9cutivement augmentera \xE9galement la
+      valeur du deuxi\xE8me multiplicateur. Plus ces valeurs sont \xE9lev\xE9es,
+      moins vous aurez de temps pour maintenir la cha\xEEne."
+  - key: Chain Points_title
+    englishText: Chain Points
+    frenchText: "Points de Cha\xEEne"
+  - key: Destroying Red debris and/or Blue debris increases the score. The higher
+      the multipliers, the more points each debris is worth. SDDs Chain Points_desc
+    englishText: Destroying Red debris and/or Blue debris increases the score. The
+      higher the multipliers, the more points each debris is worth. SDDs Chain Points
+    frenchText: "D\xE9truire les d\xE9bris Rouges et/ou Bleus augmente le score.
+      Plus les multiplicateurs sont \xE9lev\xE9s, plus chaque d\xE9bris rapporte
+      de points."
+  - key: SDDs Chain Points_title
+    englishText: SDDs Chain Points
+    frenchText: "Points de Cha\xEEne DDS"
+  - key: Destroying SSDs increases the score significantly. If the Data Quiz is answered
+      correctly and the multipliers are high, even more points are awarded._desc
+    englishText: Destroying SSDs increases the score significantly. If the Data Quiz
+      is answered correctly and the multipliers are high, even more points are awarded.
+    frenchText: "D\xE9truire les DDS augmente consid\xE9rablement le score. Si le
+      Quiz de Donn\xE9es est r\xE9ussi et que les multiplicateurs sont \xE9lev\xE9s,
+      encore plus de points sont attribu\xE9s."
