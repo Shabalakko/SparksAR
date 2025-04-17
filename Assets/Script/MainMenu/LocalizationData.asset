@@ -213,3 +213,81 @@ MonoBehaviour:
   - key: chain_button
     englishText: Chain
     frenchText: "Cha\xEEne"
+  - key: ANTENNA_NAME
+    englishText: Antenna
+    frenchText: Antenne
+  - key: FRONT_CAMERA_1_NAME
+    englishText: Front camera 1
+    frenchText: "Cam\xE9ra frontale 1"
+  - key: FRONT_CAMERA_2_NAME
+    englishText: Front camera 2
+    frenchText: "Cam\xE9ra frontale 2"
+  - key: FRONT_CAMERA_SYSTEM_NAME
+    englishText: Front camera system
+    frenchText: "Syst\xE8me de cam\xE9ra frontale"
+  - key: FRONT_SENSOR_NAME
+    englishText: Front sensor
+    frenchText: Capteur avant
+  - key: PURCHASE_BUTTON
+    englishText: Buy
+    frenchText: Acheter
+  - key: MAIN_BODY_NAME
+    englishText: Main body
+    frenchText: Corps principal
+  - key: MASTERCAM_SYSTEM_NAME
+    englishText: Mastercam system
+    frenchText: "Syst\xE8me Mastercam"
+  - key: RADAR_NAME
+    englishText: Radar
+    frenchText: Radar
+  - key: RADAR_CAMERA_SYSTEM_NAME
+    englishText: Radar camera system
+    frenchText: "Syst\xE8me de radar et cam\xE9ra"
+  - key: RADAR_SENSOR_NAME
+    englishText: Radar sensor
+    frenchText: Capteur radar
+  - key: ROBOT_ARM_NAME
+    englishText: Robot arm
+    frenchText: Bras robot
+  - key: SOLAR_PANEL_BASE_A_LT_NAME
+    englishText: Solar panel base A LT
+    frenchText: Base de panneau solaire A LT
+  - key: SOLAR_PANEL_BASE_B_LT_NAME
+    englishText: Solar panel base B LT
+    frenchText: Base de panneau solaire B LT
+  - key: SOLAR_PANEL_BASE_B_RT_NAME
+    englishText: Solar panel base B RT
+    frenchText: Base de panneau solaire B RT
+  - key: SOLAR_PANEL_BASE_B_LT_NAME
+    englishText: Solar panel base B LT
+    frenchText: Base de panneau solaire B LT
+  - key: WHEEL_BRACKET_LT_NAME
+    englishText: Wheel bracket LT
+    frenchText: Support de roue LT
+  - key: WHEEL_BRACKET_RT_NAME
+    englishText: Wheel bracket RT
+    frenchText: Support de roue RT
+  - key: WHEEL_1_NAME
+    englishText: Wheel 1
+    frenchText: Roue 1
+  - key: WHEEL_2_NAME
+    englishText: Wheel 2
+    frenchText: Roue 2
+  - key: WHEEL_3_NAME
+    englishText: Wheel 3
+    frenchText: Roue 3
+  - key: WHEEL_4_NAME
+    englishText: Wheel 4
+    frenchText: Roue 4
+  - key: WHEEL_5_NAME
+    englishText: Wheel 5
+    frenchText: Roue 5
+  - key: WHEEL_6_NAME
+    englishText: Wheel 6
+    frenchText: Roue 6
+  - key: REAR_SENSOR_1_NAME
+    englishText: Rear sensor 1
+    frenchText: "Capteur arri\xE8re 1"
+  - key: REAR_SENSOR_2_NAME
+    englishText: Rear sensor 1
+    frenchText: "Capteur arri\xE8re 1"

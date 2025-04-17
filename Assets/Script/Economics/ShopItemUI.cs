@@ -18,7 +18,7 @@ public class ShopItemUI : MonoBehaviour
         shopManager = manager;
 
         partNameText.text = partData.partName;
-        costText.text = partData.cost + " Monete";
+        costText.text = partData.cost + "";
         purchaseButton.onClick.AddListener(OnPurchaseButtonClicked);
     }
 

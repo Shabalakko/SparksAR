@@ -12,6 +12,7 @@ public class ModelShopManager : MonoBehaviour
 
     [Header("UI References")]
     public TextMeshProUGUI totalCoinsText;
+    public TextMeshProUGUI shopTitleText;
     public Transform shopItemsContainer;
     public GameObject shopItemPrefab;
 
@@ -21,6 +22,13 @@ public class ModelShopManager : MonoBehaviour
 
     private List<GameObject> modelParts = new List<GameObject>();
     public static event Action<ModelPartData> OnPartPurchased;
+
+    [Header("Localization Keys")]
+    public string shopTitleKey = "SHOP_TITLE";
+    // You can define a base key or a pattern here if needed,
+    // or directly use the partName as a basis.
+    // Example: public string partNameKeyPrefix = "PART_NAME_";
+    // Example: public string descriptionKeyPrefix = "PART_DESC_";
 
     [Header("Testing Options")]
     public bool resetPartsOnStart = false;
@@ -44,17 +52,21 @@ public class ModelShopManager : MonoBehaviour
         InitializeModel();
         PopulateShop();
         UpdateCoinsUI();
+        UpdateLocalizedUI();
     }
 
     void OnEnable()
     {
         WalletManager.OnCoinsChanged += UpdateCoinsUI;
+        LanguageManager.onLanguageChanged += UpdateLocalizedUI;
     }
 
     void OnDisable()
     {
         WalletManager.OnCoinsChanged -= UpdateCoinsUI;
+        LanguageManager.onLanguageChanged -= UpdateLocalizedUI;
     }
+
     private void InitializeModel()
     {
         if (modelContainer != null)
@@ -82,14 +94,17 @@ public class ModelShopManager : MonoBehaviour
         foreach (ModelPartData partData in modelPartsData)
         {
             GameObject shopItem = Instantiate(shopItemPrefab, shopItemsContainer);
-            ShopItemUI shopItemUI = shopItem.GetComponent<ShopItemUI>();
+            LocalizedShopItemUI shopItemUI = shopItem.GetComponent<LocalizedShopItemUI>();
             if (shopItemUI != null)
             {
+                // Dynamically set the localization keys based on the ModelPartData
+                shopItemUI.partNameKey = partData.partName.ToUpper().Replace(" ", "_") + "_NAME";
+                shopItemUI.descriptionKey = partData.partName.ToUpper().Replace(" ", "_") + "_DESC";
                 shopItemUI.Initialize(partData, this);
             }
             else
             {
-                Debug.LogError("ShopItemPrefab non ha uno script ShopItemUI!");
+                Debug.LogError("ShopItemPrefab non ha uno script LocalizedShopItemUI!");
             }
         }
         LoadButtonStates();
@@ -99,14 +114,31 @@ public class ModelShopManager : MonoBehaviour
     {
         if (totalCoinsText != null)
         {
-            totalCoinsText.text = "Monete: " + walletManager.GetTotalCoins();
+            totalCoinsText.text = "" + walletManager.GetTotalCoins();
         }
     }
     void UpdateCoinsUI()
     {
         if (totalCoinsText != null)
         {
-            totalCoinsText.text = "Monete: " + walletManager.GetTotalCoins();
+            totalCoinsText.text = "" + walletManager.GetTotalCoins();
+        }
+    }
+
+    void UpdateLocalizedUI()
+    {
+        if (shopTitleText != null && LanguageManager.instance != null)
+        {
+            shopTitleText.text = LanguageManager.instance.GetLocalizedText(shopTitleKey, "Shop");
+        }
+
+        foreach (Transform child in shopItemsContainer)
+        {
+            LocalizedShopItemUI shopItemUI = child.GetComponent<LocalizedShopItemUI>();
+            if (shopItemUI != null)
+            {
+                shopItemUI.UpdateText();
+            }
         }
     }
 
@@ -160,7 +192,7 @@ public class ModelShopManager : MonoBehaviour
     {
         foreach (Transform child in shopItemsContainer)
         {
-            ShopItemUI shopItemUI = child.GetComponent<ShopItemUI>();
+            LocalizedShopItemUI shopItemUI = child.GetComponent<LocalizedShopItemUI>();
             if (shopItemUI != null && shopItemUI.partData == partData)
             {
                 shopItemUI.purchaseButton.interactable = false;
@@ -175,7 +207,7 @@ public class ModelShopManager : MonoBehaviour
     {
         foreach (Transform child in shopItemsContainer)
         {
-            ShopItemUI shopItemUI = child.GetComponent<ShopItemUI>();
+            LocalizedShopItemUI shopItemUI = child.GetComponent<LocalizedShopItemUI>();
             if (shopItemUI != null)
             {
                 string buttonKey = shopItemUI.partData.partName + "_button";
@@ -192,12 +224,4 @@ public class ModelShopManager : MonoBehaviour
             }
         }
     }
-}
-
-[System.Serializable]
-public class ModelPartData
-{
-    public string partName;
-    public int cost;
-    public string description;
 }

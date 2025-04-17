@@ -6,24 +6,25 @@ public class ToggleLanguageButton : MonoBehaviour
 {
     public string englishLanguageCode = "ENGLISH";
     public string frenchLanguageCode = "FRENCH";
-    public Color englishColor = Color.blue;
-    public Color frenchColor = Color.red;
-    public Graphic targetGraphic; // Riferimento all'elemento grafico del bottone (Image o TextMeshProUGUI)
-    private Text buttonText;
-    private TextMeshProUGUI tmpButtonText;
+    public Texture2D englishTexture;
+    public Texture2D frenchTexture;
+    public RawImage targetRawImage; // Riferimento all'elemento RawImage del bottone
+    private Image targetImage; // Riferimento all'elemento Image del bottone (per Sprite)
 
     void Start()
     {
-        buttonText = GetComponentInChildren<Text>();
-        tmpButtonText = GetComponentInChildren<TextMeshProUGUI>();
-
-        // Se targetGraphic non è assegnato, prova a prendere l'Image o TextMeshProUGUI del bottone stesso
-        if (targetGraphic == null)
+        // Se targetRawImage non è assegnato, prova a prendere il RawImage del bottone stesso
+        if (targetRawImage == null)
         {
-            targetGraphic = GetComponent<Image>();
-            if (targetGraphic == null)
+            targetRawImage = GetComponent<RawImage>();
+            if (targetRawImage == null)
             {
-                targetGraphic = GetComponent<TextMeshProUGUI>();
+                // Se non c'è un RawImage, cerca un componente Image (per usare Sprite)
+                targetImage = GetComponent<Image>();
+                if (targetImage == null)
+                {
+                    Debug.LogError("Nessun componente RawImage o Image trovato su questo bottone di cambio lingua.");
+                }
             }
         }
 
@@ -48,22 +49,21 @@ public class ToggleLanguageButton : MonoBehaviour
 
     void UpdateVisuals()
     {
-        if (buttonText != null && LanguageManager.instance != null)
+        if (targetRawImage != null && LanguageManager.instance != null)
         {
-            buttonText.text = LanguageManager.instance.currentLanguage == englishLanguageCode ? "EN" : "FR";
+            targetRawImage.texture = LanguageManager.instance.currentLanguage == englishLanguageCode ? englishTexture : frenchTexture;
         }
-        else if (tmpButtonText != null && LanguageManager.instance != null)
+        else if (targetImage != null && LanguageManager.instance != null)
         {
-            tmpButtonText.text = LanguageManager.instance.currentLanguage == englishLanguageCode ? "EN" : "FR";
-        }
+            // Se stai usando un componente Image, puoi cambiare lo Sprite
+            Sprite englishSprite = englishTexture != null ? Sprite.Create(englishTexture, new Rect(0, 0, englishTexture.width, englishTexture.height), Vector2.one * 0.5f) : null;
+            Sprite frenchSprite = frenchTexture != null ? Sprite.Create(frenchTexture, new Rect(0, 0, frenchTexture.width, frenchTexture.height), Vector2.one * 0.5f) : null;
 
-        if (targetGraphic != null && LanguageManager.instance != null)
-        {
-            targetGraphic.color = LanguageManager.instance.currentLanguage == englishLanguageCode ? englishColor : frenchColor;
+            targetImage.sprite = LanguageManager.instance.currentLanguage == englishLanguageCode ? englishSprite : frenchSprite;
         }
         else
         {
-            Debug.LogWarning("Target Graphic non assegnato al bottone di cambio lingua.");
+            Debug.LogWarning("Componente RawImage o Image non assegnato al bottone di cambio lingua.");
         }
     }
 }
