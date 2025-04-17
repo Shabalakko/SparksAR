@@ -201,3 +201,15 @@ MonoBehaviour:
     frenchText: "D\xE9truire les DDS augmente consid\xE9rablement le score. Si le
       Quiz de Donn\xE9es est r\xE9ussi et que les multiplicateurs sont \xE9lev\xE9s,
       encore plus de points sont attribu\xE9s."
+  - key: lasers_button
+    englishText: Laser
+    frenchText: Laser
+  - key: mix_button
+    englishText: Mix
+    frenchText: Mix
+  - key: score_button
+    englishText: Score
+    frenchText: Score
+  - key: chain_button
+    englishText: Chain
+    frenchText: "Cha\xEEne"

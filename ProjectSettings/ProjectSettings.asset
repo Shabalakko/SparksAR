@@ -266,8 +266,8 @@ PlayerSettings:
   AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/FABLAB_4/.android/debug.keystore
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: C:/Users/FABLAB_4/Desktop/Signin key folder/user.keystore
+  AndroidKeyaliasName: demo key
   AndroidEnableArmv9SecurityFeatures: 1
   AndroidEnableArm64MTE: 0
   AndroidBuildApkPerCpuArchitecture: 0

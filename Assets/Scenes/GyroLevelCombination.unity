@@ -1947,6 +1947,485 @@ MonoBehaviour:
     - "Poussi\xE8re et gaz"
     - Fer et nickel
     correctIndex: 0
+  - englishText: What is space debris primarily composed of?
+    frenchText: "De quoi les d\xE9bris spatiaux sont-ils principalement compos\xE9s
+      ?"
+    englishAnswers:
+    - Defunct satellites and rocket fragments
+    - Alien spacecraft remnants
+    - Natural meteoroids
+    frenchAnswers:
+    - "Satellites hors service et fragments de fus\xE9es"
+    - Restes de vaisseaux spatiaux extraterrestres
+    - "M\xE9t\xE9oro\xEFdes naturels"
+    correctIndex: 0
+  - englishText: "What is the K\xE1rm\xE1n line, often considered the boundary of
+      space?"
+    frenchText: "Qu'est-ce que la ligne de K\xE1rm\xE1n, souvent consid\xE9r\xE9e
+      comme la limite de l'espace ?"
+    englishAnswers:
+    - 100 km above sea level
+    - 50 km above sea level
+    - 200 km above sea level
+    frenchAnswers:
+    - 100 km au-dessus du niveau de la mer
+    - 50 km au-dessus du niveau de la mer
+    - 200 km au-dessus du niveau de la mer
+    correctIndex: 0
+  - englishText: What is the primary danger of space debris to spacecraft?
+    frenchText: "Quel est le danger principal des d\xE9bris spatiaux pour les engins
+      spatiaux ?"
+    englishAnswers:
+    - High-speed collisions
+    - Radiation exposure
+    - Gravitational interference
+    frenchAnswers:
+    - "Collisions \xE0 haute vitesse"
+    - Exposition aux radiations
+    - "Interf\xE9rence gravitationnelle"
+    correctIndex: 0
+  - englishText: What is the main purpose of Thales Alenia Space?
+    frenchText: Quel est le but principal de Thales Alenia Space ?
+    englishAnswers:
+    - Designing and building satellites
+    - Launching astronauts into space
+    - Mining asteroids
+    frenchAnswers:
+    - Concevoir et construire des satellites
+    - Lancer des astronautes dans l'espace
+    - "Exploiter des ast\xE9ro\xEFdes"
+    correctIndex: 0
+  - englishText: What is the term for the process of removing space debris from orbit?
+    frenchText: "Quel est le terme d\xE9signant le processus d'\xE9limination des
+      d\xE9bris spatiaux de l'orbite ?"
+    englishAnswers:
+    - Active debris removal
+    - Space recycling
+    - Orbital cleansing
+    frenchAnswers:
+    - "\xC9limination active des d\xE9bris"
+    - Recyclage spatial
+    - Nettoyage orbital
+    correctIndex: 0
+  - englishText: Which layer of Earth's atmosphere do most satellites orbit in?
+    frenchText: "Dans quelle couche de l'atmosph\xE8re terrestre la plupart des satellites
+      orbitent-ils ?"
+    englishAnswers:
+    - Exosphere
+    - Stratosphere
+    - Mesosphere
+    frenchAnswers:
+    - "Exosph\xE8re"
+    - "Stratosph\xE8re"
+    - "M\xE9sosph\xE8re"
+    correctIndex: 0
+  - englishText: What is the primary economic benefit of satellite technology?
+    frenchText: "Quel est le principal avantage \xE9conomique de la technologie satellitaire
+      ?"
+    englishAnswers:
+    - Global communications
+    - Asteroid mining
+    - Space tourism
+    frenchAnswers:
+    - Communications mondiales
+    - "Extraction mini\xE8re d'ast\xE9ro\xEFdes"
+    - Tourisme spatial
+    correctIndex: 0
+  - englishText: What is the name of the international effort to track space debris?
+    frenchText: "Quel est le nom de l'effort international pour suivre les d\xE9bris
+      spatiaux ?"
+    englishAnswers:
+    - Space Surveillance Network
+    - Orbital Watch Program
+    - Global Space Tracker
+    frenchAnswers:
+    - "R\xE9seau de surveillance de l'espace"
+    - Programme de surveillance orbitale
+    - "Syst\xE8me mondial de suivi spatial"
+    correctIndex: 0
+  - englishText: What is the estimated speed of space debris in low Earth orbit?
+    frenchText: "Quelle est la vitesse estim\xE9e des d\xE9bris spatiaux en orbite
+      terrestre basse ?"
+    englishAnswers:
+    - 28,000 km/h
+    - 10,000 km/h
+    - 50,000 km/h
+    frenchAnswers:
+    - 28 000 km/h
+    - 10 000 km/h
+    - 50,000 km/h
+    correctIndex: 0
+  - englishText: What is the primary material used in satellite construction?
+    frenchText: "Quel est le mat\xE9riau principal utilis\xE9 dans la construction
+      des satellites ?"
+    englishAnswers:
+    - Aluminum alloys
+    - Titanium
+    - Carbon fiber
+    frenchAnswers:
+    - Alliages d'aluminium
+    - Titane
+    - Fibre de carbone
+    correctIndex: 0
+  - englishText: What is the main purpose of the International Space Station (ISS)?
+    frenchText: Quel est le but principal de la Station spatiale internationale (ISS)
+      ?
+    englishAnswers:
+    - Scientific research in microgravity
+    - Military operations
+    - Space tourism
+    frenchAnswers:
+    - "Recherche scientifique en microgravit\xE9"
+    - "Op\xE9rations militaires"
+    - Tourisme spatial
+    correctIndex: 0
+  - englishText: What is the term for satellites that provide real-time Earth imaging?
+    frenchText: "Quel est le terme d\xE9signant les satellites qui fournissent des
+      images de la Terre en temps r\xE9el ?"
+    englishAnswers:
+    - Earth observation satellites
+    - Weather satellites
+    - Communication satellites
+    frenchAnswers:
+    - Satellites d'observation de la Terre
+    - "Satellites m\xE9t\xE9orologiques"
+    - Satellites de communication
+    correctIndex: 0
+  - englishText: What is the primary cause of space debris accumulation?
+    frenchText: "Quelle est la cause principale de l'accumulation de d\xE9bris spatiaux
+      ?"
+    englishAnswers:
+    - Satellite collisions and explosions
+    - Natural asteroid impacts
+    - Solar flares
+    frenchAnswers:
+    - Collisions et explosions de satellites
+    - "Impacts naturels d'ast\xE9ro\xEFdes"
+    - "\xC9ruptions solaires"
+    correctIndex: 0
+  - englishText: What is the name of the first satellite launched into space?
+    frenchText: "Quel est le nom du premier satellite lanc\xE9 dans l'espace ?"
+    englishAnswers:
+    - Sputnik 1
+    - Explorer 1
+    - Hubble Space Telescope
+    frenchAnswers:
+    - Spoutnik 1
+    - Explorer 1
+    - "T\xE9lescope spatial Hubble"
+    correctIndex: 0
+  - englishText: What is the primary function of GPS satellites?
+    frenchText: Quelle est la fonction principale des satellites GPS ?
+    englishAnswers:
+    - Providing location and navigation data
+    - Monitoring weather patterns
+    - Transmitting television signals
+    frenchAnswers:
+    - "Fournir des donn\xE9es de localisation et de navigation"
+    - "Surveiller les mod\xE8les m\xE9t\xE9orologiques"
+    - "Transmettre des signaux de t\xE9l\xE9vision"
+    correctIndex: 0
+  - englishText: What is the term for the region of space crowded with satellites?
+    frenchText: "Quel est le terme d\xE9signant la r\xE9gion de l'espace encombr\xE9e
+      de satellites ?"
+    englishAnswers:
+    - Geostationary orbit
+    - Low Earth orbit
+    - Lagrange points
+    frenchAnswers:
+    - "Orbite g\xE9ostationnaire"
+    - Orbite terrestre basse
+    - Points de Lagrange
+    correctIndex: 0
+  - englishText: What is the primary environmental impact of space debris?
+    frenchText: "Quel est l'impact environnemental principal des d\xE9bris spatiaux
+      ?"
+    englishAnswers:
+    - Risk to operational satellites
+    - Increased atmospheric pollution
+    - Depletion of the ozone layer
+    frenchAnswers:
+    - "Risque pour les satellites op\xE9rationnels"
+    - "Augmentation de la pollution atmosph\xE9rique"
+    - Appauvrissement de la couche d'ozone
+    correctIndex: 0
+  - englishText: What is the name of the European Space Agency's Earth observation
+      program?
+    frenchText: Quel est le composant principal des anneaux de Saturne ?
+    englishAnswers:
+    - Copernicus
+    - Galileo
+    - Sentinel
+    frenchAnswers:
+    - Copernicus
+    - Galileo
+    - Sentinel
+    correctIndex: 0
+  - englishText: What is the primary purpose of space-based solar power?
+    frenchText: Quel est le composant principal des anneaux de Saturne ?
+    englishAnswers:
+    - Generating renewable energy
+    - Mining asteroids
+    - Colonizing Mars
+    frenchAnswers:
+    - "Produire de l'\xE9nergie renouvelable"
+    - "Exploiter des ast\xE9ro\xEFdes"
+    - Coloniser Mars
+    correctIndex: 0
+  - englishText: What is the term for the process of satellites re-entering Earth's
+      atmosphere?
+    frenchText: "Quel est le terme d\xE9signant le processus de rentr\xE9e des satellites
+      dans l'atmosph\xE8re terrestre ?"
+    englishAnswers:
+    - Atmospheric reentry
+    - Orbital decay
+    - Space descent
+    frenchAnswers:
+    - "Rentr\xE9e atmosph\xE9rique"
+    - "D\xE9sint\xE9gration orbitale"
+    - Descente spatiale
+    correctIndex: 0
+  - englishText: What is the primary challenge of active debris removal?
+    frenchText: "Quel est le principal d\xE9fi de l'\xE9limination active des d\xE9bris
+      ?"
+    englishAnswers:
+    - High cost and technical complexity
+    - Lack of international cooperation
+    - Limited fuel in space
+    frenchAnswers:
+    - "Co\xFBt \xE9lev\xE9 et complexit\xE9 technique"
+    - "Manque de coop\xE9ration internationale"
+    - "Carburant limit\xE9 dans l'espace"
+    correctIndex: 0
+  - englishText: What is the name of the Thales Alenia Space satellite for environmental
+      monitoring?
+    frenchText: Quel est le nom du satellite de Thales Alenia Space pour la surveillance
+      environnementale ?
+    englishAnswers:
+    - Sentinel-1
+    - MetOp
+    - Jason-3
+    frenchAnswers:
+    - Sentinel-1
+    - MetOp
+    - Jason-3
+    correctIndex: 0
+  - englishText: What is the primary use of satellite constellations?
+    frenchText: Quel est l'usage principal des constellations de satellites ?
+    englishAnswers:
+    - Global coverage, low latency, high revisit
+    - Space tourism
+    - Asteroid mining
+    frenchAnswers:
+    - Couverture mondiale, faible latence, haute revisite
+    - Tourisme spatial
+    - "Exploitation mini\xE8re d'ast\xE9ro\xEFdes"
+    correctIndex: 0
+  - englishText: What is the term for the point where gravitational forces are balanced?
+    frenchText: "Quel est le terme d\xE9signant le point o\xF9 les forces gravitationnelles
+      sont \xE9quilibr\xE9es ?"
+    englishAnswers:
+    - Lagrange point
+    - Geostationary orbit
+    - "K\xE1rm\xE1n line"
+    frenchAnswers:
+    - Point de Lagrange
+    - "Orbite g\xE9ostationnaire"
+    - "Ligne de K\xE1rm\xE1n"
+    correctIndex: 0
+  - englishText: What is the primary benefit of satellite-based weather forecasting?
+    frenchText: "Quel est le principal avantage des pr\xE9visions m\xE9t\xE9orologiques
+      par satellite ?"
+    englishAnswers:
+    - Improved storm tracking
+    - Increased solar energy production
+    - Enhanced space exploration
+    frenchAnswers:
+    - "Am\xE9lioration du suivi des temp\xEAtes"
+    - "Augmentation de la production d'\xE9nergie solaire"
+    - "Am\xE9lioration de l'exploration spatiale"
+    correctIndex: 0
+  - englishText: What is the name of the Thales Alenia Space project for lunar exploration?
+    frenchText: Quel est le nom du projet de Thales Alenia Space pour l'exploration
+      lunaire ?
+    englishAnswers:
+    - Lunar Gateway
+    - Artemis
+    - Orion
+    frenchAnswers:
+    - Lunar Gateway
+    - Artemis
+    - Orion
+    correctIndex: 0
+  - englishText: What is the primary purpose of the James Webb Space Telescope?
+    frenchText: "Quel est le but principal du t\xE9lescope spatial James Webb ?"
+    englishAnswers:
+    - Observing distant galaxies
+    - Monitoring Earth's climate
+    - Tracking space debris
+    frenchAnswers:
+    - Observer les galaxies lointaines
+    - Surveiller le climat terrestre
+    - "Suivre les d\xE9bris spatiaux"
+    correctIndex: 0
+  - englishText: What is the term for the process of satellites adjusting their orbits?
+    frenchText: "Quel est le terme d\xE9signant le processus d'ajustement de l'orbite
+      des satellites ?"
+    englishAnswers:
+    - Orbital maneuvering
+    - Space docking
+    - Atmospheric reentry
+    frenchAnswers:
+    - "Man\u0153uvre orbitale"
+    - Amarrage spatial
+    - "Rentr\xE9e atmosph\xE9rique"
+    correctIndex: 0
+  - englishText: What is the primary risk of space debris to the International Space
+      Station?
+    frenchText: "Quel est le risque principal des d\xE9bris spatiaux pour la Station
+      spatiale internationale ?"
+    englishAnswers:
+    - Collision damage
+    - 'Radiation exposure '
+    - Loss of communication
+    frenchAnswers:
+    - "Dommages dus \xE0 une collision"
+    - Exposition aux radiations
+    - Perte de communication
+    correctIndex: 0
+  - englishText: What is the name of the Thales Alenia Space satellite for ocean
+      monitoring?
+    frenchText: "Quel est le nom du satellite de Thales Alenia Space pour la surveillance
+      des oc\xE9ans ?"
+    englishAnswers:
+    - Jason-3
+    - Sentinel-3
+    - MetOp
+    frenchAnswers:
+    - Jason-3
+    - Sentinel-3
+    - MetOp
+    correctIndex: 0
+  - englishText: What is the primary purpose of satellite-based remote sensing?
+    frenchText: "Quel est le but principal de la t\xE9l\xE9d\xE9tection par satellite
+      ?"
+    englishAnswers:
+    - Monitoring Earth's surface
+    - Tracking asteroids
+    - Transmitting radio signals
+    frenchAnswers:
+    - Surveiller la surface de la Terre
+    - "Suivre les ast\xE9ro\xEFdes"
+    - Transmettre des signaux radio
+    correctIndex: 0
+  - englishText: What is the term for the region of space where debris is most concentrated?
+    frenchText: "Quel est le terme d\xE9signant la r\xE9gion de l'espace o\xF9 les
+      d\xE9bris sont les plus concentr\xE9s ?"
+    englishAnswers:
+    - Low Earth orbit
+    - Geostationary orbit
+    - Lagrange points
+    frenchAnswers:
+    - Orbite terrestre basse
+    - "Orbite g\xE9ostationnaire"
+    - Points de Lagrange
+    correctIndex: 0
+  - englishText: What is the primary benefit of satellite-based agriculture monitoring?
+    frenchText: Quel est le principal avantage de la surveillance agricole par satellite
+      ?
+    englishAnswers:
+    - Improved crop yield predictions
+    - Increased soil fertility
+    - Enhanced water desalination
+    frenchAnswers:
+    - "Am\xE9lioration des pr\xE9visions de rendement des cultures"
+    - "Augmentation de la fertilit\xE9 des sols"
+    - "Am\xE9lioration du dessalement de l'eau"
+    correctIndex: 0
+  - englishText: What is the name of the Thales Alenia Space satellite for climate
+      monitoring?
+    frenchText: Quel est le nom du satellite de Thales Alenia Space pour la surveillance
+      du climat ?
+    englishAnswers:
+    - Sentinel-6
+    - MetOp
+    - Jason-3
+    frenchAnswers:
+    - Sentinel-6
+    - MetOp
+    - Jason-3
+    correctIndex: 0
+  - englishText: What is the primary purpose of satellite-based navigation systems?
+    frenchText: "Quel est le but principal des syst\xE8mes de navigation par satellite
+      ?"
+    englishAnswers:
+    - Providing precise location data
+    - Monitoring space weather
+    - Tracking wildlife migration
+    frenchAnswers:
+    - "Fournir des donn\xE9es de localisation pr\xE9cises"
+    - "Surveiller la m\xE9t\xE9orologie spatiale"
+    - Suivre la migration de la faune
+    correctIndex: 0
+  - englishText: What is the term for the process of satellites deorbiting intentionally?
+    frenchText: "Quel est le terme d\xE9signant le processus de d\xE9sorbitation
+      intentionnelle des satellites ?"
+    englishAnswers:
+    - Controlled reentry
+    - Orbital decay
+    - Space docking
+    frenchAnswers:
+    - "Rentr\xE9e contr\xF4l\xE9e"
+    - "D\xE9sint\xE9gration orbitale"
+    - Amarrage spatial
+    correctIndex: 0
+  - englishText: What is the primary challenge of satellite constellations?
+    frenchText: "Quel est le principal d\xE9fi des constellations de satellites ?"
+    englishAnswers:
+    - Space debris accumulation
+    - High launch costs
+    - Limited battery life
+    frenchAnswers:
+    - "Accumulation de d\xE9bris spatiaux"
+    - "Co\xFBts de lancement \xE9lev\xE9s"
+    - "Dur\xE9e de vie limit\xE9e des batteries"
+    correctIndex: 0
+  - englishText: What is the name of the Thales Alenia Space satellite for atmospheric
+      monitoring?
+    frenchText: Quel est le composant principal des anneaux de Saturne ?
+    englishAnswers:
+    - MetOp
+    - Sentinel-5P
+    - Jason-3
+    frenchAnswers:
+    - MetOp
+    - Sentinel-5P
+    - Jason-3
+    correctIndex: 0
+  - englishText: What is the primary purpose of satellite-based disaster management?
+    frenchText: Quel est le composant principal des anneaux de Saturne ?
+    englishAnswers:
+    - Ice and rock
+    - Dust and gas
+    - Iron and nickel
+    frenchAnswers:
+    - Glace et roche
+    - "Poussi\xE8re et gaz"
+    - Fer et nickel
+    correctIndex: 0
+  - englishText: What is the term for the process of satellites maintaining their
+      position?
+    frenchText: "Quel est le terme d\xE9signant le processus par lequel les satellites
+      maintiennent leur position ?"
+    englishAnswers:
+    - Stationkeeping
+    - Orbital maneuvering
+    - Space docking
+    frenchAnswers:
+    - "Maintien \xE0 poste"
+    - "Man\u0153uvre orbitale"
+    - Amarrage spatial
+    correctIndex: 0
   timeUpKey: time_up
 --- !u!4 &1208076041
 Transform:
@@ -3402,21 +3881,53 @@ PrefabInstance:
       propertyPath: m_PlaneDistance
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4286481802909225250, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455841132063374450, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455841132063374450, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455841132063374450, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455841132063374450, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430085706490689429, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430085706490689429, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+      propertyPath: m_Maskable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430085706490689429, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
+      propertyPath: m_FillCenter
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7192875172710039895, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 1638
       objectReference: {fileID: 0}
     - target: {fileID: 7192875172710039895, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 1046
       objectReference: {fileID: 0}
     - target: {fileID: 7192875172710039895, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.0000011199008
       objectReference: {fileID: 0}
     - target: {fileID: 7192875172710039895, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.000011444092
       objectReference: {fileID: 0}
     - target: {fileID: 8402084663624020346, guid: e8351a59deb055c49984280d55e40c2d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
