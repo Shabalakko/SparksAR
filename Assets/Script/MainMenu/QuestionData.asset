@@ -1,0 +1,405 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3004bc28404e1784cbee732f54c17976, type: 3}
+  m_Name: QuestionData
+  m_EditorClassIdentifier: 
+  localizedQuestions:
+  - englishText: What is the smallest planet in the Solar System?
+    frenchText: "Quelle est la plus petite plan\xE8te du syst\xE8me solaire ?"
+    correctAnswerEnglish: Mercury
+    correctAnswerFrench: Mercure
+    descriptionEnglish: The smallest planet in the Solar System is Mercury. It is
+      the innermost planet and has a diameter of about 4,879 kilometers, making it
+      significantly smaller than Earth and even some moons in our solar system.
+    descriptionFrench: "La plus petite plan\xE8te du syst\xE8me solaire est Mercure.
+      C'est la plan\xE8te la plus interne et son diam\xE8tre est d'environ 4 879
+      kilom\xE8tres, ce qui la rend significativement plus petite que la Terre et
+      m\xEAme certaines lunes de notre syst\xE8me solaire."
+  - englishText: What is the hottest planet in the Solar System?
+    frenchText: "Quelle est la plan\xE8te la plus chaude du syst\xE8me solaire ?"
+    correctAnswerEnglish: Venus
+    correctAnswerFrench: "V\xE9nus"
+    descriptionEnglish: The hottest planet is Venus due to its dense, carbon dioxide-rich
+      atmosphere causing a runaway greenhouse effect.
+    descriptionFrench: "La plan\xE8te la plus chaude est V\xE9nus en raison de son
+      atmosph\xE8re dense et riche en dioxyde de carbone, provoquant un effet de
+      serre galopant."
+  - englishText: Which planet is known as the Red Planet?
+    frenchText: "Quelle plan\xE8te est connue comme la plan\xE8te rouge ?"
+    correctAnswerEnglish: Mars
+    correctAnswerFrench: Mars
+    descriptionEnglish: The planet known as the Red Planet is Mars. Its reddish appearance
+      is due to the abundance of iron oxide (rust) on its surface.
+    descriptionFrench: "La plan\xE8te connue sous le nom de Plan\xE8te Rouge est
+      Mars. Son apparence rouge\xE2tre est due \xE0 l'abondance d'oxyde de fer (rouille)
+      \xE0 sa surface."
+  - englishText: What celestial body orbits a planet?
+    frenchText: "Quel corps c\xE9leste orbite autour d'une plan\xE8te ?"
+    correctAnswerEnglish: Moon
+    correctAnswerFrench: Lune
+    descriptionEnglish: A celestial body that orbits a planet is called a moon or
+      a natural satellite.
+    descriptionFrench: "Un corps c\xE9leste qui orbite autour d'une plan\xE8te est
+      appel\xE9 une lune ou un satellite naturel."
+  - englishText: Which planet is famous for having a Great Red Spot?
+    frenchText: "Quelle plan\xE8te est c\xE9l\xE8bre pour avoir une Grande Tache
+      Rouge ?"
+    correctAnswerEnglish: Jupiter
+    correctAnswerFrench: Jupiter
+    descriptionEnglish: The planet famous for having the Great Red Spot is Jupiter.
+      This is a persistent anticyclonic storm larger than Earth, located in Jupiter's
+      equatorial region.
+    descriptionFrench: "La plan\xE8te c\xE9l\xE8bre pour sa Grande Tache Rouge est
+      Jupiter. Il s'agit d'une temp\xEAte anticyclonique persistante, plus grande
+      que la Terre, situ\xE9e dans la r\xE9gion \xE9quatoriale de Jupiter."
+  - englishText: What force keeps planets in orbit around the Sun?
+    frenchText: "Quelle force maintient les plan\xE8tes en orbite autour du Soleil
+      ?"
+    correctAnswerEnglish: Gravity
+    correctAnswerFrench: "Gravit\xE9"
+    descriptionEnglish: The Sun's immense mass creates a strong gravitational pull
+      that constantly attracts the planets.
+    descriptionFrench: "L'immense masse du Soleil cr\xE9e une forte attraction gravitationnelle
+      qui attire constamment les plan\xE8tes."
+  - englishText: Which planet has the most moons?
+    frenchText: "Quelle plan\xE8te a le plus de lunes ?"
+    correctAnswerEnglish: Jupiter
+    correctAnswerFrench: Jupiter
+    descriptionEnglish: As of April 2025, the planet with the most moons is Saturn,
+      with a total of 274 confirmed moons. This number significantly increased in
+      March 2025 with the discovery of 128 new moons.
+    descriptionFrench: "En avril 2025, la plan\xE8te avec le plus de lunes est Saturne,
+      avec un total de 274 lunes confirm\xE9es. Ce nombre a consid\xE9rablement augment\xE9
+      en mars 2025 avec la d\xE9couverte de 128 nouvelles lunes."
+  - englishText: What is the closest star to Earth?
+    frenchText: "Quelle est l'\xE9toile la plus proche de la Terre ?"
+    correctAnswerEnglish: The Sun
+    correctAnswerFrench: Le Soleil
+    descriptionEnglish: The Sun is a star.
+    descriptionFrench: "Le Soleil est une \xE9toile."
+  - englishText: What is the name of the galaxy closest to the Milky Way?
+    frenchText: "Quel est le nom de la galaxie la plus proche de la Voie lact\xE9e
+      ?"
+    correctAnswerEnglish: Andromeda
+    correctAnswerFrench: "Androm\xE8de"
+    descriptionEnglish: The closest major galaxy to the Milky Way is the Andromeda
+      Galaxy.
+    descriptionFrench: "La galaxie majeure la plus proche de la Voie lact\xE9e est
+      la galaxie d'Androm\xE8de."
+  - englishText: What is a comet primarily made of?
+    frenchText: "De quoi une com\xE8te est-elle principalement constitu\xE9e ?"
+    correctAnswerEnglish: Ice and dust
+    correctAnswerFrench: "Glace et poussi\xE8re"
+    descriptionEnglish: A comet is primarily made of ice, dust, and frozen gases
+      such as carbon dioxide, methane, and ammonia. These are often described as
+      a "dirty snowball" or "icy dirtball."
+    descriptionFrench: "Une com\xE8te est principalement compos\xE9e de glace, de
+      poussi\xE8re et de gaz gel\xE9s tels que le dioxyde de carbone, le m\xE9thane
+      et l'ammoniac. On les d\xE9crit souvent comme des \"boules de neige sales\"
+      ou des \"boules de terre glac\xE9es\"."
+  - englishText: Which planet has the highest mountain in the Solar System?
+    frenchText: "Quelle plan\xE8te a la plus haute montagne du syst\xE8me solaire
+      ?"
+    correctAnswerEnglish: Mars
+    correctAnswerFrench: Mars
+    descriptionEnglish: The planet with the highest known mountain in the Solar System
+      is Mars. The mountain is a massive shield volcano called Olympus Mons, which
+      stands about 22 kilometers high, roughly three times the height of Mount Everest.
+    descriptionFrench: "La plan\xE8te avec la plus haute montagne connue du syst\xE8me
+      solaire est Mars. La montagne est un volcan bouclier massif appel\xE9 Olympus
+      Mons, qui culmine \xE0 environ 22 kilom\xE8tres de hauteur, soit environ trois
+      fois la hauteur du mont Everest."
+  - englishText: What is the name of the first human-made satellite?
+    frenchText: "Quel est le nom du premier satellite fabriqu\xE9 par l'homme ?"
+    correctAnswerEnglish: Sputnik 1
+    correctAnswerFrench: Spoutnik 1
+    descriptionEnglish: The name of the first human-made satellite was Sputnik 1.
+      It was launched by the Soviet Union on October 4, 1957.
+    descriptionFrench: "Le nom du premier satellite fabriqu\xE9 par l'homme \xE9tait
+      Spoutnik 1. Il a \xE9t\xE9 lanc\xE9 par l'Union sovi\xE9tique le 4 octobre
+      1957."
+  - englishText: Who was the first person to walk on the Moon?
+    frenchText: "Qui a \xE9t\xE9 la premi\xE8re personne \xE0 marcher sur la Lune
+      ?"
+    correctAnswerEnglish: Neil Armstrong
+    correctAnswerFrench: Neil Armstrong
+    descriptionEnglish: The first person to walk on the Moon was Neil Armstrong.
+      He took his first steps on the lunar surface on July 21, 1969, during the Apollo
+      11 mission.
+    descriptionFrench: "La premi\xE8re personne \xE0 marcher sur la Lune fut Neil
+      Armstrong. Il a fait ses premiers pas sur la surface lunaire le 21 juillet
+      1969, lors de la mission Apollo 11."
+  - englishText: What is the name of the largest asteroid in the asteroid belt?
+    frenchText: "Quel est le nom du plus grand ast\xE9ro\xEFde de la ceinture d'ast\xE9ro\xEFdes
+      ?"
+    correctAnswerEnglish: Ceres
+    correctAnswerFrench: "C\xE9r\xE8s"
+    descriptionEnglish: The largest asteroid in the asteroid belt is Ceres. It is
+      so large that it is also classified as a dwarf planet.
+    descriptionFrench: " Le plus grand ast\xE9ro\xEFde de la ceinture d'ast\xE9ro\xEFdes
+      est C\xE9r\xE8s. Il est si grand qu'il est \xE9galement class\xE9 comme plan\xE8te
+      naine."
+  - englishText: Which planet has a day longer than its year?
+    frenchText: "Quelle plan\xE8te a un jour plus long que son ann\xE9e ?"
+    correctAnswerEnglish: Venus
+    correctAnswerFrench: "V\xE9nus"
+    descriptionEnglish: The planet that has a day longer than its year is Venus.
+      One sidereal day on Venus (the time it takes to rotate once on its axis) lasts
+      about 243 Earth days, while its orbital period (the time it takes to orbit
+      the Sun once) is about 225 Earth days.
+    descriptionFrench: "La plan\xE8te dont le jour est plus long que son ann\xE9e
+      est V\xE9nus. Un jour sid\xE9ral sur V\xE9nus (le temps qu'il faut pour faire
+      une rotation compl\xE8te sur son axe) dure environ 243 jours terrestres, tandis
+      que sa p\xE9riode orbitale (le temps qu'il faut pour orbiter autour du Soleil
+      une fois) est d'environ 225 jours terrestres."
+  - englishText: What is the most common element in the Sun?
+    frenchText: "Quel est l'\xE9l\xE9ment le plus commun dans le Soleil ?"
+    correctAnswerEnglish: Hydrogen
+    correctAnswerFrench: "Hydrog\xE8ne"
+    descriptionEnglish: The most common element in the Sun is hydrogen. It makes
+      up about 71% of the Sun's mass.
+    descriptionFrench: "L'\xE9l\xE9ment le plus courant dans le Soleil est l'hydrog\xE8ne.
+      Il constitue environ 71 % de la masse du Soleil."
+  - englishText: Which planet rotates on its side?
+    frenchText: "Quelle plan\xE8te tourne sur son c\xF4t\xE9 ?"
+    correctAnswerEnglish: Uranus
+    correctAnswerFrench: Uranus
+    descriptionEnglish: Its axial tilt is about 98 degrees, which means it essentially
+      spins on its side relative to its orbital plane.
+    descriptionFrench: "Son inclinaison axiale est d'environ 98 degr\xE9s, ce qui
+      signifie qu'elle tourne essentiellement sur le c\xF4t\xE9 par rapport \xE0
+      son plan orbital."
+  - englishText: Which planet has the shortest year in the Solar System?
+    frenchText: "Quelle plan\xE8te a l'ann\xE9e la plus courte du syst\xE8me solaire
+      ?"
+    correctAnswerEnglish: Mercury
+    correctAnswerFrench: Mercure
+    descriptionEnglish: It is the closest planet to the Sun, it has the shortest
+      orbital path and the highest orbital speed, resulting in a year of only about
+      88 Earth days.
+    descriptionFrench: "\xC9tant la plan\xE8te la plus proche du Soleil, elle a la
+      trajectoire orbitale la plus courte et la vitesse orbitale la plus \xE9lev\xE9e,
+      ce qui se traduit par une ann\xE9e d'environ 88 jours terrestres seulement."
+  - englishText: Which planet has the longest year in the Solar System?
+    frenchText: "Quelle plan\xE8te a l'ann\xE9e la plus longue du syst\xE8me solaire
+      ?"
+    correctAnswerEnglish: Neptune
+    correctAnswerFrench: Neptune
+    descriptionEnglish: Being the farthest planet from the Sun, it has the longest
+      orbital path and the slowest orbital speed, resulting in a year of approximately
+      165 Earth years.
+    descriptionFrench: "\xC9tant la plan\xE8te la plus \xE9loign\xE9e du Soleil,
+      elle a la trajectoire orbitale la plus longue et la vitesse orbitale la plus
+      lente, ce qui se traduit par une ann\xE9e d'environ 165 ann\xE9es terrestres."
+  - englishText: What is the Kuiper Belt?
+    frenchText: Qu'est-ce que la ceinture de Kuiper ?
+    correctAnswerEnglish: A region beyond Neptune
+    correctAnswerFrench: "Une r\xE9gion au-del\xE0 de Neptune"
+    descriptionEnglish: The Kuiper Belt is a large, icy region beyond Neptune, home
+      to dwarf planets and the source of short-period comets.
+    descriptionFrench: "La ceinture de Kuiper est une vaste r\xE9gion glac\xE9e au-del\xE0
+      de Neptune, abritant des plan\xE8tes naines et la source de com\xE8tes \xE0
+      courte p\xE9riode."
+  - englishText: Which planet has the fastest winds in the Solar System?
+    frenchText: "Quelle plan\xE8te a les vents les plus rapides du syst\xE8me solaire
+      ?"
+    correctAnswerEnglish: Neptune
+    correctAnswerFrench: Neptune
+    descriptionEnglish: The planet with the fastest winds in the Solar System is
+      Neptune. Winds in its upper atmosphere can reach speeds of up to 2,100 kilometers
+      per hour (about 1,300 miles per hour).
+    descriptionFrench: "La plan\xE8te avec les vents les plus rapides du syst\xE8me
+      solaire est Neptune. Les vents dans sa haute atmosph\xE8re peuvent atteindre
+      des vitesses allant jusqu'\xE0 2 100 kilom\xE8tres par heure (environ 1 300
+      miles par heure)."
+  - englishText: What is the Oort Cloud?
+    frenchText: Qu'est-ce que le nuage d'Oort ?
+    correctAnswerEnglish: A region of icy bodies
+    correctAnswerFrench: "Une r\xE9gion de corps glac\xE9s"
+    descriptionEnglish: The Oort Cloud is a vast, theoretical sphere of icy bodies
+      far beyond the Kuiper Belt, believed to be the source of long-period comets.
+    descriptionFrench: "Le nuage d'Oort est une vaste sph\xE8re th\xE9orique de corps
+      glac\xE9s bien au-del\xE0 de la ceinture de Kuiper, consid\xE9r\xE9e comme
+      la source des com\xE8tes \xE0 longue p\xE9riode."
+  - englishText: What is a light-year?
+    frenchText: "Qu'est-ce qu'une ann\xE9e-lumi\xE8re ?"
+    correctAnswerEnglish: A unit of distance
+    correctAnswerFrench: "Une unit\xE9 de distance"
+    descriptionEnglish: 'English: A light-year is a unit of distance, not time. It
+      is the distance that light travels in one Earth year in a vacuum, which is
+      approximately 9.461 trillion kilometers (or about 5.879 trillion miles).'
+    descriptionFrench: "Une ann\xE9e-lumi\xE8re est une unit\xE9 de distance, et
+      non de temps. C'est la distance que la lumi\xE8re parcourt en une ann\xE9e
+      terrestre dans le vide, soit environ 9 461 billions de kilom\xE8tres (ou environ
+      5 879 billions de miles)."
+  - englishText: What is the name of the first animal sent to space?
+    frenchText: "Quel est le nom du premier animal envoy\xE9 dans l'espace ?"
+    correctAnswerEnglish: Laika
+    correctAnswerFrench: "La\xEFka"
+    descriptionEnglish: The first animal sent into orbit was a Soviet dog named Laika.
+      She was launched aboard the Sputnik 2 spacecraft on November 3, 1957.
+    descriptionFrench: "Le premier animal envoy\xE9 en orbite fut une chienne sovi\xE9tique
+      nomm\xE9e La\xEFka. Elle a \xE9t\xE9 lanc\xE9e \xE0 bord du vaisseau spatial
+      Spoutnik 2 le 3 novembre 1957."
+  - englishText: Which space telescope has provided stunning images of deep space?
+    frenchText: "Quel t\xE9lescope spatial a fourni des images \xE9tonnantes de l'espace
+      lointain ?"
+    correctAnswerEnglish: Hubble
+    correctAnswerFrench: Hubble
+    descriptionEnglish: The Hubble Space Telescope and the James Webb Space Telescope
+      have provided stunning images of deep space.
+    descriptionFrench: "Le t\xE9lescope spatial Hubble et le t\xE9lescope spatial
+      James Webb ont fourni des images \xE9poustouflantes de l'espace profond."
+  - englishText: What is the largest volcano in the Solar System?
+    frenchText: "Quel est le plus grand volcan du syst\xE8me solaire ?"
+    correctAnswerEnglish: Olympus Mons
+    correctAnswerFrench: Olympus Mons
+    descriptionEnglish: 'English: The largest volcano in the Solar System is Olympus
+      Mons on Mars. This massive shield volcano is about 22 kilometers high and about
+      600 kilometers in diameter at its base.'
+    descriptionFrench: "Le plus grand volcan du syst\xE8me solaire est Olympus Mons
+      sur Mars. Cet immense volcan bouclier mesure environ 22 kilom\xE8tres de haut
+      et sa base a un diam\xE8tre d'environ 600 kilom\xE8tres."
+  - englishText: What is the name of the first space station?
+    frenchText: "Quel est le nom de la premi\xE8re station spatiale ?"
+    correctAnswerEnglish: Salyut 1
+    correctAnswerFrench: Saliout 1
+    descriptionEnglish: The name of the first space station was Salyut 1. It was
+      launched by the Soviet Union on April 19, 1971.
+    descriptionFrench: "Le nom de la premi\xE8re station spatiale \xE9tait Saliout
+      1. Elle a \xE9t\xE9 lanc\xE9e par l'Union sovi\xE9tique le 19 avril 1971."
+  - englishText: Which planet is sometimes called Earth's twin?
+    frenchText: "Quelle plan\xE8te est parfois appel\xE9e la jumelle de la Terre
+      ?"
+    correctAnswerEnglish: Venus
+    correctAnswerFrench: "V\xE9nus"
+    descriptionEnglish: 'English: The planet sometimes called Earth''s twin is Venus.
+      This is because Venus and Earth are similar in size, mass, and composition.'
+    descriptionFrench: "La plan\xE8te parfois appel\xE9e la jumelle de la Terre est
+      V\xE9nus. C'est parce que V\xE9nus et la Terre sont similaires en taille, en
+      masse et en composition."
+  - englishText: Which planet has the lowest density?
+    frenchText: "Quelle plan\xE8te a la plus faible densit\xE9 ?"
+    correctAnswerEnglish: Saturn
+    correctAnswerFrench: Saturne
+    descriptionEnglish: Saturn has the lowest density in the Solar System.
+    descriptionFrench: "Saturne a la densit\xE9 la plus faible du syst\xE8me solaire."
+  - englishText: Which dwarf planet was once considered the ninth planet?
+    frenchText: "Quelle plan\xE8te naine \xE9tait autrefois consid\xE9r\xE9e comme
+      la neuvi\xE8me plan\xE8te ?"
+    correctAnswerEnglish: Pluto
+    correctAnswerFrench: Pluton
+    descriptionEnglish: The dwarf planet that was once considered the ninth planet
+      is Pluto. It was classified as a planet upon its discovery in 1930 but was
+      reclassified as a dwarf planet by the International Astronomical Union (IAU)
+      in 2006.
+    descriptionFrench: "La plan\xE8te naine qui \xE9tait autrefois consid\xE9r\xE9e
+      comme la neuvi\xE8me plan\xE8te est Pluton. Elle a \xE9t\xE9 class\xE9e comme
+      plan\xE8te lors de sa d\xE9couverte en 1930, mais a \xE9t\xE9 reclass\xE9e
+      comme plan\xE8te naine par l'Union astronomique internationale (UAI) en 2006."
+  - englishText: What is a pulsar?
+    frenchText: Qu'est-ce qu'un pulsar ?
+    correctAnswerEnglish: A type of neutron star
+    correctAnswerFrench: "Un type d'\xE9toile \xE0 neutrons"
+    descriptionEnglish: 'English: A pulsar is a rapidly rotating neutron star or
+      white dwarf that emits beams of electromagnetic radiation, appearing to pulse
+      as the beams sweep across our line of sight.'
+    descriptionFrench: "Un pulsar est une \xE9toile \xE0 neutrons ou une naine blanche
+      en rotation rapide qui \xE9met des faisceaux de rayonnement \xE9lectromagn\xE9tique,
+      apparaissant comme des pulsations lorsque les faisceaux traversent notre ligne
+      de vis\xE9e."
+  - englishText: Which spacecraft was the first to land on the Moon?
+    frenchText: "Quel vaisseau spatial a \xE9t\xE9 le premier \xE0 se poser sur la
+      Lune ?"
+    correctAnswerEnglish: Apollo 11
+    correctAnswerFrench: Apollo 11
+    descriptionEnglish: The first mission to land humans on the Moon was Apollo 11
+      in 1969.
+    descriptionFrench: "La premi\xE8re mission \xE0 faire atterrir des humains sur
+      la Lune fut Apollo 11 en 1969."
+  - englishText: "What is the name of NASA\u2019s rover currently exploring Mars?"
+    frenchText: Quel est le nom du rover de la NASA qui explore actuellement Mars
+      ?
+    correctAnswerEnglish: Curiosity
+    correctAnswerFrench: Curiosity
+    descriptionEnglish: Curiosity is a NASA rover that landed on Mars in 2012 to
+      study its climate, geology, and potential for past microbial life. It has made
+      key discoveries about Martian habitability and continues its mission in Gale
+      Crater.
+    descriptionFrench: "Curiosity est un rover de la NASA qui a atterri sur Mars
+      en 2012 pour \xE9tudier son climat, sa g\xE9ologie et son potentiel pour la
+      vie microbienne pass\xE9e. Il a fait des d\xE9couvertes cl\xE9s sur l'habitabilit\xE9
+      martienne et poursuit sa mission dans le crat\xE8re Gale."
+  - englishText: What is dark matter?
+    frenchText: "Qu'est-ce que la mati\xE8re noire ?"
+    correctAnswerEnglish: Invisible mass in the universe
+    correctAnswerFrench: Masse invisible dans l'univers
+    descriptionEnglish: Dark matter is invisible matter that doesn't interact with
+      light but whose gravity affects the universe, making up most of its mass and
+      influencing galaxy formation. Its nature is unknown.
+    descriptionFrench: "La mati\xE8re noire est une mati\xE8re invisible qui n'interagit
+      pas avec la lumi\xE8re mais dont la gravit\xE9 affecte l'univers, constituant
+      la majeure partie de sa masse et influen\xE7ant la formation des galaxies.
+      Sa nature est inconnue."
+  - englishText: What is dark energy?
+    frenchText: "Qu'est-ce que l'\xE9nergie noire ?"
+    correctAnswerEnglish: An unknown force causing expansion
+    correctAnswerFrench: Une force inconnue provoquant l'expansion
+    descriptionEnglish: Dark energy is a mysterious force causing the universe to
+      expand at an accelerating rate. It makes up most of the universe's energy,
+      and its nature is unknown.
+    descriptionFrench: "L'\xE9nergie noire est une force myst\xE9rieuse qui provoque
+      l'expansion acc\xE9l\xE9r\xE9e de l'univers. Elle constitue la majeure partie
+      de l'\xE9nergie de l'univers, et sa nature est inconnue."
+  - englishText: What is a quasar?
+    frenchText: Qu'est-ce qu'un quasar ?
+    correctAnswerEnglish: A black hole with extreme brightness
+    correctAnswerFrench: "Un trou noir d'une luminosit\xE9 extr\xEAme"
+    descriptionEnglish: A quasar is a very bright center of a distant galaxy, powered
+      by a supermassive black hole swallowing matter and emitting intense radiation.
+    descriptionFrench: "Un quasar est le centre tr\xE8s brillant d'une galaxie lointaine,
+      aliment\xE9 par un trou noir supermassif qui engloutit de la mati\xE8re et
+      \xE9met un rayonnement intense."
+  - englishText: Which mission first landed humans on the Moon?
+    frenchText: Quelle mission a permis aux premiers humains de se poser sur la Lune
+      ?
+    correctAnswerEnglish: Apollo 11
+    correctAnswerFrench: Apollo 11
+    descriptionEnglish: The first mission to land humans on the Moon was Apollo 11.
+      The lunar module "Eagle," carrying astronauts Neil Armstrong and Buzz Aldrin,
+      touched down on the lunar surface on July 20, 1969.
+    descriptionFrench: "La premi\xE8re mission \xE0 faire atterrir des humains sur
+      la Lune fut Apollo 11. Le module lunaire \"Eagle\", transportant les astronautes
+      Neil Armstrong et Buzz Aldrin, s'est pos\xE9 sur la surface lunaire le 20 juillet
+      1969. "
+  - englishText: What is the name of the boundary around a black hole?
+    frenchText: Quel est le nom de la limite autour d'un trou noir ?
+    correctAnswerEnglish: Event horizon
+    correctAnswerFrench: "Horizon des \xE9v\xE9nements"
+    descriptionEnglish: The boundary around a black hole beyond which nothing, not
+      even light, can escape is called the event horizon.
+    descriptionFrench: "La limite autour d'un trou noir au-del\xE0 de laquelle rien,
+      pas m\xEAme la lumi\xE8re, ne peut s'\xE9chapper est appel\xE9e l'horizon des
+      \xE9v\xE9nements. "
+  - englishText: "What is the primary component of Saturn\u2019s rings?"
+    frenchText: Quel est le composant principal des anneaux de Saturne ?
+    correctAnswerEnglish: Ice and rock
+    correctAnswerFrench: Glace et roche
+    descriptionEnglish: 'English: The primary component of Saturn''s rings is water
+      ice. The rings are made up of billions, if not trillions, of icy particles,
+      ranging in size from tiny grains to objects several meters across. There is
+      also a trace amount of rocky material mixed in.'
+    descriptionFrench: "Le composant principal des anneaux de Saturne est la glace
+      d'eau. Les anneaux sont constitu\xE9s de milliards, voire de milliers de milliards,
+      de particules glac\xE9es, dont la taille varie de minuscules grains \xE0 des
+      objets de plusieurs m\xE8tres de diam\xE8tre. On y trouve \xE9galement une
+      petite quantit\xE9 de mati\xE8re rocheuse m\xE9lang\xE9e."
