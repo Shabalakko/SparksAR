@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public class EnemyTypeB : EnemyBase
 {
-    // Specifica il colore di questo nemico
-    public override string EnemyColor => "Blue";
+    // Specifica il colore di questo nemico
+    public override string EnemyColor => "Blue";
 
     [Tooltip("Lista di prefabs da istanziare casualmente")]
     public List<GameObject> prefabVarianti;
@@ -14,7 +14,7 @@ public class EnemyTypeB : EnemyBase
 
     private GameObject istanzaAttuale; //Riferimento all'istanza creata
 
-    public override void TakeDamage(float damage, string color)
+    public override void TakeDamage(float damage, string color)
     {
         if (color == EnemyColor)
         {
@@ -22,8 +22,8 @@ public class EnemyTypeB : EnemyBase
             lastDamageTime = Time.time;
             if (currentHP <= 0)
             {
-                // Se il nemico blu muore, ricarica l'energia rossa
-                if (energyManager != null)
+                // Se il nemico blu muore, ricarica l'energia rossa
+                if (energyManager != null)
                 {
                     energyManager.RechargeRed();
                 }
@@ -36,8 +36,8 @@ public class EnemyTypeB : EnemyBase
     {
         base.Start(); // Chiama l'override di Start nella classe EnemyBase
 
-        // Istanzia un prefab casuale all'avvio
-        //InstanziaPrefabCasuale();
+        // Istanzia un prefab casuale all'avvio
+        //InstanziaPrefabCasuale();
     }
 
     /*void InstanziaPrefabCasuale()
@@ -47,30 +47,30 @@ public class EnemyTypeB : EnemyBase
             int indiceCasuale = Random.Range(0, prefabVarianti.Count);
             GameObject prefabSelezionato = prefabVarianti[indiceCasuale];
 
-            // Istanzia il prefab selezionato nella posizione e rotazione dello spawnPoint
-            istanzaAttuale = Instantiate(prefabSelezionato, spawnPoint.position, spawnPoint.rotation);
+            // Istanzia il prefab selezionato nella posizione e rotazione dello spawnPoint
+            istanzaAttuale = Instantiate(prefabSelezionato, spawnPoint.position, spawnPoint.rotation);
             istanzaAttuale.transform.SetParent(spawnPoint, true); //imposta come figlio
-        }
+        }
         else
         {
             Debug.LogError("Manca la lista di prefabs o lo spawn point!", this);
-            // Puoi anche istanziare un prefab di default o distruggere questo oggetto
-            //Destroy(gameObject);
-        }
+            // Puoi anche istanziare un prefab di default o distruggere questo oggetto
+            //Destroy(gameObject);
+        }
     }*/
 
     public GameObject particellePrefab; // Aggiungi questo campo e assegnagli il prefab tramite Inspector
-    protected override void Die()
+    protected override void Die()
     {
-        // Istanzia l'effetto particellare nella posizione del nemico
-        if (particellePrefab != null)
+        // Istanzia l'effetto particellare nella posizione del nemico
+        if (particellePrefab != null)
         {
             GameObject effetto = Instantiate(particellePrefab, transform.position, Quaternion.identity);
             ParticleSystem ps = effetto.GetComponent<ParticleSystem>();
             if (ps != null)
             {
-                // Distruggi l'effetto dopo la sua durata
-                Destroy(effetto, ps.main.duration + ps.main.startLifetime.constantMax);
+                // Distruggi l'effetto dopo la sua durata
+                Destroy(effetto, ps.main.duration + ps.main.startLifetime.constantMax);
             }
             else
             {
@@ -81,7 +81,7 @@ public class EnemyTypeB : EnemyBase
         {
             Destroy(istanzaAttuale);
         }
-        // Chiama la logica di morte originale (punteggio, popup, etc.) e distruggi il nemico
-        base.Die();
+        // Chiama la logica di morte originale (punteggio, popup, etc.) e distruggi il nemico
+        base.Die();
     }
 }

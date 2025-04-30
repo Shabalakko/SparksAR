@@ -7,12 +7,14 @@ public class AccessibilitaManager : MonoBehaviour
 {
     public static AccessibilitaManager Instance { get; private set; }
 
-    // Ora disattivazioneAttiva significa che gli oggetti dovrebbero essere DISATTIVATI
     public bool disattivazioneAttiva { get; private set; } = false;
-    public Color coloreAttivo = Color.green; // Il colore "attivo" ora significa oggetti ATTIVI
-    public Color coloreDisattivo = Color.red; // Il colore "disattivo" ora significa oggetti DISATTIVATI
-    public Image bottoneImageMainMenu;
+    public Color coloreAttivo = Color.green;
+    public Color coloreDisattivo = Color.red;
+    public Image bottoneImageMainMenu; // Assicurati che sia assegnato nell'Inspector
     private const string prefKeyDisattivazioneAttiva = "DisattivazioneAccessibilitaAttiva";
+    public string nomeBottoneMainMenu = "NomeDelTuoBottone"; // Sostituisci "NomeDelTuoBottone" con il nome effettivo del GameObject del tuo bottone nel MainMenu
+    private bool isClicking = false;
+    private float clickDelay = 0.2f; // Impedisci altri click per 0.2 secondi
 
     [System.Serializable]
     public struct OggettiDaDisattivarePerScena
@@ -37,11 +39,70 @@ public class AccessibilitaManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     private void Start()
     {
-        ApplicaStatoDisattivazioneAlleSceneCaricate();
-        AggiornaColoreBottone();
+        AggiornaColoreBottone(); // Aggiorna il colore iniziale
+        ApplicaStatoDisattivazioneAlleSceneCaricate(); // Applica lo stato alla prima scena caricata
     }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log($"Scena caricata: {scene.name}");
+        ApplicaStatoDisattivazioneAllaScena(scene);
+
+        GameObject bottoneGO = null;
+        if (!string.IsNullOrEmpty(nomeBottoneMainMenu))
+        {
+            bottoneGO = TrovaOggettoPerNomeNellaScena(scene, nomeBottoneMainMenu);
+        }
+        else
+        {
+            bottoneGO = GameObject.FindGameObjectWithTag("BottoneMainMenuTag");
+        }
+
+        if (bottoneGO != null)
+        {
+            bottoneImageMainMenu = bottoneGO.GetComponent<Image>();
+            Button bottoneComponent = bottoneGO.GetComponent<Button>(); // Ottieni il componente Button
+
+            if (bottoneImageMainMenu != null)
+            {
+                AggiornaColoreBottone();
+            }
+            else
+            {
+                Debug.LogError($"Trovato l'oggetto '{bottoneGO.name}' nella scena '{scene.name}', ma non ha un componente Image.");
+            }
+
+            if (bottoneComponent != null)
+            {
+                // Rimuovi eventuali listener precedenti per evitare chiamate multiple
+                bottoneComponent.onClick.RemoveAllListeners();
+                // Aggiungi un nuovo listener che chiama il metodo ToggleDisattivazione di questa istanza di AccessibilitaManager
+                bottoneComponent.onClick.AddListener(ToggleDisattivazione);
+            }
+            else
+            {
+                Debug.LogError($"Trovato l'oggetto '{bottoneGO.name}' nella scena '{scene.name}', ma non ha un componente Button.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"Bottone con nome '{nomeBottoneMainMenu}' o tag 'BottoneMainMenuTag' non trovato nella scena '{scene.name}'.");
+            bottoneImageMainMenu = null;
+        }
+    }
+
 
     private void CaricaStatoDisattivazione()
     {
@@ -51,7 +112,7 @@ public class AccessibilitaManager : MonoBehaviour
         }
         else
         {
-            disattivazioneAttiva = false; // Stato predefinito: oggetti attivi (bottone rosso)
+            disattivazioneAttiva = false;
         }
         Debug.Log($"Stato disattivazione caricato: {disattivazioneAttiva}");
     }
@@ -65,24 +126,35 @@ public class AccessibilitaManager : MonoBehaviour
 
     public void ToggleDisattivazione()
     {
-        disattivazioneAttiva = !disattivazioneAttiva;
-        Debug.Log($"Disattivazione oggetti tra scene: {disattivazioneAttiva}");
+        if (!isClicking)
+        {
+            isClicking = true;
+            disattivazioneAttiva = !disattivazioneAttiva;
+            Debug.Log($"Disattivazione oggetti tra scene: {disattivazioneAttiva}");
 
-        SalvaStatoDisattivazione();
-        AggiornaColoreBottone();
-        ApplicaStatoDisattivazioneAlleSceneCaricate();
+            SalvaStatoDisattivazione();
+            AggiornaColoreBottone();
+            ApplicaStatoDisattivazioneAlleSceneCaricate();
+
+            // Riabilita i click dopo un breve ritardo
+            Invoke("ResetClicking", clickDelay);
+        }
+    }
+
+    private void ResetClicking()
+    {
+        isClicking = false;
     }
 
     private void AggiornaColoreBottone()
     {
         if (bottoneImageMainMenu != null)
         {
-            // Se disattivazioneAttiva è true (gli oggetti sono disattivati), il bottone è rosso
             bottoneImageMainMenu.color = disattivazioneAttiva ? coloreDisattivo : coloreAttivo;
         }
         else
         {
-            Debug.LogWarning("Riferimento all'immagine del bottone nel MainMenu non assegnato.");
+            Debug.LogWarning("Riferimento all'immagine del bottone nel MainMenu non ancora disponibile.");
         }
     }
 
@@ -92,7 +164,6 @@ public class AccessibilitaManager : MonoBehaviour
         {
             if (gruppo.nomeScena == scene.name)
             {
-                // Se disattivazioneAttiva è true, disattiviamo gli oggetti (setActive(false))
                 DisattivaOggettiNellaScena(scene, gruppo.nomiOggetti, !disattivazioneAttiva);
             }
         }
@@ -112,7 +183,7 @@ public class AccessibilitaManager : MonoBehaviour
     {
         foreach (string nomeOggetto in nomiOggetti)
         {
-            GameObject oggettoTrovato = TrovaOggettoNellaScena(scena, nomeOggetto);
+            GameObject oggettoTrovato = TrovaOggettoPerNomeNellaScena(scena, nomeOggetto);
             if (oggettoTrovato != null)
             {
                 oggettoTrovato.SetActive(attiva);
@@ -120,20 +191,43 @@ public class AccessibilitaManager : MonoBehaviour
             }
             else
             {
-                // Non loggare warning qui
+                Debug.LogWarning($"Oggetto '{nomeOggetto}' non trovato nella scena '{scena.name}' per {(attiva ? "riattivazione" : "disattivazione")}.");
             }
         }
     }
 
-    private GameObject TrovaOggettoNellaScena(Scene scena, string nomeOggetto)
+    private GameObject TrovaOggettoPerNomeNellaScena(Scene scene, string nomeOggetto)
     {
-        GameObject[] rootObjects = scena.GetRootGameObjects();
+        GameObject[] rootObjects = scene.GetRootGameObjects();
         foreach (GameObject rootObject in rootObjects)
         {
             Transform foundTransform = rootObject.transform.Find(nomeOggetto);
             if (foundTransform != null)
             {
                 return foundTransform.gameObject;
+            }
+            // Ricerca ricorsiva (opzionale, ma più completa)
+            Transform RecursiveFindChild(Transform parent, string name)
+            {
+                foreach (Transform child in parent)
+                {
+                    if (child.name == name)
+                    {
+                        return child;
+                    }
+                    Transform found = RecursiveFindChild(child, name);
+                    if (found != null)
+                    {
+                        return found;
+                    }
+                }
+                return null;
+            }
+
+            Transform foundRecursive = RecursiveFindChild(rootObject.transform, nomeOggetto);
+            if (foundRecursive != null)
+            {
+                return foundRecursive.gameObject;
             }
         }
         return null;
