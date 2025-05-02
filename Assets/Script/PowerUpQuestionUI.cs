@@ -13,6 +13,10 @@ public class PowerUpQuestionUI : MonoBehaviour
     public TMP_Text timerText;
     public TMP_Text expiredMessageText;
     public CanvasGroup myCanvasGroup;
+    public AudioClip correctSound;
+    public AudioClip wrongSound;
+    public AudioClip timeUpSound;
+    public AudioClip timeoutMessageSound;
 
     [Header("Timer Settings")]
     public float questionTime = 10f;
@@ -483,7 +487,6 @@ public class PowerUpQuestionUI : MonoBehaviour
         float timeRemaining = questionTime;
         while (timeRemaining > 0f && !answered)
         {
-            // Aggiorna il testo del timer *qui*
             timerText.text = Mathf.CeilToInt(timeRemaining).ToString();
             float t = 1 - (timeRemaining / questionTime);
             timerText.color = Color.Lerp(startColor, endColor, t);
@@ -505,7 +508,16 @@ public class PowerUpQuestionUI : MonoBehaviour
             {
                 btn.interactable = false;
             }
-            timerText.text = ""; // Cancella il testo del timer anche qui
+            timerText.text = "";
+            AudioSource audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+            }
+            if (timeoutMessageSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(timeoutMessageSound);
+            }
             expiredMessageText.text = LanguageManager.instance.GetLocalizedText(timeUpKey, "Time's UP!");
             expiredMessageText.raycastTarget = true;
             yield return new WaitForSecondsRealtime(2f);
@@ -516,9 +528,21 @@ public class PowerUpQuestionUI : MonoBehaviour
         }
     }
 
-    private IEnumerator HandleTimeout() // Nuovo metodo per gestire il timeout
+    private IEnumerator HandleTimeout()
     {
-        answered = true; // Imposta answered a true qui
+        answered = true;
+
+        AudioSource audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        if (timeUpSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(timeUpSound);
+        }
+
         Destroy(currentPowerUp.gameObject);
         yield return new WaitForSecondsRealtime(0.1f);
         ResetUI();
@@ -528,7 +552,7 @@ public class PowerUpQuestionUI : MonoBehaviour
     private IEnumerator CheckAnswer(int index)
     {
         if (answered) yield break;
-        answered = true; // Imposta answered a true qui
+        answered = true;
 
         if (timerCoroutine != null)
         {
@@ -536,14 +560,28 @@ public class PowerUpQuestionUI : MonoBehaviour
             timerText.text = "";
         }
 
+        AudioSource audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
         if (index == correctAnswerIndex)
         {
             answerButtons[index].image.color = correctColor;
             currentPowerUp.GrantPowerUp();
+            if (correctSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(correctSound);
+            }
         }
         else
         {
             answerButtons[index].image.color = wrongColor;
+            if (wrongSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(wrongSound);
+            }
         }
 
         Destroy(currentPowerUp.gameObject);
@@ -554,6 +592,29 @@ public class PowerUpQuestionUI : MonoBehaviour
 
     private void ResetUI()
     {
+        PlaySoundsOnActivation soundScript = GetComponent<PlaySoundsOnActivation>();
+        if (soundScript != null)
+        {
+            soundScript.enabled = true;
+            // Riproduci il suono di deattivazione standard SE configurato
+            if (soundScript.deactivationSound != null)
+            {
+                AudioSource audioSource = GetComponent<AudioSource>();
+                if (audioSource != null)
+                {
+                    audioSource.PlayOneShot(soundScript.deactivationSound);
+                }
+                else
+                {
+                    Debug.LogWarning("AudioSource non trovato su " + gameObject.name);
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Script PlaySoundsOnActivation non trovato su " + gameObject.name);
+        }
+
         foreach (Button btn in answerButtons)
         {
             btn.image.color = defaultColor;
@@ -571,8 +632,8 @@ public class PowerUpQuestionUI : MonoBehaviour
         PLaserR.SetActive(true);
         questionPanel.SetActive(false);
         timerText.text = "";
-        expiredMessageText.text = "";  //aggiunto anche qui
-        expiredMessageText.raycastTarget = false; //assicuriamoci che sia disabilitato anche qui
+        expiredMessageText.text = "";
+        expiredMessageText.raycastTarget = false;
 
         if (myCanvasGroup != null)
         {
@@ -580,6 +641,17 @@ public class PowerUpQuestionUI : MonoBehaviour
         }
 
         Time.timeScale = 1f;
+
+        // Riproduci il timeUpSound ogni volta che il pannello si chiude
+        AudioSource audioSourceTimeUp = GetComponent<AudioSource>();
+        if (audioSourceTimeUp == null)
+        {
+            audioSourceTimeUp = gameObject.AddComponent<AudioSource>();
+        }
+        if (timeUpSound != null && audioSourceTimeUp != null)
+        {
+            audioSourceTimeUp.PlayOneShot(timeUpSound);
+        }
     }
 
     private void ResetTimerUI()

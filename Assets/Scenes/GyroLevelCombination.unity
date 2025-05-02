@@ -1490,6 +1490,10 @@ MonoBehaviour:
   timerText: {fileID: 591013602}
   expiredMessageText: {fileID: 1766062651}
   myCanvasGroup: {fileID: 1756850587}
+  correctSound: {fileID: 8300000, guid: 8e7252c06c288d042aa78d109f879310, type: 3}
+  wrongSound: {fileID: 8300000, guid: dcb05b8284f119041b8c27b1d057ef1d, type: 3}
+  timeUpSound: {fileID: 8300000, guid: 6378d25f276507f46be52c8894f365c6, type: 3}
+  timeoutMessageSound: {fileID: 8300000, guid: dcb05b8284f119041b8c27b1d057ef1d, type: 3}
   questionTime: 10
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 1, g: 0, b: 0, a: 1}

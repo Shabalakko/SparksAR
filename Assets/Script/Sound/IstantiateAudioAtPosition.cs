@@ -10,10 +10,10 @@ public class IstantiateAudioAtPosition : MonoBehaviour
     // Metodo per istanziare l'audio come Coroutine
     public IEnumerator InstantiateAudioAtPosition(Vector3 position, int instantiatingObjectId)
     {
-        // Controlla se l'oggetto Ë gi‡ stato distrutto.
+        // Controlla se l'oggetto ÅEgiÅEstato distrutto.
         if (destroyedObjectIds.Contains(instantiatingObjectId))
         {
-            yield break; // Se Ë gi‡ stato distrutto, esci dalla Coroutine.
+            yield break; // Se ÅEgiÅEstato distrutto, esci dalla Coroutine.
         }
 
         Debug.Log("InstantiateAudioAtPosition called with position: " + position);
@@ -32,7 +32,7 @@ public class IstantiateAudioAtPosition : MonoBehaviour
             else
             {
                 Debug.Log("audioSource is null or audioSource.clip is null");
-                // Se non c'Ë AudioSource o clip, distruggi l'oggetto dopo un breve ritardo di sicurezza
+                // Se non c'ÅEAudioSource o clip, distruggi l'oggetto dopo un breve ritardo di sicurezza
                 yield return new WaitForSecondsRealtime(5f);
             }
             Destroy(audioObject);
