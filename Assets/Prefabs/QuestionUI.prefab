@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7249734558212168117}
   - component: {fileID: 4786391670822558885}
   - component: {fileID: 8792281037283990081}
+  - component: {fileID: 7468256366537012948}
   m_Layer: 5
   m_Name: A3
   m_TagString: Untagged
@@ -121,6 +122,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7468256366537012948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328074395807150293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1baf34e13093067408bf75ac324aded4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioType: 1
 --- !u!1 &3013655062847289089
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,6 +555,7 @@ GameObject:
   - component: {fileID: 6991314662891889746}
   - component: {fileID: 8548218344421084389}
   - component: {fileID: 7636226403796184621}
+  - component: {fileID: 611738733340048420}
   m_Layer: 5
   m_Name: A1
   m_TagString: Untagged
@@ -650,6 +665,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &611738733340048420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5804655490678966382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1baf34e13093067408bf75ac324aded4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioType: 1
 --- !u!1 &5917069889744608372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,6 +1272,7 @@ GameObject:
   - component: {fileID: 1187216768909409193}
   - component: {fileID: 8478317767485347676}
   - component: {fileID: 4126774779297332606}
+  - component: {fileID: 4217401752243280452}
   m_Layer: 5
   m_Name: A2
   m_TagString: Untagged
@@ -1353,6 +1382,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4217401752243280452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8490314408238717664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1baf34e13093067408bf75ac324aded4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioType: 1
 --- !u!1 &8910483138925655978
 GameObject:
   m_ObjectHideFlags: 0

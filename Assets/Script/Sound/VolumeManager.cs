@@ -5,11 +5,11 @@ public class VolumeManager : MonoBehaviour
 {
     public static VolumeManager Instance { get; private set; }
 
-    [Range(0f, 1f)] public float musicVolume = 1f;
-    [Range(0f, 1f)] public float effectsVolume = 1f;
+    public bool musicOn = true;
+    public bool effectsOn = true;
 
-    private const string MusicVolumeKey = "MusicVolume";
-    private const string EffectsVolumeKey = "EffectsVolume";
+    private const string MusicOnKey = "MusicOn";
+    private const string EffectsOnKey = "EffectsOn";
 
     private void Awake()
     {
@@ -18,8 +18,10 @@ public class VolumeManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            musicVolume = PlayerPrefs.GetFloat(MusicVolumeKey, 1f);
-            effectsVolume = PlayerPrefs.GetFloat(EffectsVolumeKey, 1f);
+            musicOn = PlayerPrefs.GetInt(MusicOnKey, 1) == 1;
+            effectsOn = PlayerPrefs.GetInt(EffectsOnKey, 1) == 1;
+
+            UpdateAudioSources();
         }
         else
         {
@@ -29,20 +31,20 @@ public class VolumeManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        PlayerPrefs.SetFloat(MusicVolumeKey, musicVolume);
-        PlayerPrefs.SetFloat(EffectsVolumeKey, effectsVolume);
+        PlayerPrefs.SetInt(MusicOnKey, musicOn ? 1 : 0);
+        PlayerPrefs.SetInt(EffectsOnKey, effectsOn ? 1 : 0);
         PlayerPrefs.Save();
     }
 
-    public void SetMusicVolume(float volume)
+    public void ToggleMusic()
     {
-        musicVolume = volume;
+        musicOn = !musicOn;
         UpdateAudioSources();
     }
 
-    public void SetEffectsVolume(float volume)
+    public void ToggleEffects()
     {
-        effectsVolume = volume;
+        effectsOn = !effectsOn;
         UpdateAudioSources();
     }
 
@@ -55,11 +57,11 @@ public class VolumeManager : MonoBehaviour
             {
                 if (audioSource.GetComponent<AudioSourceType>().audioType == AudioSourceType.AudioType.Music)
                 {
-                    audioSource.volume = musicVolume;
+                    audioSource.volume = musicOn ? 1f : 0f;
                 }
                 else if (audioSource.GetComponent<AudioSourceType>().audioType == AudioSourceType.AudioType.Effect)
                 {
-                    audioSource.volume = effectsVolume;
+                    audioSource.volume = effectsOn ? 1f : 0f;
                 }
             }
         }
