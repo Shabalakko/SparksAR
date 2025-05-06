@@ -2,29 +2,41 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement; // Necessario per SceneManager
 
 public class QuestionScrollViewDisplay : MonoBehaviour
 {
     public Transform contentPanel;
-    public GameObject questionEntryPrefab; // Questo ora è un Canvas
-    public string panelName = "QuestionPanel"; // Nome del Panel dentro il Canvas
-    public string questionTextName = "QuestionText"; // Nome del TMP_Text per la domanda
-    public string correctAnswerTextName = "CorrectAnswer"; // Nome del TMP_Text per la risposta corretta
-    public string descriptionTextName = "Description"; // Nome del TMP_Text per la descrizione
+    public GameObject questionEntryPrefab;
+    public string panelName = "QuestionPanel";
+    public string questionTextName = "QuestionText";
+    public string correctAnswerTextName = "CorrectAnswer";
+    public string descriptionTextName = "Description";
     public QuestionData questionDataSource;
 
     private List<QuestionData.LocalizedQuestion> questions;
+    private bool isInitialized = false; // Flag per controllare l'inizializzazione
 
-    void Start()
+    void Awake() // Usiamo Awake per inizializzare prima di Start
     {
         if (contentPanel == null || questionEntryPrefab == null || questionDataSource == null)
         {
             Debug.LogError("Uno o più riferimenti UI o la sorgente dati non sono stati assegnati nell'Inspector!");
             return;
         }
+        LoadQuestions(); // Carica i dati una volta all'avvio
+        LanguageManager.onLanguageChanged += HandleLanguageChanged; // Usa HandleLanguageChanged
+        isInitialized = true; // Imposta il flag di inizializzazione
+    }
 
-        LoadQuestions();
-        DisplayQuestions();
+    void Start()
+    {
+        // Controlla se è già stato inizializzato.
+        if (isInitialized)
+        {
+            DisplayQuestions();
+        }
+
     }
 
     void LoadQuestions()
@@ -34,6 +46,7 @@ public class QuestionScrollViewDisplay : MonoBehaviour
 
     void DisplayQuestions()
     {
+        if (!isInitialized) return; // Assicurati che tutto sia inizializzato.
         if (questions == null || questions.Count == 0)
         {
             Debug.Log("Nessuna domanda disponibile da visualizzare.");
@@ -42,17 +55,25 @@ public class QuestionScrollViewDisplay : MonoBehaviour
 
         string currentLanguage = (LanguageManager.instance != null) ? LanguageManager.instance.currentLanguage : "ENGLISH";
 
+        // Disattiva il layout group prima di aggiungere/rimuovere elementi
+        if (contentPanel.GetComponent<LayoutGroup>() != null)
+            contentPanel.GetComponent<LayoutGroup>().enabled = false;
+
+        // Pulisci prima i contenuti del contentPanel
+        foreach (Transform child in contentPanel)
+        {
+            Destroy(child.gameObject);
+        }
+
         foreach (var questionData in questions)
         {
             GameObject entry = Instantiate(questionEntryPrefab, contentPanel);
             if (entry != null)
             {
-                // Trova il Panel dentro il Canvas
                 Transform panelTransform = entry.transform.Find(panelName);
 
                 if (panelTransform != null)
                 {
-                    // Cerca i TMP_Text come figli diretti del Panel
                     TMP_Text questionTextComponent = panelTransform.Find(questionTextName)?.GetComponent<TMP_Text>();
                     TMP_Text correctAnswerTextComponent = panelTransform.Find(correctAnswerTextName)?.GetComponent<TMP_Text>();
                     TMP_Text descriptionTextComponent = panelTransform.Find(descriptionTextName)?.GetComponent<TMP_Text>();
@@ -69,7 +90,7 @@ public class QuestionScrollViewDisplay : MonoBehaviour
                     if (correctAnswerTextComponent != null)
                     {
                         correctAnswerTextComponent.text = "" +
-                                                         ((currentLanguage == "FRENCH") ? questionData.correctAnswerFrench : questionData.correctAnswerEnglish);
+                                                        ((currentLanguage == "FRENCH") ? questionData.correctAnswerFrench : questionData.correctAnswerEnglish);
                     }
                     else
                     {
@@ -92,23 +113,22 @@ public class QuestionScrollViewDisplay : MonoBehaviour
                 }
             }
         }
+        // Riattiva il layout group dopo aver aggiunto tutti gli elementi
+        if (contentPanel.GetComponent<LayoutGroup>() != null)
+            contentPanel.GetComponent<LayoutGroup>().enabled = true;
     }
 
-    public void UpdateLocalizedQuestions()
+    // Cambiato da UpdateLocalizedQuestions a HandleLanguageChanged
+    public void HandleLanguageChanged()
     {
-        LoadQuestions();
-        foreach (Transform child in contentPanel)
-        {
-            Destroy(child.gameObject);
-        }
-        DisplayQuestions();
+        DisplayQuestions(); // Richiama direttamente DisplayQuestions
     }
 
     private void OnEnable()
     {
-        if (LanguageManager.instance != null)
+        if (isInitialized && LanguageManager.instance != null)
         {
-            LanguageManager.onLanguageChanged += UpdateLocalizedQuestions;
+            LanguageManager.onLanguageChanged += HandleLanguageChanged;
         }
     }
 
@@ -116,7 +136,15 @@ public class QuestionScrollViewDisplay : MonoBehaviour
     {
         if (LanguageManager.instance != null)
         {
-            LanguageManager.onLanguageChanged -= UpdateLocalizedQuestions;
+            LanguageManager.onLanguageChanged -= HandleLanguageChanged;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (LanguageManager.instance != null)
+        {
+            LanguageManager.onLanguageChanged -= HandleLanguageChanged;
         }
     }
 }

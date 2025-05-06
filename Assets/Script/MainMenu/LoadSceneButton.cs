@@ -9,7 +9,7 @@ public class LoadSceneButton : MonoBehaviour
     {
         Time.timeScale = 1;
         // Carica la scena specificata
-        SceneManager.LoadScene("MainMenu");
-        
+        SceneManager.LoadScene("MainMenu"); 
     }
+
 }

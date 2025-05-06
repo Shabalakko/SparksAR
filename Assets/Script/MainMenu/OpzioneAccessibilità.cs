@@ -8,8 +8,8 @@ public class AccessibilitaManager : MonoBehaviour
     public static AccessibilitaManager Instance { get; private set; }
 
     public bool disattivazioneAttiva { get; private set; } = false;
-    public Color coloreAttivo = Color.green;
-    public Color coloreDisattivo = Color.red;
+    public Sprite spriteAttivo;
+    public Sprite spriteDisattivo;
     public Image bottoneImageMainMenu; // Assicurati che sia assegnato nell'Inspector
     private const string prefKeyDisattivazioneAttiva = "DisattivazioneAccessibilitaAttiva";
     public string nomeBottoneMainMenu = "NomeDelTuoBottone"; // Sostituisci "NomeDelTuoBottone" con il nome effettivo del GameObject del tuo bottone nel MainMenu
@@ -51,7 +51,7 @@ public class AccessibilitaManager : MonoBehaviour
 
     private void Start()
     {
-        AggiornaColoreBottone(); // Aggiorna il colore iniziale
+        AggiornaSpriteBottone(); // Aggiorna lo sprite iniziale
         ApplicaStatoDisattivazioneAlleSceneCaricate(); // Applica lo stato alla prima scena caricata
     }
 
@@ -77,7 +77,7 @@ public class AccessibilitaManager : MonoBehaviour
 
             if (bottoneImageMainMenu != null)
             {
-                AggiornaColoreBottone();
+                AggiornaSpriteBottone();
             }
             else
             {
@@ -133,7 +133,7 @@ public class AccessibilitaManager : MonoBehaviour
             Debug.Log($"Disattivazione oggetti tra scene: {disattivazioneAttiva}");
 
             SalvaStatoDisattivazione();
-            AggiornaColoreBottone();
+            AggiornaSpriteBottone(); // Aggiorna lo sprite del bottone
             ApplicaStatoDisattivazioneAlleSceneCaricate();
 
             // Riabilita i click dopo un breve ritardo
@@ -146,11 +146,11 @@ public class AccessibilitaManager : MonoBehaviour
         isClicking = false;
     }
 
-    private void AggiornaColoreBottone()
+    private void AggiornaSpriteBottone()
     {
         if (bottoneImageMainMenu != null)
         {
-            bottoneImageMainMenu.color = disattivazioneAttiva ? coloreDisattivo : coloreAttivo;
+            bottoneImageMainMenu.sprite = disattivazioneAttiva ? spriteDisattivo : spriteAttivo;
         }
         else
         {

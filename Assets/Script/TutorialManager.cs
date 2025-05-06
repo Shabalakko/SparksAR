@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine.Video;
 
 [System.Serializable]
 public class TutorialPanel
@@ -10,8 +9,8 @@ public class TutorialPanel
     [Header("Oggetti panel")]
     public GameObject panel;
 
-    [Header("Contenuti del panel (Video Clips)")]
-    public List<VideoClip> pageContents;
+    [Header("Contenuti del panel (Immagini)")]
+    public List<Sprite> pageContents;
 
     [Header("Indicatori di pagina")]
     public Image[] pageIndicators;
@@ -35,10 +34,8 @@ public class TutorialManager : MonoBehaviour
 
     private int currentPanelIndex = 0;
 
-    [Header("Oggetto Video Target")]
-    public RawImage videoTargetRawImage; // L'oggetto RawImage designato come target
-
-    private VideoPlayer videoPlayer;
+    [Header("Oggetto Image Target")]
+    public Image imageTargetImage; // L'oggetto Image designato come target
 
     [Header("Bottoni di navigazione")]
     public Button nextButton;
@@ -52,41 +49,9 @@ public class TutorialManager : MonoBehaviour
         // Assicura che l'evento onLanguageChanged sia sottoscritto prima di qualsiasi Start()
         LanguageManager.onLanguageChanged += UpdateAllPanelTexts;
 
-        if (videoTargetRawImage != null)
+        if (imageTargetImage == null)
         {
-            videoPlayer = GetComponent<VideoPlayer>();
-            if (videoPlayer == null)
-            {
-                videoPlayer = gameObject.AddComponent<VideoPlayer>();
-                videoPlayer.playOnAwake = false;
-                videoPlayer.isLooping = false;
-                videoPlayer.renderMode = VideoRenderMode.APIOnly;
-                Debug.Log("VideoPlayer component added.");
-            }
-            else
-            {
-                Debug.Log("VideoPlayer component found.");
-            }
-
-            int width = (int)videoTargetRawImage.rectTransform.rect.width;
-            int height = (int)videoTargetRawImage.rectTransform.rect.height;
-            Debug.Log($"RawImage Width (Awake): {width}, Height (Awake): {height}");
-
-            if (width > 0 && height > 0)
-            {
-                videoPlayer.targetTexture = new RenderTexture(width, height, 0);
-                Debug.Log($"RenderTexture created (Awake): Width={videoPlayer.targetTexture.width}, Height={videoPlayer.targetTexture.height}");
-                videoTargetRawImage.texture = videoPlayer.targetTexture;
-                Debug.Log($"RawImage texture assigned (Awake): {videoTargetRawImage.texture}");
-            }
-            else
-            {
-                Debug.LogError("RawImage dimensions are zero or negative in Awake(). Cannot create RenderTexture.");
-            }
-        }
-        else
-        {
-            Debug.LogError("Oggetto RawImage target per il video non assegnato!");
+            Debug.LogError("Oggetto Image target non assegnato!");
         }
     }
 
@@ -120,7 +85,6 @@ public class TutorialManager : MonoBehaviour
     public void OnNextButton()
     {
         TutorialPanel currentPanel = tutorialPanels[currentPanelIndex];
-        StopCurrentVideo(); // Ferma il video corrente
 
         if (currentPanel.currentPage < currentPanel.pageContents.Count - 1)
         {
@@ -142,7 +106,6 @@ public class TutorialManager : MonoBehaviour
     public void OnPrevButton()
     {
         TutorialPanel currentPanel = tutorialPanels[currentPanelIndex];
-        StopCurrentVideo(); // Ferma il video corrente
 
         if (currentPanel.currentPage > 0)
         {
@@ -171,7 +134,6 @@ public class TutorialManager : MonoBehaviour
             return;
         }
 
-        StopCurrentVideo(); // Ferma il video corrente
         currentPanelIndex = panelIndex;
         tutorialPanels[currentPanelIndex].currentPage = 0;
         AttivaSoloPanel(currentPanelIndex);
@@ -183,14 +145,14 @@ public class TutorialManager : MonoBehaviour
     {
         TutorialPanel currentPanel = tutorialPanels[currentPanelIndex];
 
-        // Gestione dei video
-        if (videoTargetRawImage != null && currentPanel.pageContents.Count > 0)
+        // Gestione delle immagini
+        if (imageTargetImage != null && currentPanel.pageContents.Count > 0)
         {
-            PlayCurrentVideo(currentPanel.pageContents[currentPanel.currentPage]);
+            DisplayCurrentImage(currentPanel.pageContents[currentPanel.currentPage]);
         }
-        else if (videoTargetRawImage != null)
+        else if (imageTargetImage != null)
         {
-            StopCurrentVideo();
+            imageTargetImage.sprite = null; // Pulisci l'immagine se non ci sono contenuti
         }
 
         // Gestione degli indicatori di pagina
@@ -264,46 +226,18 @@ public class TutorialManager : MonoBehaviour
         {
             tutorialPanels[i].panel.SetActive(i == index);
         }
-        // Il video viene gestito in UpdatePanelUI in base al pannello attivo e alla pagina.
+        // L'immagine viene gestita in UpdatePanelUI in base al pannello attivo e alla pagina.
     }
 
-    private void PlayCurrentVideo(VideoClip clip)
+    private void DisplayCurrentImage(Sprite image)
     {
-        if (videoPlayer != null)
+        if (imageTargetImage != null)
         {
-            Debug.Log($"Attempting to play clip: {clip}");
-            if (clip != null)
-            {
-                videoPlayer.clip = clip;
-                videoPlayer.Play();
-                Debug.Log($"Video started playing. Is Playing: {videoPlayer.isPlaying}");
-            }
-            else
-            {
-                Debug.LogWarning("No VideoClip assigned for this page.");
-                StopCurrentVideo();
-            }
+            imageTargetImage.sprite = image;
         }
         else
         {
-            Debug.LogError("VideoPlayer is null in PlayCurrentVideo!");
-        }
-    }
-
-    private void StopCurrentVideo()
-    {
-        if (videoPlayer != null && videoPlayer.isPlaying)
-        {
-            Debug.Log("Stopping current video.");
-            videoPlayer.Stop();
-        }
-        else if (videoPlayer != null)
-        {
-            Debug.Log("No video playing to stop.");
-        }
-        else
-        {
-            Debug.LogError("VideoPlayer is null in StopCurrentVideo!");
+            Debug.LogError("ImageTargetImage is null in DisplayCurrentImage!");
         }
     }
 

@@ -516,7 +516,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d3a27ffed7c1ebc40a38680af4cd5716, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3314cee7c66738344b2fa75c79e5c201, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1008,7 +1008,7 @@ PrefabInstance:
     - target: {fileID: 4823506911399408516, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6bdc36b7094b6ab4b9be5489cb00c5da, type: 3}
+      objectReference: {fileID: 21300000, guid: 1e96a452c69686d4e9207f4c9f4bc278, type: 3}
     - target: {fileID: 4949171491751137309, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -1166,12 +1166,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7270196972805868809, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
+      propertyPath: m_text
+      value: 000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7270196972805868809, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
       propertyPath: m_fontSize
-      value: 48
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 7270196972805868809, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
       propertyPath: m_fontSizeBase
-      value: 48
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 7400022022373594492, guid: 03c1946f785ed444d86efec520252e9e, type: 3}
       propertyPath: m_Color.b

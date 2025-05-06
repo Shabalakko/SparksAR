@@ -31,7 +31,7 @@ public class VolumeButton : MonoBehaviour
             }
             else if (buttonType == ButtonType.Effects)
             {
-                VolumeManager.Instance.ToggleEffects();
+                //VolumeManager.Instance.ToggleEffects();
             }
             UpdateVisual();
         }
@@ -47,7 +47,7 @@ public class VolumeButton : MonoBehaviour
             }
             else if (buttonType == ButtonType.Effects)
             {
-                buttonImage.sprite = VolumeManager.Instance.effectsOn ? onSprite : offSprite;
+                //buttonImage.sprite = VolumeManager.Instance.effectsOn ? onSprite : offSprite;
             }
         }
     }

@@ -826,6 +826,7 @@ GameObject:
   - component: {fileID: 1975659638719180680}
   - component: {fileID: 667566627187783950}
   - component: {fileID: 1018492087427676581}
+  - component: {fileID: 4299147382561241614}
   m_Layer: 5
   m_Name: QuestionPanel
   m_TagString: Untagged
@@ -911,6 +912,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activationSound: {fileID: 8300000, guid: 24cf796b3c290fc46b87986b9af3a7f7, type: 3}
   deactivationSound: {fileID: 8300000, guid: 6378d25f276507f46be52c8894f365c6, type: 3}
+--- !u!114 &4299147382561241614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044319362332730062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1baf34e13093067408bf75ac324aded4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioType: 1
 --- !u!1 &6816606219285349538
 GameObject:
   m_ObjectHideFlags: 0

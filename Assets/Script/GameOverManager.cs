@@ -32,6 +32,10 @@ public class GameOverManager : MonoBehaviour
     public string coinsKey = "coins";
     public string currentCoinsKey = "current_coins";
 
+    [Header("Laser Management")]
+    public GameObject Lasers;
+    public GameObject PLaserR, PLaserB;
+
     private void Start()
     {
         if (gameOverCanvas != null)
@@ -84,11 +88,13 @@ public class GameOverManager : MonoBehaviour
         UpdateCoinsUI();
         if (earnedCoinsText != null)
         {
-            earnedCoinsText.text = "+" + earnedCoins + " " + LanguageManager.instance.GetLocalizedText(earnedCoinsKey, "Coins");
+            earnedCoinsText.text = "+" + earnedCoins; // Rimossa la localizzazione e la parola "Coins"
         }
 
         if (gameOverCanvas != null)
             gameOverCanvas.SetActive(true);
+
+        DisableLasers(); // Disattiva i laser quando il game over viene mostrato
 
         if (AchievementManager.Instance != null)
             AchievementManager.Instance.CheckAchievements(scoreManager.scoringMode, finalScore);
@@ -103,11 +109,11 @@ public class GameOverManager : MonoBehaviour
     {
         if (coinsText != null)
         {
-            coinsText.text = LanguageManager.instance.GetLocalizedText(coinsKey, "Coins") + ": " + WalletManager.Instance.GetTotalCoins();
+            coinsText.text = WalletManager.Instance.GetTotalCoins().ToString(); // Mostra solo il numero
         }
         if (currentCoinsText != null)
         {
-            currentCoinsText.text = LanguageManager.instance.GetLocalizedText(currentCoinsKey, "Current Coins") + ": " + WalletManager.Instance.GetTotalCoins();
+            currentCoinsText.text = WalletManager.Instance.GetTotalCoins().ToString(); // Mostra solo il numero
         }
     }
 
@@ -121,7 +127,6 @@ public class GameOverManager : MonoBehaviour
         {
             ScoringMode currentMode = (scoreManager != null) ? scoreManager.scoringMode : ScoringMode.ColorSlots; // Imposta un valore di default se scoreManager è null
             int currentHighScore = HighScoreManager.GetHighScore(currentMode);
-            // Per ora, rimuoviamo la riga con HasNewHighScore perché non è definita
             bool isNewHighScore = (scoreManager != null) ? HighScoreManager.UpdateHighScore(currentMode, scoreManager.GetTotalScore()) : false; // Tentativo di usare UpdateHighScore come indicatore di nuovo record
 
             if (isNewHighScore)
@@ -135,7 +140,7 @@ public class GameOverManager : MonoBehaviour
         if (earnedCoinsText != null && scoreManager != null)
         {
             int earnedCoins = CalculateCoins(scoreManager.GetTotalScore());
-            earnedCoinsText.text = "+" + earnedCoins + " " + LanguageManager.instance.GetLocalizedText(earnedCoinsKey, "Coins");
+            earnedCoinsText.text = "+" + earnedCoins; // Rimossa la localizzazione e la parola "Coins"
         }
     }
 
@@ -164,5 +169,64 @@ public class GameOverManager : MonoBehaviour
         PlayerPrefs.Save();
         UpdateCoinsUI(); //aggiorna la UI per mostrare 0 monete
         Debug.Log("Coins reset to 0");
+    }
+
+    private void DisableLasers()
+    {
+        if (Lasers != null)
+        {
+            LaserGun compR = Lasers.GetComponent<LaserGun>();
+            LaserGunBlue compB = Lasers.GetComponent<LaserGunBlue>();
+            if (compB != null) compB.enabled = false;
+            if (compR != null) compR.enabled = false;
+        }
+        if (PLaserR != null) PLaserR.SetActive(false);
+        if (PLaserB != null) PLaserB.SetActive(false);
+
+        StopParticleSystems();
+    }
+
+    private void EnableLasers()
+    {
+        if (Lasers != null)
+        {
+            LaserGun compR = Lasers.GetComponent<LaserGun>();
+            LaserGunBlue compB = Lasers.GetComponent<LaserGunBlue>();
+            if (compB != null) compB.enabled = true;
+            if (compR != null) compR.enabled = true;
+        }
+        if (PLaserR != null) PLaserR.SetActive(true);
+        if (PLaserB != null) PLaserB.SetActive(true);
+    }
+
+    private void StopParticleSystems()
+    {
+        if (PLaserR != null)
+        {
+            ParticleSystem psR = PLaserR.GetComponent<ParticleSystem>();
+            if (psR != null) psR.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+        if (PLaserB != null)
+        {
+            ParticleSystem psB = PLaserB.GetComponent<ParticleSystem>();
+            if (psB != null) psB.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+    }
+
+    // Aggiungi qui un metodo per riavviare la partita (se non esiste già)
+    public void RestartGame()
+    {
+        // Inserisci qui la logica per riavviare la partita
+        // Ad esempio, ricaricare la scena corrente
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        EnableLasers(); // Riattiva i laser al riavvio
+    }
+
+    // Aggiungi qui un metodo per tornare al menù principale (se non esiste già)
+    public void GoToMainMenu()
+    {
+        // Inserisci qui la logica per tornare al menù principale
+        // SceneManager.LoadScene("MainMenu");
+        EnableLasers(); // Riattiva i laser tornando al menù (se necessario)
     }
 }

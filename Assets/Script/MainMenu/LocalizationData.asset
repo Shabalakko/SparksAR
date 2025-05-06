@@ -15,13 +15,13 @@ MonoBehaviour:
   entries:
   - key: play_button
     englishText: Play
-    frenchText: Juer
+    frenchText: Jouer
   - key: options_button
     englishText: Options
     frenchText: Options
   - key: gyrolevelmulti_button
     englishText: Combo Chain
-    frenchText: "Combo en Cha\xEEne"
+    frenchText: "Cha\xEEne de Combos"
   - key: gyrolevelcombination_button
     englishText: Color Mix
     frenchText: Mix de Couleurs
@@ -29,8 +29,8 @@ MonoBehaviour:
     englishText: Tutorial
     frenchText: Tutoriel
   - key: map_button
-    englishText: Map ON
-    frenchText: Carte ON
+    englishText: Map ON\OFF
+    frenchText: Carte ON\OFF
   - key: back_button
     englishText: Back
     frenchText: Retour
@@ -39,7 +39,7 @@ MonoBehaviour:
     frenchText: Quitter
   - key: build_button
     englishText: Build
-    frenchText: "B\xE2tir"
+    frenchText: Assembler
   - key: gameover_text
     englishText: MISSION OVER
     frenchText: "MISSION TERMIN\xC9E"
@@ -234,7 +234,7 @@ MonoBehaviour:
   - key: MAIN_BODY_NAME
     englishText: Main body
     frenchText: Corps principal
-  - key: MASTERCAM_SYSTEM_NAME
+  - key: MASCAM_SYSTEM_NAME
     englishText: Mastercam system
     frenchText: "Syst\xE8me Mastercam"
   - key: RADAR_NAME
@@ -291,3 +291,45 @@ MonoBehaviour:
   - key: REAR_SENSOR_2_NAME
     englishText: Rear sensor 1
     frenchText: "Capteur arri\xE8re 1"
+  - key: reset_highscore_button
+    englishText: Reset Highscore
+    frenchText: "R\xE9initialiser le meilleur score"
+  - key: reset_shop_button
+    englishText: Reset Shop
+    frenchText: "R\xE9initialiser l'inventaire"
+  - key: toggle_music_text
+    englishText: Toggle Music
+    frenchText: Musique
+  - key: colorblind_text
+    englishText: Colorblind Mode
+    frenchText: Mode Daltonien
+  - key: warning_text
+    englishText: WARNING!!!
+    frenchText: ATTENTION!!!
+  - key: desc_warn_1
+    englishText: Are you sure you want to reset everything you have bought?
+    frenchText: "\xCAtes-vous s\xFBr de vouloir r\xE9initialiser tout ce que vous
+      avez achet\xE9 ?"
+  - key: desc_warn_2
+    englishText: If you click one of the gamemodes you will reset that highscore
+      and go back to the title screen!
+    frenchText: "Si vous cliquez sur l'un des modes de jeu, votre meilleur score
+      pour ce mode sera r\xE9initialis\xE9 et vous retournerez \xE0 l'\xE9cran titre!"
+  - key: yes_text
+    englishText: Yes
+    frenchText: Oui
+  - key: no_text
+    englishText: No
+    frenchText: Non
+  - key: highscore_text
+    englishText: High Score
+    frenchText: Le Meilleur Score
+  - key: resume_button
+    englishText: Resume
+    frenchText: Continuer
+  - key: SOLAR_PANEL_BASE_C_BACK_NAME
+    englishText: Solar panel base c back
+    frenchText: "Base de panneau solaire c arri\xE8re"
+  - key: SHOP_TITLE
+    englishText: Shop
+    frenchText: Boutique

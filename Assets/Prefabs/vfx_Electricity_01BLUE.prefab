@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7373644630128741146}
   - component: {fileID: 2193125836256819593}
   - component: {fileID: 2334019077913598492}
+  - component: {fileID: 6872459730722238614}
   m_Layer: 0
   m_Name: vfx_Electricity_01BLUE
   m_TagString: Untagged
@@ -4933,3 +4934,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6872459730722238614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7834434380170384362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1baf34e13093067408bf75ac324aded4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioType: 1

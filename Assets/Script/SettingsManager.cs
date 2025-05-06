@@ -8,11 +8,13 @@ public class SettingsManager : MonoBehaviour
     private static SettingsManager instance;
     public string buttonName = "MyButton";
     public string playButtonName = "PlayButton";
+    public Sprite activeSprite; // Sprite da mostrare quando Cesium è attivo
+    public Sprite inactiveSprite; // Sprite da mostrare quando Cesium è inattivo
     private GameObject buttonReference;
     private bool isCesiumActive;
     private string mainMenuSceneName = "MainMenu";
     private bool listenerAdded = false; // Track if the listener has been added
-    private bool isToggling = false;   // Track if ToggleCesiumGeoreference is already running
+    private bool isToggling = false;    // Track if ToggleCesiumGeoreference is already running
     private float lastClickTime = 0f;
     public float clickDebounceTime = 0.5f; // Adjust as needed to prevent multiple calls
 
@@ -24,7 +26,7 @@ public class SettingsManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             // Carica lo stato salvato, se non esiste, usa il valore di default della scena.
             isCesiumActive = PlayerPrefs.GetInt("CesiumGeoreferenceActive", -1) == -1
-        ? true // Assumiamo che il valore di default nella scena sia true
+                ? true // Assumiamo che il valore di default nella scena sia true
                 : PlayerPrefs.GetInt("CesiumGeoreferenceActive", 1) == 1; //altrimenti usa il valore salvato
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
@@ -94,7 +96,7 @@ public class SettingsManager : MonoBehaviour
         yield return new WaitUntil(() => buttonReference.activeInHierarchy);
         Debug.Log(buttonName + " is active.  Attaching listener.");
 
-        UpdateButtonColor(isCesiumActive);
+        UpdateButtonSprite(isCesiumActive);
         Button targetButton = buttonReference.GetComponent<Button>();
         if (targetButton != null)
         {
@@ -131,10 +133,10 @@ public class SettingsManager : MonoBehaviour
         Debug.Log("New state: " + isCesiumActive);
         PlayerPrefs.SetInt("CesiumGeoreferenceActive", isCesiumActive ? 1 : 0);
         PlayerPrefs.Save();
-        UpdateButtonColor(isCesiumActive);
+        UpdateButtonSprite(isCesiumActive);
     }
 
-    private void UpdateButtonColor(bool isActive)
+    private void UpdateButtonSprite(bool isActive)
     {
         if (buttonReference == null)
         {
@@ -143,7 +145,7 @@ public class SettingsManager : MonoBehaviour
         Image buttonImage = buttonReference.GetComponent<Image>();
         if (buttonImage != null)
         {
-            buttonImage.color = isActive ? Color.green : Color.red;
+            buttonImage.sprite = isActive ? activeSprite : inactiveSprite;
         }
         else
         {

@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class ModelShopManager : MonoBehaviour
 {
     [Header("Wallet Manager")]
-    public WalletManager walletManager;
+    private WalletManager walletManager; // Reso privato per la ricerca automatica
 
     [Header("UI References")]
     public TextMeshProUGUI totalCoinsText;
@@ -25,10 +25,6 @@ public class ModelShopManager : MonoBehaviour
 
     [Header("Localization Keys")]
     public string shopTitleKey = "SHOP_TITLE";
-    // You can define a base key or a pattern here if needed,
-    // or directly use the partName as a basis.
-    // Example: public string partNameKeyPrefix = "PART_NAME_";
-    // Example: public string descriptionKeyPrefix = "PART_DESC_";
 
     [Header("Testing Options")]
     public bool resetPartsOnStart = false;
@@ -36,9 +32,11 @@ public class ModelShopManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f;
+        // Ricerca automatica del WalletManager
+        walletManager = FindObjectOfType<WalletManager>();
         if (walletManager == null)
         {
-            Debug.LogError("WalletManager non assegnato a ModelShopManager!");
+            Debug.LogError("WalletManager non trovato nella scena!");
         }
 
         if (modelContainer == null)
@@ -57,13 +55,21 @@ public class ModelShopManager : MonoBehaviour
 
     void OnEnable()
     {
-        WalletManager.OnCoinsChanged += UpdateCoinsUI;
+        // Sottoscrivi solo se il WalletManager è stato trovato
+        if (walletManager != null)
+        {
+            WalletManager.OnCoinsChanged += UpdateCoinsUI;
+        }
         LanguageManager.onLanguageChanged += UpdateLocalizedUI;
     }
 
     void OnDisable()
     {
-        WalletManager.OnCoinsChanged -= UpdateCoinsUI;
+        // Annulla la sottoscrizione solo se il WalletManager è stato trovato
+        if (walletManager != null)
+        {
+            WalletManager.OnCoinsChanged -= UpdateCoinsUI;
+        }
         LanguageManager.onLanguageChanged -= UpdateLocalizedUI;
     }
 
@@ -110,18 +116,28 @@ public class ModelShopManager : MonoBehaviour
         LoadButtonStates();
     }
 
+    // Sovraccarico per l'evento OnCoinsChanged
     void UpdateCoinsUI(int totalCoins)
     {
-        if (totalCoinsText != null)
+        InternalUpdateCoinsUI();
+    }
+
+    // Versione senza parametri chiamata internamente e all'avvio
+    void UpdateCoinsUI()
+    {
+        InternalUpdateCoinsUI();
+    }
+
+    private void InternalUpdateCoinsUI()
+    {
+        if (totalCoinsText != null && walletManager != null)
         {
             totalCoinsText.text = "" + walletManager.GetTotalCoins();
         }
-    }
-    void UpdateCoinsUI()
-    {
-        if (totalCoinsText != null)
+        else if (totalCoinsText != null && walletManager == null)
         {
-            totalCoinsText.text = "" + walletManager.GetTotalCoins();
+            Debug.LogWarning("WalletManager non trovato, impossibile aggiornare l'UI delle monete.");
+            totalCoinsText.text = "-"; // O un altro valore di default
         }
     }
 
@@ -144,7 +160,7 @@ public class ModelShopManager : MonoBehaviour
 
     public void PurchasePart(ModelPartData partData)
     {
-        if (walletManager.GetTotalCoins() >= partData.cost)
+        if (walletManager != null && walletManager.GetTotalCoins() >= partData.cost)
         {
             walletManager.RemoveCoins(partData.cost);
             UnlockPart(partData);
