@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: b6bcfdccf3ce1444085bb87e37d72d3b
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 288103
+  packageName: Video Player with Hosting
+  packageVersion: 4.7.1
+  assetPath: Packages/com.hisplayer.hisplayersdk/HISPlayer/Scripts/Shaders/HISPlayerDefaultShader.shader
+  uploadId: 739849

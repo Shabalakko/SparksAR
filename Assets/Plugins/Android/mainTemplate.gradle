@@ -4,27 +4,29 @@ apply from: '../shared/keepUnitySymbols.gradle'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.google.android.exoplayer:exoplayer:2.18.3'
+    implementation 'org.bouncycastle:bcprov-jdk16:1.45'
 **DEPS**}
 
 android {
-    namespace "com.unity3d.player"
-    ndkPath "**NDKPATH**"
     ndkVersion "**NDKVERSION**"
+    ndkPath "**NDKPATH**"
+    namespace "com.unity3d.player"
 
     compileSdk **APIVERSION**
-    buildToolsVersion = "**BUILDTOOLS**"
+    buildToolsVersion '**BUILDTOOLS**'
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     defaultConfig {
         minSdk **MINSDK**
         targetSdk **TARGETSDK**
         ndk {
-            abiFilters **ABIFILTERS**
             debugSymbolLevel **DEBUGSYMBOLLEVEL**
+            abiFilters **ABIFILTERS**
         }
         versionCode **VERSIONCODE**
         versionName '**VERSIONNAME**'

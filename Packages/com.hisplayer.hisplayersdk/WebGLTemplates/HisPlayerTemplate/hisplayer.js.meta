@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 444b6b00d3e5b4edc8748d6a3f928759
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 288103
+  packageName: Video Player with Hosting
+  packageVersion: 4.7.1
+  assetPath: Packages/com.hisplayer.hisplayersdk/WebGLTemplates/HisPlayerTemplate/hisplayer.js
+  uploadId: 739849

@@ -25,9 +25,8 @@ public class SettingsManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             // Carica lo stato salvato, se non esiste, usa il valore di default della scena.
-            isCesiumActive = PlayerPrefs.GetInt("CesiumGeoreferenceActive", -1) == -1
-                ? true // Assumiamo che il valore di default nella scena sia true
-                : PlayerPrefs.GetInt("CesiumGeoreferenceActive", 1) == 1; //altrimenti usa il valore salvato
+            // MODIFICA QUI: Imposta il valore di default a false (0) se non è salvato.
+            isCesiumActive = PlayerPrefs.GetInt("CesiumGeoreferenceActive", 0) == 1;
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8ad4881d0f1c7fb44a22a4b736f885f5
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 288103
+  packageName: Video Player with Hosting
+  packageVersion: 4.7.1
+  assetPath: Packages/com.hisplayer.hisplayersdk/HISPlayerSDK_Documentation.pdf
+  uploadId: 739849
