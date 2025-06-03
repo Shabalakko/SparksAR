@@ -1104,6 +1104,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4454948167512117322, guid: 19d2302eaf351b84ea637827c2f36a63, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4454948167512117322, guid: 19d2302eaf351b84ea637827c2f36a63, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: c48cf2fb8ac315d44ab003c49c0ee4f0, type: 3}
     - target: {fileID: 6485426132736834420, guid: 19d2302eaf351b84ea637827c2f36a63, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1147,6 +1155,10 @@ PrefabInstance:
     - target: {fileID: 8373273223400796757, guid: 19d2302eaf351b84ea637827c2f36a63, type: 3}
       propertyPath: m_Name
       value: SKY
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035188258139034824, guid: 19d2302eaf351b84ea637827c2f36a63, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
