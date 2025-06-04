@@ -10,11 +10,13 @@ public class SettingsManager : MonoBehaviour
     public string playButtonName = "PlayButton";
     public Sprite activeSprite; // Sprite da mostrare quando Cesium è attivo
     public Sprite inactiveSprite; // Sprite da mostrare quando Cesium è inattivo
+    public string skyGameObjectName = "SKY"; // New: Name of the SKY GameObject
+
     private GameObject buttonReference;
+    private GameObject skyGameObjectReference; // New: Reference to the SKY GameObject
     private bool isCesiumActive;
     private string mainMenuSceneName = "MainMenu";
     private bool listenerAdded = false; // Track if the listener has been added
-    private bool isToggling = false;    // Track if ToggleCesiumGeoreference is already running
     private float lastClickTime = 0f;
     public float clickDebounceTime = 0.5f; // Adjust as needed to prevent multiple calls
 
@@ -49,6 +51,17 @@ public class SettingsManager : MonoBehaviour
             StartCoroutine(AssignPlayButton());
             listenerAdded = false; // Reset the listenerAdded flag when returning to the main menu
         }
+        else // This assumes you're in a "game" scene when not in the main menu
+        {
+            // Find the SKY GameObject when a new scene (not main menu) is loaded
+            skyGameObjectReference = GameObject.Find(skyGameObjectName);
+            if (skyGameObjectReference == null)
+            {
+                Debug.LogWarning("SKY GameObject not found: " + skyGameObjectName + " in scene " + scene.name);
+            }
+            // Update the SKY GameObject's state based on the initial Cesium state
+            UpdateSkyGameObject(isCesiumActive);
+        }
     }
 
     private IEnumerator AssignPlayButton()
@@ -67,7 +80,7 @@ public class SettingsManager : MonoBehaviour
         }
 
         yield return new WaitUntil(() => playButton.activeInHierarchy);
-        Debug.Log("PlayButton is active.  Attaching listener.");
+        Debug.Log("PlayButton is active. Attaching listener.");
         playButtonComponent.onClick.RemoveAllListeners();
         playButtonComponent.onClick.AddListener(FindButton);
     }
@@ -86,7 +99,6 @@ public class SettingsManager : MonoBehaviour
             yield break;
         }
 
-        // Add this check.
         if (!buttonReference.activeInHierarchy)
         {
             Debug.LogError("ButtonReference is not active in hierarchy: " + buttonName);
@@ -94,17 +106,16 @@ public class SettingsManager : MonoBehaviour
         }
 
         yield return new WaitUntil(() => buttonReference.activeInHierarchy);
-        Debug.Log(buttonName + " is active.  Attaching listener.");
+        Debug.Log(buttonName + " is active. Attaching listener.");
 
         UpdateButtonSprite(isCesiumActive);
         Button targetButton = buttonReference.GetComponent<Button>();
         if (targetButton != null)
         {
-            // Check if the listener has already been added
             if (!listenerAdded)
             {
                 targetButton.onClick.AddListener(ToggleCesiumGeoreference);
-                listenerAdded = true; // Set the flag to true after adding the listener
+                listenerAdded = true;
             }
             else
             {
@@ -119,14 +130,13 @@ public class SettingsManager : MonoBehaviour
 
     public void ToggleCesiumGeoreference()
     {
-        // Debounce the button click
         if (Time.time - lastClickTime < clickDebounceTime)
         {
             Debug.LogWarning("Button click debounced.");
             return;
         }
 
-        lastClickTime = Time.time; // Update the last click time
+        lastClickTime = Time.time;
 
         Debug.Log("ToggleCesiumGeoreference called, previous state: " + isCesiumActive);
         isCesiumActive = !isCesiumActive;
@@ -134,6 +144,9 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetInt("CesiumGeoreferenceActive", isCesiumActive ? 1 : 0);
         PlayerPrefs.Save();
         UpdateButtonSprite(isCesiumActive);
+
+        // New: Toggle SKY GameObject active state
+        UpdateSkyGameObject(isCesiumActive);
     }
 
     private void UpdateButtonSprite(bool isActive)
@@ -151,5 +164,26 @@ public class SettingsManager : MonoBehaviour
         {
             Debug.LogError("Image component is null on: " + buttonName);
         }
+    }
+
+    // New: Method to update the active state of the SKY GameObject
+    private void UpdateSkyGameObject(bool isCesiumActiveState)
+    {
+        // If the SKY GameObject hasn't been found yet, try to find it.
+        // This is important if you're transitioning directly into a scene
+        // where the SKY object exists without going through the main menu first.
+        if (skyGameObjectReference == null)
+        {
+            skyGameObjectReference = GameObject.Find(skyGameObjectName);
+            if (skyGameObjectReference == null)
+            {
+                Debug.LogWarning("SKY GameObject not found to update its state: " + skyGameObjectName);
+                return;
+            }
+        }
+
+        // SKY is active when Cesium is INACTIVE, and vice-versa
+        skyGameObjectReference.SetActive(!isCesiumActiveState);
+        Debug.Log("SKY GameObject active state set to: " + !isCesiumActiveState + " (Cesium Active: " + isCesiumActiveState + ")");
     }
 }
