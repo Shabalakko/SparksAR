@@ -1821,6 +1821,7 @@ MonoBehaviour:
   playButtonName: PlayButton
   activeSprite: {fileID: 0}
   inactiveSprite: {fileID: 0}
+  skyGameObjectName: SKY
   clickDebounceTime: 0.5
 --- !u!1 &1166726491
 GameObject:
